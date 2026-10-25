@@ -12,6 +12,8 @@ import type { Edge, Node, NodeProps } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import type { BiomeId } from '../../lib/types'
 import type { Indexes } from '../../lib/dataset'
+import { ingredientBiome } from '../../lib/dataset'
+import { useBiomeVisibility } from '../../lib/dataset-context'
 import { formatBiome } from '../../lib/format'
 import { ItemIcon } from '../ui/ItemIcon'
 
@@ -71,6 +73,7 @@ function buildGraph(
   rootId: string,
   expanded: Set<string>,
   indexes: Indexes,
+  isVisible: (biome: BiomeId) => boolean,
 ): { nodes: ItemFlowNode[]; edges: Edge[] } {
   const levels = new Map<number, string[]>()
   const seen = new Set<string>([rootId])
@@ -92,6 +95,7 @@ function buildGraph(
     if (!recipe) continue
 
     for (const ingredient of recipe.ingredients) {
+      if (!isVisible(ingredientBiome(indexes, ingredient.itemId))) continue
       edges.push({
         id: `${current.id}->${ingredient.itemId}`,
         source: current.id,
@@ -151,9 +155,10 @@ export function RecipeGraph({
   indexes: Indexes
 }) {
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set([rootId]))
+  const { isVisible } = useBiomeVisibility()
   const derived = useMemo(
-    () => buildGraph(rootId, expanded, indexes),
-    [expanded, indexes, rootId],
+    () => buildGraph(rootId, expanded, indexes, isVisible),
+    [expanded, indexes, isVisible, rootId],
   )
   const [nodes, setNodes, onNodesChange] = useNodesState<ItemFlowNode>(
     derived.nodes,

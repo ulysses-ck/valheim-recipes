@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import type { CostNode } from '../../lib/calculator'
 import type { Indexes } from '../../lib/dataset'
-import { itemIconFor } from '../../lib/dataset'
+import { ingredientBiome, itemIconFor } from '../../lib/dataset'
+import { useBiomeVisibility } from '../../lib/dataset-context'
 import { ItemIcon } from '../ui/ItemIcon'
 
 function CostTreeNode({
@@ -15,6 +16,8 @@ function CostTreeNode({
   depth: number
 }) {
   const [open, setOpen] = useState(depth < 1 && Boolean(node.children?.length))
+  const { isVisible } = useBiomeVisibility()
+  if (!isVisible(ingredientBiome(indexes, node.itemId))) return null
   const hasChildren = Boolean(node.children?.length)
 
   return (

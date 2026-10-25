@@ -237,6 +237,47 @@ export function visibleEntries(
   )
 }
 
+export function ingredientBiome(indexes: Indexes, itemId: string): BiomeId {
+  return indexes.itemsById.get(itemId)?.biome ?? 'meadows'
+}
+
+export function visibleIngredients(
+  ingredients: Ingredient[],
+  indexes: Indexes,
+  selected: BiomeId | 'all',
+): Ingredient[] {
+  if (selected === 'all') return ingredients
+  return ingredients.filter((ingredient) =>
+    isBiomeVisible(
+      ingredientBiome(indexes, ingredient.itemId),
+      selected,
+      indexes.biomeRank,
+    ),
+  )
+}
+
+export function maxVisibleLevel(
+  recipe: Recipe,
+  indexes: Indexes,
+  selected: BiomeId | 'all',
+): number {
+  const maximum = Math.max(1, recipe.maxLevel || (recipe.canUpgrade ? 4 : 1))
+  if (selected === 'all' || !recipe.canUpgrade || maximum <= 1) {
+    return maximum
+  }
+
+  const hasHiddenUpgrade = recipe.ingredients.some(
+    (ingredient) =>
+      ingredient.amountPerLevel > 0 &&
+      !isBiomeVisible(
+        ingredientBiome(indexes, ingredient.itemId),
+        selected,
+        indexes.biomeRank,
+      ),
+  )
+  return hasHiddenUpgrade ? 1 : maximum
+}
+
 export function itemIconFor(indexes: Indexes, itemId: string): string {
   return (
     indexes.itemsById.get(itemId)?.icon ??

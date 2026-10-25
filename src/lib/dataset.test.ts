@@ -2,9 +2,12 @@ import { describe, expect, it } from 'vitest'
 import type { DataOverrides, Dataset, Recipe } from './types'
 import {
   applyOverrides,
+  baseDataset as generatedDataset,
   createIndexes,
   isBiomeVisible,
+  maxVisibleLevel,
   visibleEntries,
+  visibleIngredients,
 } from './dataset'
 
 const recipe: Recipe = {
@@ -88,6 +91,35 @@ describe('biome gate', () => {
     expect(
       visibleEntries(indexes.catalogEntries, 'swamp', indexes.biomeRank),
     ).toHaveLength(2)
+  })
+})
+
+describe('generated dataset gate', () => {
+  it('keeps Meadows base crafts visible despite later upgrade materials', () => {
+    const indexes = createIndexes(generatedDataset)
+    for (const id of [
+      'Club',
+      'ArmorLeatherChest',
+      'ArmorLeatherLegs',
+      'HelmetLeather',
+    ]) {
+      expect(indexes.entriesById.get(id)?.biome).toBe('meadows')
+    }
+  })
+
+  it('caps upgrade levels and hides locked upgrade materials', () => {
+    const indexes = createIndexes(generatedDataset)
+    const clubRecipe = indexes.entriesById.get('Club')?.recipe
+    expect(clubRecipe).toBeDefined()
+    if (!clubRecipe) return
+
+    expect(
+      visibleIngredients(clubRecipe.ingredients, indexes, 'meadows').map(
+        (ingredient) => ingredient.itemId,
+      ),
+    ).toEqual(['Wood'])
+    expect(maxVisibleLevel(clubRecipe, indexes, 'meadows')).toBe(1)
+    expect(maxVisibleLevel(clubRecipe, indexes, 'blackforest')).toBe(4)
   })
 })
 

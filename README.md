@@ -47,7 +47,7 @@ The project is inspired by [astroneer-resources](https://github.com/olchyk98/ast
 
 ## Deployment
 
-Vercel. The scaffold ships with `vercel.json`.
+Live at [valheim-recipes.vercel.app](https://valheim-recipes.vercel.app). Vercel; `vercel.json` selects the TanStack Start preset.
 
 ## License / attribution
 

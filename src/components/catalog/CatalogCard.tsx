@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import type { CatalogEntry, Indexes } from '../../lib/dataset'
-import { itemIconFor } from '../../lib/dataset'
+import { itemIconFor, visibleIngredients } from '../../lib/dataset'
+import { useBiomeVisibility } from '../../lib/dataset-context'
 import { formatCategory } from '../../lib/format'
 import { Badge, BiomeBadge } from '../ui/Badge'
 import { ItemIcon } from '../ui/ItemIcon'
@@ -12,8 +13,10 @@ export function CatalogCard({
   entry: CatalogEntry
   indexes: Indexes
 }) {
-  const preview = entry.ingredients.slice(0, 3)
-  const extra = entry.ingredients.length - preview.length
+  const { selection } = useBiomeVisibility()
+  const ingredients = visibleIngredients(entry.ingredients, indexes, selection)
+  const preview = ingredients.slice(0, 3)
+  const extra = ingredients.length - preview.length
 
   return (
     <Link

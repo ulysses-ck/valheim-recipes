@@ -255,6 +255,7 @@ function resolveBiome(itemId) {
 
   for (const recipe of recipesByItem.get(itemId) ?? []) {
     for (const ingredient of resources(recipe.resources)) {
+      if (ingredient.amount === 0) continue
       const ingredientBiome = resolveBiome(ingredient.itemId)
       values.push(ingredientBiome.biome)
       if (ingredientBiome.known) known = true
@@ -309,9 +310,9 @@ const recipes = enabledRecipes
         ? { subcategory: classification.subcategory }
         : {}),
       biome: maxBiome([
-        ...ingredients.map(
-          (ingredient) => resolveBiome(ingredient.itemId).biome,
-        ),
+        ...ingredients
+          .filter((ingredient) => ingredient.amount > 0)
+          .map((ingredient) => resolveBiome(ingredient.itemId).biome),
         station?.biome ?? DEFAULT_BIOME,
       ]),
       stationId,

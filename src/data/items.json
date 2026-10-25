@@ -509,7 +509,7 @@
     "icon": "/icons/item/armorleatherchest.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "blackforest",
+    "biome": "meadows",
     "kind": "craftable",
     "description": "A tunic made from animal hide."
   },
@@ -520,7 +520,7 @@
     "icon": "/icons/item/armorleatherlegs.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "blackforest",
+    "biome": "meadows",
     "kind": "craftable",
     "description": "They squeak a little when you walk."
   },
@@ -3323,7 +3323,7 @@
     "icon": "/icons/item/club.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "blackforest",
+    "biome": "meadows",
     "kind": "craftable",
     "description": "A crude but useful weapon."
   },
@@ -5525,7 +5525,7 @@
     "icon": "/icons/item/helmetleather.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "blackforest",
+    "biome": "meadows",
     "kind": "craftable",
     "description": "A hood of toughened leather."
   },

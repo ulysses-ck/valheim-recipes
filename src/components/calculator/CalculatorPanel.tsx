@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react'
 import { Link } from '@tanstack/react-router'
+import { maxVisibleLevel } from '../../lib/dataset'
 import type { Indexes } from '../../lib/dataset'
+import { useBiomeVisibility } from '../../lib/dataset-context'
 import type { Recipe } from '../../lib/types'
 import {
   aggregateRaw,
@@ -33,7 +35,10 @@ export function CalculatorPanel({
   initialTarget,
   initialQuantity,
 }: CalculatorPanelProps) {
-  const maximum = maxLevelFor(recipe)
+  const { selection } = useBiomeVisibility()
+  const maximum = maxVisibleLevel(recipe, indexes, selection)
+  const fullMaximum = maxLevelFor(recipe)
+  const capped = maximum < fullMaximum
   const minimum = recipe.upgradeOnly ? 1 : 0
   const startCurrent = clamp(
     initialCurrent ?? minimum,
@@ -66,7 +71,7 @@ export function CalculatorPanel({
 
   const station = indexes.stationsById.get(recipe.stationId)
   const stationLevel = requiredStationLevel(recipe, total.target)
-  const canChooseLevels = recipe.canUpgrade
+  const canChooseLevels = recipe.canUpgrade && maximum > minimum
 
   function changeCurrent(next: number) {
     setCurrent(next)
@@ -156,6 +161,13 @@ export function CalculatorPanel({
         <p className="rounded border border-[rgba(217,164,65,0.25)] bg-[rgba(217,164,65,0.06)] px-3 py-2 text-xs text-[var(--gold-soft)]">
           This is an upgrade-only recipe. The base item is obtained elsewhere,
           so only upgrade materials are counted.
+        </p>
+      ) : null}
+
+      {capped ? (
+        <p className="rounded border border-[rgba(217,164,65,0.25)] bg-[rgba(217,164,65,0.06)] px-3 py-2 text-xs text-[var(--gold-soft)]">
+          Upgrades above level {maximum} are hidden until later-biome materials
+          are visible.
         </p>
       ) : null}
 
