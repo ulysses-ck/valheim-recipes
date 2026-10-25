@@ -1,0 +1,42 @@
+[
+  {
+    "id": "meadows",
+    "name": "Meadows",
+    "rank": 0
+  },
+  {
+    "id": "blackforest",
+    "name": "Black Forest",
+    "rank": 1
+  },
+  {
+    "id": "swamp",
+    "name": "Swamp",
+    "rank": 2
+  },
+  {
+    "id": "mountain",
+    "name": "Mountain",
+    "rank": 3
+  },
+  {
+    "id": "plains",
+    "name": "Plains",
+    "rank": 4
+  },
+  {
+    "id": "mistlands",
+    "name": "Mistlands",
+    "rank": 5
+  },
+  {
+    "id": "ashlands",
+    "name": "Ashlands",
+    "rank": 6
+  },
+  {
+    "id": "deepnorth",
+    "name": "Deep North",
+    "rank": 7
+  }
+]

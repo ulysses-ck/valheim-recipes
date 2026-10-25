@@ -1,0 +1,891 @@
+[
+  {
+    "id": "blackforge",
+    "name": "Black Forge",
+    "icon": "/icons/building-piece/blackforge.webp",
+    "biome": "mistlands",
+    "buildCost": [
+      {
+        "itemId": "BlackMarble",
+        "name": "Black Marble",
+        "amount": 10,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "YggdrasilWood",
+        "name": "Yggdrasil wood",
+        "amount": 10,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "BlackCore",
+        "name": "Black Core",
+        "amount": 5,
+        "amountPerLevel": 1
+      }
+    ],
+    "extensions": [
+      {
+        "id": "blackforge_ext1",
+        "name": "Black Forge Cooler",
+        "buildCost": [
+          {
+            "itemId": "Iron",
+            "name": "Iron",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Copper",
+            "name": "Copper",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "BlackMarble",
+            "name": "Black Marble",
+            "amount": 4,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "mistlands"
+      },
+      {
+        "id": "blackforge_ext2_vise",
+        "name": "Vice",
+        "buildCost": [
+          {
+            "itemId": "Iron",
+            "name": "Iron",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Copper",
+            "name": "Copper",
+            "amount": 8,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "MechanicalSpring",
+            "name": "Mechanical Spring",
+            "amount": 2,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "swamp"
+      },
+      {
+        "id": "blackforge_ext3_metalcutter",
+        "name": "Metal Cutter",
+        "buildCost": [
+          {
+            "itemId": "BlackMarble",
+            "name": "Black Marble",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "FlametalNew",
+            "name": "Flametal",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Blackwood",
+            "name": "Ashwood",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "CharredBone",
+            "name": "Charred Bone",
+            "amount": 4,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "ashlands"
+      },
+      {
+        "id": "blackforge_ext4_gemcutter",
+        "name": "Gem Cutter",
+        "buildCost": [
+          {
+            "itemId": "FlametalNew",
+            "name": "Flametal",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Blackwood",
+            "name": "Ashwood",
+            "amount": 8,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "MorgenSinew",
+            "name": "Morgen Sinew",
+            "amount": 2,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "GemstoneRed",
+            "name": "Bloodstone",
+            "amount": 1,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "deepnorth"
+      },
+      {
+        "id": "blackforge_ext5_apron",
+        "name": "Smith's Aprons",
+        "buildCost": [
+          {
+            "itemId": "Gold",
+            "name": "Bloodgold",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Frostwood",
+            "name": "Timberwood",
+            "amount": 8,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "MooseHide",
+            "name": "Moose Hide",
+            "amount": 2,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "deepnorth"
+      }
+    ]
+  },
+  {
+    "id": "forge",
+    "name": "Forge",
+    "icon": "/icons/building-piece/forge.webp",
+    "biome": "blackforest",
+    "buildCost": [
+      {
+        "itemId": "Stone",
+        "name": "Stone",
+        "amount": 4,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "Coal",
+        "name": "Coal",
+        "amount": 4,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "Wood",
+        "name": "Wood",
+        "amount": 10,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "Copper",
+        "name": "Copper",
+        "amount": 6,
+        "amountPerLevel": 1
+      }
+    ],
+    "extensions": [
+      {
+        "id": "forge_ext1",
+        "name": "Forge Bellows",
+        "buildCost": [
+          {
+            "itemId": "Wood",
+            "name": "Wood",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "DeerHide",
+            "name": "Deer hide",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Chain",
+            "name": "Chain",
+            "amount": 4,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "swamp"
+      },
+      {
+        "id": "forge_ext2",
+        "name": "Anvils",
+        "buildCost": [
+          {
+            "itemId": "Wood",
+            "name": "Wood",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Bronze",
+            "name": "Bronze",
+            "amount": 2,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "blackforest"
+      },
+      {
+        "id": "forge_ext3",
+        "name": "Grinding Wheel",
+        "buildCost": [
+          {
+            "itemId": "Wood",
+            "name": "Wood",
+            "amount": 25,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "SharpeningStone",
+            "name": "Sharpening stone",
+            "amount": 1,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "blackforest"
+      },
+      {
+        "id": "forge_ext4",
+        "name": "Smith's Anvil",
+        "buildCost": [
+          {
+            "itemId": "Iron",
+            "name": "Iron",
+            "amount": 20,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Wood",
+            "name": "Wood",
+            "amount": 5,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "swamp"
+      },
+      {
+        "id": "forge_ext5",
+        "name": "Forge Cooler",
+        "buildCost": [
+          {
+            "itemId": "FineWood",
+            "name": "Fine wood",
+            "amount": 25,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Copper",
+            "name": "Copper",
+            "amount": 10,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "blackforest"
+      },
+      {
+        "id": "forge_ext6",
+        "name": "Forge Tool Rack",
+        "buildCost": [
+          {
+            "itemId": "Iron",
+            "name": "Iron",
+            "amount": 15,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Wood",
+            "name": "Wood",
+            "amount": 10,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "swamp"
+      }
+    ]
+  },
+  {
+    "id": "hammer",
+    "name": "Hammer",
+    "icon": "/icons/item/hammer.webp",
+    "biome": "meadows",
+    "buildCost": [],
+    "extensions": []
+  },
+  {
+    "id": "piece_artisanstation",
+    "name": "Artisan Table",
+    "icon": "/icons/building-piece/piece_artisanstation.webp",
+    "biome": "plains",
+    "buildCost": [
+      {
+        "itemId": "Wood",
+        "name": "Wood",
+        "amount": 10,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "DragonTear",
+        "name": "Dragon tear",
+        "amount": 2,
+        "amountPerLevel": 1
+      }
+    ],
+    "extensions": [
+      {
+        "id": "artisan_ext1",
+        "name": "Artisan Press",
+        "buildCost": [
+          {
+            "itemId": "BlackMarble",
+            "name": "Black Marble",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Bronze",
+            "name": "Bronze",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "QueenDrop",
+            "name": "Majestic Carapace",
+            "amount": 1,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "mistlands"
+      }
+    ]
+  },
+  {
+    "id": "piece_cauldron",
+    "name": "Cauldron",
+    "icon": "/icons/building-piece/piece_cauldron.webp",
+    "biome": "blackforest",
+    "buildCost": [
+      {
+        "itemId": "Tin",
+        "name": "Tin",
+        "amount": 10,
+        "amountPerLevel": 1
+      }
+    ],
+    "extensions": [
+      {
+        "id": "cauldron_ext1_spice",
+        "name": "Spice Rack",
+        "buildCost": [
+          {
+            "itemId": "Dandelion",
+            "name": "Dandelion",
+            "amount": 3,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Carrot",
+            "name": "Carrot",
+            "amount": 2,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Mushroom",
+            "name": "Mushroom",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Thistle",
+            "name": "Thistle",
+            "amount": 3,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Turnip",
+            "name": "Turnip",
+            "amount": 3,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "swamp"
+      },
+      {
+        "id": "cauldron_ext3_butchertable",
+        "name": "Butcher's Table",
+        "buildCost": [
+          {
+            "itemId": "ElderBark",
+            "name": "Ancient bark",
+            "amount": 2,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "RoundLog",
+            "name": "Core wood",
+            "amount": 4,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "FineWood",
+            "name": "Fine wood",
+            "amount": 4,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Silver",
+            "name": "Silver",
+            "amount": 2,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "mountain"
+      },
+      {
+        "id": "cauldron_ext4_pots",
+        "name": "Pots and Pans",
+        "buildCost": [
+          {
+            "itemId": "Iron",
+            "name": "Iron",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Copper",
+            "name": "Copper",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "BlackMetal",
+            "name": "Black metal",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "FineWood",
+            "name": "Fine wood",
+            "amount": 10,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "plains"
+      },
+      {
+        "id": "cauldron_ext5_mortarandpestle",
+        "name": "Mortar and Pestle",
+        "buildCost": [
+          {
+            "itemId": "BlackMarble",
+            "name": "Black Marble",
+            "amount": 8,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "FineWood",
+            "name": "Fine wood",
+            "amount": 6,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "RoundLog",
+            "name": "Core wood",
+            "amount": 4,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "mistlands"
+      },
+      {
+        "id": "cauldron_ext6_rollingpins",
+        "name": "Rolling Pins and Cutting Boards",
+        "buildCost": [
+          {
+            "itemId": "Blackwood",
+            "name": "Ashwood",
+            "amount": 8,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "FineWood",
+            "name": "Fine wood",
+            "amount": 6,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "FlametalNew",
+            "name": "Flametal",
+            "amount": 4,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "ashlands"
+      },
+      {
+        "id": "cauldron_ext7_smoker",
+        "name": "Smoker",
+        "buildCost": [
+          {
+            "itemId": "Gold",
+            "name": "Bloodgold",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Frostwood",
+            "name": "Timberwood",
+            "amount": 6,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "deepnorth"
+      }
+    ]
+  },
+  {
+    "id": "piece_magetable",
+    "name": "Galdr Table",
+    "icon": "/icons/building-piece/piece_magetable.webp",
+    "biome": "mistlands",
+    "buildCost": [
+      {
+        "itemId": "YggdrasilWood",
+        "name": "Yggdrasil wood",
+        "amount": 20,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "BlackMetal",
+        "name": "Black metal",
+        "amount": 10,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "BlackCore",
+        "name": "Black Core",
+        "amount": 5,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "Eitr",
+        "name": "Refined Eitr",
+        "amount": 5,
+        "amountPerLevel": 1
+      }
+    ],
+    "extensions": [
+      {
+        "id": "piece_magetable_ext",
+        "name": "Rune Table",
+        "buildCost": [
+          {
+            "itemId": "BlackMarble",
+            "name": "Black Marble",
+            "amount": 10,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "YggdrasilWood",
+            "name": "Yggdrasil wood",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Eitr",
+            "name": "Refined Eitr",
+            "amount": 10,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "mistlands"
+      },
+      {
+        "id": "piece_magetable_ext2",
+        "name": "Unfading Candles",
+        "buildCost": [
+          {
+            "itemId": "BlackMarble",
+            "name": "Black Marble",
+            "amount": 10,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "TrophySkeleton",
+            "name": "Skeleton trophy",
+            "amount": 3,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Eitr",
+            "name": "Refined Eitr",
+            "amount": 10,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Resin",
+            "name": "Resin",
+            "amount": 15,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "mistlands"
+      },
+      {
+        "id": "piece_magetable_ext3",
+        "name": "Feathery Wreath",
+        "buildCost": [
+          {
+            "itemId": "CelestialFeather",
+            "name": "Celestial Feather",
+            "amount": 8,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "TrophyAsksvin",
+            "name": "Asksvin Trophy",
+            "amount": 1,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Eitr",
+            "name": "Refined Eitr",
+            "amount": 10,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Blackwood",
+            "name": "Ashwood",
+            "amount": 3,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "deepnorth"
+      },
+      {
+        "id": "piece_magetable_ext4",
+        "name": "Standing Loom",
+        "buildCost": [
+          {
+            "itemId": "Frostwood",
+            "name": "Timberwood",
+            "amount": 5,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "NornThread",
+            "name": "Nornathread",
+            "amount": 10,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "deepnorth"
+      }
+    ]
+  },
+  {
+    "id": "piece_MeadCauldron",
+    "name": "Mead Ketill",
+    "icon": "/icons/building-piece/piece_meadcauldron.webp",
+    "biome": "blackforest",
+    "buildCost": [
+      {
+        "itemId": "Tin",
+        "name": "Tin",
+        "amount": 4,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "Copper",
+        "name": "Copper",
+        "amount": 6,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "LeatherScraps",
+        "name": "Leather scraps",
+        "amount": 2,
+        "amountPerLevel": 1
+      }
+    ],
+    "extensions": []
+  },
+  {
+    "id": "piece_preptable",
+    "name": "Food Preparation Table",
+    "icon": "/icons/building-piece/piece_preptable.webp",
+    "biome": "swamp",
+    "buildCost": [
+      {
+        "itemId": "Iron",
+        "name": "Iron",
+        "amount": 5,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "FineWood",
+        "name": "Fine wood",
+        "amount": 20,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "LeatherScraps",
+        "name": "Leather scraps",
+        "amount": 15,
+        "amountPerLevel": 1
+      }
+    ],
+    "extensions": []
+  },
+  {
+    "id": "piece_stonecutter",
+    "name": "Stonecutter",
+    "icon": "/icons/building-piece/piece_stonecutter.webp",
+    "biome": "swamp",
+    "buildCost": [
+      {
+        "itemId": "Wood",
+        "name": "Wood",
+        "amount": 10,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "Iron",
+        "name": "Iron",
+        "amount": 2,
+        "amountPerLevel": 1
+      },
+      {
+        "itemId": "Stone",
+        "name": "Stone",
+        "amount": 4,
+        "amountPerLevel": 1
+      }
+    ],
+    "extensions": []
+  },
+  {
+    "id": "piece_workbench",
+    "name": "Workbench",
+    "icon": "/icons/building-piece/piece_workbench.webp",
+    "biome": "meadows",
+    "buildCost": [
+      {
+        "itemId": "Wood",
+        "name": "Wood",
+        "amount": 10,
+        "amountPerLevel": 1
+      }
+    ],
+    "extensions": [
+      {
+        "id": "piece_workbench_ext1",
+        "name": "Chopping Block",
+        "buildCost": [
+          {
+            "itemId": "Wood",
+            "name": "Wood",
+            "amount": 10,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Flint",
+            "name": "Flint",
+            "amount": 10,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "meadows"
+      },
+      {
+        "id": "piece_workbench_ext2",
+        "name": "Tanning Rack",
+        "buildCost": [
+          {
+            "itemId": "Wood",
+            "name": "Wood",
+            "amount": 10,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Flint",
+            "name": "Flint",
+            "amount": 15,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "LeatherScraps",
+            "name": "Leather scraps",
+            "amount": 20,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "DeerHide",
+            "name": "Deer hide",
+            "amount": 5,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "meadows"
+      },
+      {
+        "id": "piece_workbench_ext3",
+        "name": "Adze",
+        "buildCost": [
+          {
+            "itemId": "FineWood",
+            "name": "Fine wood",
+            "amount": 10,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Bronze",
+            "name": "Bronze",
+            "amount": 3,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "blackforest"
+      },
+      {
+        "id": "piece_workbench_ext4",
+        "name": "Tool Shelf",
+        "buildCost": [
+          {
+            "itemId": "Iron",
+            "name": "Iron",
+            "amount": 4,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "FineWood",
+            "name": "Fine wood",
+            "amount": 10,
+            "amountPerLevel": 1
+          },
+          {
+            "itemId": "Obsidian",
+            "name": "Obsidian",
+            "amount": 4,
+            "amountPerLevel": 1
+          }
+        ],
+        "biome": "mountain"
+      }
+    ]
+  }
+]
