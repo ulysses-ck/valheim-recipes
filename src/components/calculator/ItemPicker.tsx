@@ -1,4 +1,5 @@
 import { useId, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { CatalogEntry } from '../../lib/dataset'
 import { formatCategory } from '../../lib/format'
 import { ItemIcon } from '../ui/ItemIcon'
@@ -13,8 +14,9 @@ interface ItemPickerProps {
 export function ItemPicker({
   entries,
   onSelect,
-  placeholder = 'Search items…',
+  placeholder,
 }: ItemPickerProps) {
+  const { t } = useTranslation()
   const listId = useId()
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
@@ -38,7 +40,7 @@ export function ItemPicker({
   return (
     <div className="relative">
       <label htmlFor={`${listId}-input`} className="sr-only">
-        Search items
+        {t('catalog.searchItems')}
       </label>
       <input
         id={`${listId}-input`}
@@ -52,7 +54,7 @@ export function ItemPicker({
           open && filtered[active] ? `${listId}-${active}` : undefined
         }
         autoComplete="off"
-        placeholder={placeholder}
+        placeholder={placeholder ?? t('catalog.searchItems')}
         value={query}
         onFocus={() => setOpen(true)}
         onBlur={() => {
@@ -93,7 +95,7 @@ export function ItemPicker({
         >
           {filtered.length === 0 ? (
             <li className="px-2 py-3 text-xs text-[var(--faint)]">
-              No visible items match.
+              {t('catalog.noMatches')}
             </li>
           ) : (
             filtered.map((entry, index) => (

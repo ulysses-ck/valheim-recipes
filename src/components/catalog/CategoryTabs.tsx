@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import type { CatalogEntry } from '../../lib/dataset'
 import {
-  CATEGORY_LABELS,
   CATEGORY_ORDER,
   SUBCATEGORY_ORDER,
+  formatCategory,
   formatSubcategory,
 } from '../../lib/format'
 import type { CategoryId } from '../../lib/types'
@@ -88,7 +88,7 @@ export function CategoryTabs({
                 onSubcategory('all')
               }}
             >
-              {CATEGORY_LABELS[id]}
+              {formatCategory(id)}
               <span className="chip-count">{count}</span>
             </button>
           )
@@ -103,7 +103,7 @@ export function CategoryTabs({
             aria-pressed={subcategory === 'all'}
             onClick={() => onSubcategory('all')}
           >
-            All types
+            {t('catalog.allTypes')}
           </button>
           {subcategories.map((id) => (
             <button

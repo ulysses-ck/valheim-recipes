@@ -1,6 +1,8 @@
 import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import type { Indexes } from '../../lib/dataset'
 import { itemIconFor } from '../../lib/dataset'
+import { pluralize } from '../../lib/format'
 import type { Station } from '../../lib/types'
 import { BiomeBadge } from '../ui/Badge'
 import { ItemIcon } from '../ui/ItemIcon'
@@ -16,6 +18,7 @@ export function StationCard({
   extensionCount: number
   indexes: Indexes
 }) {
+  const { t } = useTranslation()
   const preview = station.buildCost.slice(0, 3)
   const extra = station.buildCost.length - preview.length
 
@@ -33,7 +36,7 @@ export function StationCard({
             <BiomeBadge biome={station.biome} />
             {extensionCount > 0 ? (
               <span className="badge">
-                {extensionCount} upgrade{extensionCount === 1 ? '' : 's'}
+                {pluralize(extensionCount, 'extension')}
               </span>
             ) : null}
           </div>
@@ -58,22 +61,20 @@ export function StationCard({
             ))}
             {extra > 0 ? (
               <span className="text-[0.68rem] text-[var(--faint)]">
-                +{extra}
+                {t('catalogCard.more', { count: extra })}
               </span>
             ) : null}
           </div>
         ) : (
           <p className="text-[0.72rem] text-[var(--faint)]">
-            No station required
+            {t('catalogCard.noStationRequired')}
           </p>
         )}
       </div>
 
       <div className="mt-3 flex items-center justify-between border-t border-[var(--border)] pt-2 text-[0.68rem] text-[var(--faint)]">
-        <span>
-          {recipeCount} recipe{recipeCount === 1 ? '' : 's'}
-        </span>
-        <span>View station →</span>
+        <span>{pluralize(recipeCount, 'recipe')}</span>
+        <span>{t('catalogCard.viewStation')}</span>
       </div>
     </Link>
   )

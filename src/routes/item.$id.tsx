@@ -1,4 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import type { Indexes } from '../lib/dataset'
 import { itemIconFor } from '../lib/dataset'
 import { useDataset, useBiomeVisibility } from '../lib/dataset-context'
@@ -21,6 +22,7 @@ import { CalculatorPanel } from '../components/calculator/CalculatorPanel'
 export const Route = createFileRoute('/item/$id')({ component: ItemPage })
 
 function ItemPage() {
+  const { t } = useTranslation()
   const { id } = Route.useParams()
   const { indexes } = useDataset()
   const { selection, isVisible } = useBiomeVisibility()
@@ -30,12 +32,12 @@ function ItemPage() {
     return (
       <div className="mx-auto max-w-3xl px-4 py-16">
         <div className="card p-8 text-center">
-          <p className="font-display text-2xl">Item not found</p>
+          <p className="font-display text-2xl">{t('item.notFound')}</p>
           <p className="mt-2 text-xs text-[var(--faint)]">
-            That id is not part of the loaded dataset.
+            {t('item.notFoundBody')}
           </p>
           <Link to="/" className="btn mt-5">
-            Back to catalog
+            {t('item.backCatalog')}
           </Link>
         </div>
       </div>
@@ -48,15 +50,18 @@ function ItemPage() {
         <div className="card p-8 text-center">
           <p className="font-display text-3xl text-[var(--gold-soft)]">ᛟ</p>
           <p className="mt-2 font-display text-xl">
-            This entry is hidden by your spoiler gate.
+            {t('item.hiddenTitle')}
           </p>
           <p className="mt-2 text-xs text-[var(--faint)]">
-            Raise your progress in the biome selector to reveal it. Nothing
-            about this entry is shown while it is outside{' '}
-            {selection === 'all' ? 'the gate' : formatBiome(selection)}.
+            {t('item.hiddenBody', {
+              scope:
+                selection === 'all'
+                  ? t('item.gate')
+                  : formatBiome(selection),
+            })}
           </p>
           <Link to="/" className="btn mt-5">
-            Back to catalog
+            {t('item.backCatalog')}
           </Link>
         </div>
       </div>
@@ -81,7 +86,7 @@ function ItemPage() {
     <div className="mx-auto max-w-7xl px-4 py-8">
       <nav className="flex flex-wrap items-center gap-1.5 text-[0.7rem] text-[var(--faint)]">
         <Link to="/" className="hover:text-[var(--text)]">
-          Catalog
+          {t('home.catalogTitle')}
         </Link>
         <span aria-hidden="true">/</span>
         <span className="truncate text-[var(--muted)]">{entry.name}</span>
@@ -93,10 +98,10 @@ function ItemPage() {
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="font-display text-3xl md:text-4xl">{entry.name}</h1>
             {recipe?.upgradeOnly ? (
-              <Badge className="badge-gold">Upgrade only</Badge>
+              <Badge className="badge-gold">{t('item.upgradeOnly')}</Badge>
             ) : null}
             {visibleRecipes.length > 1 ? (
-              <Badge>{visibleRecipes.length} recipes</Badge>
+              <Badge>{pluralize(visibleRecipes.length, 'recipe')}</Badge>
             ) : null}
           </div>
           <div className="mt-2 flex flex-wrap gap-1.5">
@@ -106,11 +111,11 @@ function ItemPage() {
             ) : null}
             <BiomeBadge biome={entry.biome} />
             {entry.stationName ? (
-              <Badge title="Crafting station">
-                Station: {entry.stationName}
+              <Badge title={t('item.stationTitle')}>
+                {t('item.station', { station: entry.stationName })}
               </Badge>
             ) : (
-              <Badge>Material</Badge>
+              <Badge>{t('item.material')}</Badge>
             )}
           </div>
           {entry.item?.description ? (
@@ -122,7 +127,7 @@ function ItemPage() {
         <div className="flex shrink-0 flex-wrap gap-2">
           {recipe ? (
             <a href="#calculator" className="btn btn-primary">
-              Calculate materials
+              {t('item.calculateMaterials')}
             </a>
           ) : null}
           <Link
@@ -130,7 +135,7 @@ function ItemPage() {
             search={{ item: entry.itemId }}
             className="btn"
           >
-            Calculator
+            {t('item.calculator')}
           </Link>
         </div>
       </header>
@@ -142,10 +147,11 @@ function ItemPage() {
               <section className="card p-4">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div>
-                    <h2 className="font-display text-lg">Recipe</h2>
+                    <h2 className="font-display text-lg">
+                      {t('item.recipeTitle')}
+                    </h2>
                     <p className="text-xs text-[var(--faint)]">
-                      Base craft at quality 1. Upgrade deltas are in the
-                      calculator.
+                      {t('item.recipeSubtitle')}
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
@@ -156,14 +162,22 @@ function ItemPage() {
                         params={{ id: recipe.stationId }}
                         className="badge hover:border-[var(--gold)] hover:text-[var(--gold-soft)]"
                       >
-                        {recipe.stationName} · level {recipe.stationLevel}
+                        {t('item.stationLevel', {
+                          station: recipe.stationName,
+                          level: recipe.stationLevel,
+                        })}
                       </Link>
                     ) : (
                       <span className="badge">
-                        {recipe.stationName} · level {recipe.stationLevel}
+                        {t('item.stationLevel', {
+                          station: recipe.stationName,
+                          level: recipe.stationLevel,
+                        })}
                       </span>
                     )}
-                    <Badge>{pluralize(recipe.amount, 'item')} per craft</Badge>
+                    <Badge>
+                      {t('item.perCraft', { count: recipe.amount })}
+                    </Badge>
                   </div>
                 </div>
                 <div className="mt-3">
@@ -178,12 +192,14 @@ function ItemPage() {
               <section className="card p-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
-                    <h2 className="font-display text-lg">Ingredient graph</h2>
+                    <h2 className="font-display text-lg">
+                      {t('item.graphTitle')}
+                    </h2>
                     <p className="text-xs text-[var(--faint)]">
-                      Expand any craftable ingredient to follow its recipe.
+                      {t('item.graphSubtitle')}
                     </p>
                   </div>
-                  <Badge>Click nodes</Badge>
+                  <Badge>{t('item.clickNodes')}</Badge>
                 </div>
                 <div className="mt-3">
                   <RecipeGraph rootId={entry.itemId} indexes={indexes} />
@@ -210,10 +226,11 @@ function ItemPage() {
             </>
           ) : (
             <section className="card p-4">
-              <h2 className="font-display text-lg">Material</h2>
+              <h2 className="font-display text-lg">
+                {t('item.materialTitle')}
+              </h2>
               <p className="mt-1 text-xs text-[var(--faint)]">
-                This item is not crafted directly. It is used as an ingredient
-                in the recipes below.
+                {t('item.materialBody')}
               </p>
               <div className="mt-3">
                 <UsedInList recipes={usedIn} indexes={indexes} />
@@ -224,7 +241,9 @@ function ItemPage() {
           {recipe ? (
             <section className="card p-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <h2 className="font-display text-lg">Used to craft</h2>
+                <h2 className="font-display text-lg">
+                  {t('item.usedToCraft')}
+                </h2>
                 <Badge>{usedIn.length}</Badge>
               </div>
               <div className="mt-3">
@@ -236,43 +255,49 @@ function ItemPage() {
 
         <aside className="space-y-5">
           <section className="card p-4">
-            <h2 className="font-display text-lg">Details</h2>
+            <h2 className="font-display text-lg">{t('item.details')}</h2>
             <dl className="mt-3 space-y-2 text-xs">
-              <Detail label="Biome" value={formatBiome(entry.biome)} />
-              <Detail label="Category" value={formatCategory(entry.category)} />
+              <Detail label={t('item.biome')} value={formatBiome(entry.biome)} />
+              <Detail
+                label={t('item.category')}
+                value={formatCategory(entry.category)}
+              />
               {entry.subcategory ? (
                 <Detail
-                  label="Type"
+                  label={t('item.type')}
                   value={formatSubcategory(entry.subcategory)}
                 />
               ) : null}
               <Detail
-                label="Kind"
+                label={t('item.kind')}
                 value={
                   entry.kind === 'building'
-                    ? 'Building piece'
+                    ? t('item.kindBuilding')
                     : entry.kind === 'food'
-                      ? 'Food'
+                      ? t('item.kindFood')
                       : entry.kind === 'craftable'
-                        ? 'Craftable'
+                        ? t('item.kindCraftable')
                         : entry.kind === 'material'
-                          ? 'Raw material'
-                          : 'Item'
+                          ? t('item.kindMaterial')
+                          : t('item.kindItem')
                 }
               />
               {recipe ? (
                 <>
-                  <Detail label="Station" value={recipe.stationName} />
                   <Detail
-                    label="Station level"
-                    value={`${recipe.stationLevel} to craft`}
+                    label={t('item.stationLabel')}
+                    value={recipe.stationName}
                   />
                   <Detail
-                    label="Max quality"
+                    label={t('item.stationLevelLabel')}
+                    value={t('item.toCraft', { level: recipe.stationLevel })}
+                  />
+                  <Detail
+                    label={t('item.maxQuality')}
                     value={
                       recipe.canUpgrade
-                        ? `${maxLevelFor(recipe)} levels`
-                        : 'No upgrades'
+                        ? t('item.levels', { count: maxLevelFor(recipe) })
+                        : t('item.noUpgrades')
                     }
                   />
                 </>
@@ -282,7 +307,7 @@ function ItemPage() {
 
           {offers.length > 0 || recipe ? (
             <section className="card p-4">
-              <h2 className="font-display text-lg">Sold by</h2>
+              <h2 className="font-display text-lg">{t('item.soldBy')}</h2>
               {offers.length > 0 ? (
                 <ul className="mt-3 space-y-2">
                   {offers.map((offer) => (
@@ -301,7 +326,9 @@ function ItemPage() {
                       <p className="mt-1 text-[0.68rem] text-[var(--faint)]">
                         {formatUnlock(offer.unlock)}
                         {offer.amount > 1
-                          ? ` · ${pluralize(offer.amount, 'item')} per purchase`
+                          ? ` · ${t('item.perPurchase', {
+                              count: offer.amount,
+                            })}`
                           : ''}
                       </p>
                     </li>
@@ -309,19 +336,16 @@ function ItemPage() {
                 </ul>
               ) : (
                 <p className="mt-2 text-xs text-[var(--faint)]">
-                  No visible trader offers.
+                  {t('item.noOffers')}
                 </p>
               )}
             </section>
           ) : null}
 
           <section className="card p-4">
-            <h2 className="font-display text-lg">Source</h2>
+            <h2 className="font-display text-lg">{t('item.sourceTitle')}</h2>
             <p className="mt-2 text-[0.68rem] leading-relaxed text-[var(--faint)]">
-              Recipe and icon data are derived from valheimcheats.com and
-              validated against the community wiki. Biomes are inferred from
-              materials, stations, and trader unlocks, then corrected with
-              overrides.
+              {t('item.sourceBody')}
             </p>
             <a
               className="mt-3 inline-block text-xs text-[var(--gold-soft)] hover:underline"
@@ -329,7 +353,7 @@ function ItemPage() {
               target="_blank"
               rel="noreferrer"
             >
-              View the source site
+              {t('item.viewSource')}
             </a>
           </section>
         </aside>
@@ -363,11 +387,10 @@ function UsedInList({
   recipes: Recipe[]
   indexes: Indexes
 }) {
+  const { t } = useTranslation()
   if (recipes.length === 0) {
     return (
-      <p className="text-xs text-[var(--faint)]">
-        Not used by any visible recipe.
-      </p>
+      <p className="text-xs text-[var(--faint)]">{t('item.usedInNone')}</p>
     )
   }
 
@@ -390,7 +413,7 @@ function UsedInList({
       ))}
       {recipes.length > 16 ? (
         <li className="py-2 text-[0.68rem] text-[var(--faint)]">
-          +{recipes.length - 16} more
+          {t('item.more', { count: recipes.length - 16 })}
         </li>
       ) : null}
     </ul>
@@ -404,13 +427,14 @@ function AlternateRecipes({
   recipes: Recipe[]
   indexes: Indexes
 }) {
+  const { t } = useTranslation()
   if (recipes.length === 0) return null
 
   return (
     <section className="card p-4">
-      <h2 className="font-display text-lg">Alternate recipes</h2>
+      <h2 className="font-display text-lg">{t('item.altRecipesTitle')}</h2>
       <p className="text-xs text-[var(--faint)]">
-        The graph and calculator use the first recipe.
+        {t('item.altRecipesBody')}
       </p>
       <div className="mt-3 space-y-4">
         {recipes.map((recipe) => (
@@ -419,7 +443,7 @@ function AlternateRecipes({
               <h3 className="text-xs font-semibold text-[var(--muted)]">
                 {recipe.stationName}
               </h3>
-              <Badge>{pluralize(recipe.amount, 'item')} per craft</Badge>
+              <Badge>{t('item.perCraft', { count: recipe.amount })}</Badge>
             </div>
             <IngredientList lines={recipe.ingredients} indexes={indexes} />
           </div>

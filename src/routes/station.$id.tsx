@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { Link, createFileRoute } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import type { Indexes } from '../lib/dataset'
 import { itemIconFor } from '../lib/dataset'
 import { useDataset, useBiomeVisibility } from '../lib/dataset-context'
@@ -13,6 +14,7 @@ import { CatalogCard } from '../components/catalog/CatalogCard'
 export const Route = createFileRoute('/station/$id')({ component: StationPage })
 
 function StationPage() {
+  const { t } = useTranslation()
   const { id } = Route.useParams()
   const { indexes } = useDataset()
   const { selection, isVisible } = useBiomeVisibility()
@@ -33,9 +35,9 @@ function StationPage() {
     return (
       <div className="mx-auto max-w-3xl px-4 py-16">
         <div className="card p-8 text-center">
-          <p className="font-display text-2xl">Station not found</p>
+          <p className="font-display text-2xl">{t('station.notFound')}</p>
           <Link to="/" className="btn mt-5">
-            Back to catalog
+            {t('station.backCatalog')}
           </Link>
         </div>
       </div>
@@ -48,15 +50,16 @@ function StationPage() {
         <div className="card p-8 text-center">
           <p className="font-display text-3xl text-[var(--gold-soft)]">ᛟ</p>
           <p className="mt-2 font-display text-xl">
-            This station is hidden by your spoiler gate.
+            {t('station.hiddenTitle')}
           </p>
           <p className="mt-2 text-xs text-[var(--faint)]">
-            Raise your progress in the biome selector to reveal it. Nothing
-            about this station is shown while it is outside{' '}
-            {selection === 'all' ? 'the gate' : formatBiome(selection)}.
+            {t('station.hiddenBody', {
+              scope:
+                selection === 'all' ? t('station.gate') : formatBiome(selection),
+            })}
           </p>
           <Link to="/" className="btn mt-5">
-            Back to catalog
+            {t('station.backCatalog')}
           </Link>
         </div>
       </div>
@@ -73,7 +76,7 @@ function StationPage() {
     <div className="mx-auto max-w-7xl px-4 py-8">
       <nav className="flex flex-wrap items-center gap-1.5 text-[0.7rem] text-[var(--faint)]">
         <Link to="/" className="hover:text-[var(--text)]">
-          Catalog
+          {t('home.catalogTitle')}
         </Link>
         <span aria-hidden="true">/</span>
         <span className="text-[var(--muted)]">{station.name}</span>
@@ -92,7 +95,7 @@ function StationPage() {
           </div>
         </div>
         <Link to="/calculator" className="btn">
-          Open calculator
+          {t('station.openCalculator')}
         </Link>
       </header>
 
@@ -100,10 +103,11 @@ function StationPage() {
         <section>
           <div className="flex flex-wrap items-end justify-between gap-2">
             <div>
-              <h2 className="font-display text-2xl">Recipes</h2>
+              <h2 className="font-display text-2xl">
+                {t('station.recipesTitle')}
+              </h2>
               <p className="mt-1 text-xs text-[var(--faint)]">
-                Items crafted at {station.name}. Biome-gated entries are
-                omitted.
+                {t('station.recipesSubtitle', { station: station.name })}
               </p>
             </div>
             <Badge>{recipes.length}</Badge>
@@ -126,45 +130,47 @@ function StationPage() {
           ) : (
             <div className="card mt-4 p-8 text-center">
               <p className="font-display text-lg">
-                No visible recipes at this station.
+                {t('station.noRecipesTitle')}
               </p>
               <p className="mt-1 text-xs text-[var(--faint)]">
-                Either the station has no recipes or they are above your
-                selected biome.
+                {t('station.noRecipesBody')}
               </p>
             </div>
           )}
 
           {stationRecipes.length > recipes.length ? (
             <p className="mt-3 text-[0.68rem] text-[var(--faint)]">
-              {stationRecipes.length - recipes.length} hidden by the biome gate.
+              {t('station.hiddenRecipes', {
+                count: stationRecipes.length - recipes.length,
+              })}
             </p>
           ) : null}
         </section>
 
         <aside className="space-y-5">
           <section className="card p-4">
-            <h2 className="font-display text-lg">Build cost</h2>
+            <h2 className="font-display text-lg">{t('station.buildCost')}</h2>
             <p className="text-xs text-[var(--faint)]">
-              Materials to place the station.
+              {t('station.buildCostSubtitle')}
             </p>
             <div className="mt-3">
               <IngredientList
                 lines={station.buildCost}
                 indexes={indexes}
-                emptyText="No build materials recorded."
+                emptyText={t('station.noBuildMaterials')}
               />
             </div>
           </section>
 
           <section className="card p-4">
             <div className="flex items-center justify-between gap-2">
-              <h2 className="font-display text-lg">Upgrade extensions</h2>
+              <h2 className="font-display text-lg">
+                {t('station.extensionsTitle')}
+              </h2>
               <Badge>{extensions.length}</Badge>
             </div>
             <p className="mt-1 text-xs text-[var(--faint)]">
-              Extensions raise the station's maximum crafting quality. Each
-              extension is built once.
+              {t('station.extensionsSubtitle')}
             </p>
 
             {extensions.length > 0 ? (
@@ -185,7 +191,7 @@ function StationPage() {
                         lines={extension.buildCost}
                         indexes={indexes}
                         compact
-                        emptyText="No build materials recorded."
+                        emptyText={t('station.noBuildMaterials')}
                       />
                     </div>
                   </li>
@@ -194,31 +200,28 @@ function StationPage() {
             ) : (
               <p className="mt-2 text-xs text-[var(--faint)]">
                 {hiddenExtensions > 0
-                  ? 'Every extension is hidden by your biome gate.'
-                  : 'This station has no extensions.'}
+                  ? t('station.noExtensionsHidden')
+                  : t('station.noExtensions')}
               </p>
             )}
             {hiddenExtensions > 0 && extensions.length > 0 ? (
               <p className="mt-2 text-[0.68rem] text-[var(--faint)]">
-                {pluralize(hiddenExtensions, 'extension')} hidden by the biome
-                gate.
+                {t('station.hiddenExtensions', { count: hiddenExtensions })}
               </p>
             ) : null}
           </section>
 
           <section className="card p-4">
-            <h2 className="font-display text-lg">Station notes</h2>
+            <h2 className="font-display text-lg">{t('station.notesTitle')}</h2>
             <p className="mt-2 text-[0.68rem] leading-relaxed text-[var(--faint)]">
-              Crafting quality is limited by the station level. The calculator
-              reports the required level for the target quality, so you can
-              check whether an extension is still missing.
+              {t('station.notesBody')}
             </p>
             <Link
               to="/"
               hash="stations"
               className="mt-3 inline-block text-xs text-[var(--gold-soft)] hover:underline"
             >
-              Compare all stations
+              {t('station.compareStations')}
             </Link>
           </section>
         </aside>
@@ -236,12 +239,14 @@ function StationRecipeDetails({
   recipes: Recipe[]
   indexes: Indexes
 }) {
+  const { t } = useTranslation()
+
   if (recipes.length === 0) return null
 
   return (
     <details className="card mt-5 p-4">
       <summary className="cursor-pointer font-display text-lg">
-        Recipe ingredient overview
+        {t('station.overviewTitle')}
       </summary>
       <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {recipes.map((recipe) => (

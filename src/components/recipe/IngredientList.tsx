@@ -1,8 +1,10 @@
 import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import type { Indexes } from '../../lib/dataset'
 import { ingredientBiome, itemIconFor } from '../../lib/dataset'
 import { useBiomeVisibility } from '../../lib/dataset-context'
 import type { CostLine } from '../../lib/calculator'
+import { formatNumber } from '../../lib/format'
 import { ItemIcon } from '../ui/ItemIcon'
 
 interface IngredientListProps {
@@ -17,9 +19,10 @@ export function IngredientList({
   lines,
   indexes,
   showPerLevel = false,
-  emptyText = 'Nothing required.',
+  emptyText,
   compact = false,
 }: IngredientListProps) {
+  const { t } = useTranslation()
   const { isVisible } = useBiomeVisibility()
   const visibleLines = lines.filter((line) =>
     isVisible(ingredientBiome(indexes, line.itemId)),
@@ -29,7 +32,9 @@ export function IngredientList({
   if (visibleLines.length === 0) {
     return (
       <p className="text-xs text-[var(--faint)]">
-        {hiddenCount > 0 ? 'Materials hidden by the biome gate.' : emptyText}
+        {hiddenCount > 0
+          ? t('recipe.hiddenAll')
+          : (emptyText ?? t('recipe.empty'))}
       </p>
     )
   }
@@ -51,11 +56,13 @@ export function IngredientList({
               {line.name}
             </Link>
             <span className="shrink-0 font-mono text-sm text-[var(--gold-soft)]">
-              {line.amount.toLocaleString('en')}
+              {formatNumber(line.amount)}
             </span>
             {showPerLevel && line.amountPerLevel > 0 ? (
               <span className="shrink-0 text-[0.65rem] text-[var(--faint)]">
-                +{line.amountPerLevel}/lvl
+                {t('recipe.perLevel', {
+                  amount: formatNumber(line.amountPerLevel),
+                })}
               </span>
             ) : null}
           </li>
@@ -63,8 +70,7 @@ export function IngredientList({
       </ul>
       {hiddenCount > 0 ? (
         <p className="mt-2 text-[0.66rem] text-[var(--faint)]">
-          {hiddenCount} material{hiddenCount === 1 ? '' : 's'} hidden by the
-          biome gate.
+          {t('recipe.hiddenCount', { count: hiddenCount })}
         </p>
       ) : null}
     </>

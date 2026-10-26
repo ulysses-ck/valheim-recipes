@@ -12,7 +12,7 @@ Public fan project. Static dataset, no database, no authentication.
 - `@xyflow/react` for the recipe graph
 - Zustand for the biome gate and local admin overrides (persisted in `localStorage`)
 - Zod for dataset validation, Vitest for unit tests
-- i18next / react-i18next (English now, Spanish later)
+- i18next / react-i18next (Spanish and English, Spanish default)
 
 ## Commands
 
@@ -66,6 +66,7 @@ Do **not** use the Windows pnpm — it writes to a `D:\pnpm` store and breaks in
 ## Conventions
 
 - TypeScript strict. Avoid `any` unless unavoidable.
+- UI copy lives in `src/lib/i18n.ts` (`en`/`es`, Spanish default). Dataset names and descriptions stay in their source language.
 - Small focused commits.
 - Never commit secrets.
 - Update `docs/DATA_SOURCES.md` when a source shape changes.

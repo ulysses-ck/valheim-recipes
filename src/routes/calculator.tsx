@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { Link, createFileRoute } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import type { CatalogEntry, Indexes } from '../lib/dataset'
 import { itemIconFor, visibleEntries } from '../lib/dataset'
 import { useDataset, useBiomeVisibility } from '../lib/dataset-context'
@@ -18,6 +19,7 @@ export const Route = createFileRoute('/calculator')({
 })
 
 function CalculatorPage() {
+  const { t } = useTranslation()
   const { item: itemId } = Route.useSearch()
   const navigate = Route.useNavigate()
   const { indexes } = useDataset()
@@ -52,40 +54,41 @@ function CalculatorPage() {
     <div className="mx-auto max-w-5xl px-4 py-8">
       <div className="max-w-2xl">
         <p className="text-[0.68rem] font-semibold tracking-[0.2em] text-[var(--gold)] uppercase">
-          Material calculator
+          {t('calculator.eyebrow')}
         </p>
         <h1 className="mt-2 font-display text-3xl md:text-4xl">
-          From your current quality to the target.
+          {t('calculator.title')}
         </h1>
         <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-          Pick a craftable item. Starting from “Not crafted” counts the base
-          recipe and then every upgrade delta; starting above level 1 counts
-          only what is still missing. Toggle raw materials to roll intermediate
-          crafts into their base ingredients.
+          {t('calculator.description')}
         </p>
       </div>
 
       <section className="card mt-6 p-4">
         <label className="text-xs font-semibold tracking-wide text-[var(--muted)] uppercase">
-          Choose an item
+          {t('calculator.chooseItem')}
         </label>
         <div className="mt-2">
           <ItemPicker
             entries={craftable}
             onSelect={select}
-            placeholder="Search a craftable item…"
+            placeholder={t('calculator.searchPlaceholder')}
           />
         </div>
         <p className="mt-2 text-[0.68rem] text-[var(--faint)]">
-          Only visible, craftable entries are listed. Biome gate:{' '}
-          {selection === 'all' ? 'all biomes' : formatBiome(selection)}.
+          {t('calculator.onlyVisible', {
+            biome:
+              selection === 'all'
+                ? t('home.allBiomes')
+                : formatBiome(selection),
+          })}
         </p>
       </section>
 
       {quickPicks.length > 0 ? (
         <section className="mt-4">
           <p className="text-[0.65rem] font-semibold tracking-[0.16em] text-[var(--faint)] uppercase">
-            Quick picks
+            {t('calculator.quickPicks')}
           </p>
           <div className="mt-2 flex flex-wrap gap-1.5">
             {quickPicks.map((quick) => (
@@ -125,55 +128,61 @@ function CalculatorPage() {
           <div className="card p-8 text-center">
             <p className="font-display text-3xl text-[var(--gold-soft)]">ᛟ</p>
             <p className="mt-2 font-display text-xl">
-              This item is hidden by your spoiler gate.
+              {t('calculator.hiddenTitle')}
             </p>
             <p className="mt-2 text-xs text-[var(--faint)]">
-              Raise your progress in the header selector to use it in the
-              calculator.
+              {t('calculator.hiddenBody')}
             </p>
           </div>
         ) : itemId ? (
           <div className="card p-8 text-center">
             <p className="font-display text-xl">
-              {entry ? 'This item is not craftable.' : 'Item not found.'}
+              {entry
+                ? t('calculator.notCraftable')
+                : t('calculator.notFound')}
             </p>
             <p className="mt-2 text-xs text-[var(--faint)]">
               {entry
-                ? 'It is a raw material or a station-only item. Pick a craftable item above.'
-                : 'That id is not part of the loaded dataset.'}
+                ? t('calculator.notCraftableBody')
+                : t('calculator.notFoundBody')}
             </p>
           </div>
         ) : (
           <div className="card p-8 text-center">
-            <p className="font-display text-xl">Pick a target above.</p>
+            <p className="font-display text-xl">{t('calculator.pickTitle')}</p>
             <p className="mt-2 text-xs text-[var(--faint)]">
-              The calculator will show base craft materials, each upgrade delta,
-              and the raw-material rollup.
+              {t('calculator.pickBody')}
             </p>
           </div>
         )}
       </div>
 
       <section className="card mt-6 p-4">
-        <h2 className="font-display text-lg">How the numbers work</h2>
+        <h2 className="font-display text-lg">{t('calculator.howTitle')}</h2>
         <ul className="mt-2 space-y-1.5 text-xs leading-relaxed text-[var(--muted)]">
           <li>
-            <span className="text-[var(--text)]">Base craft:</span> quality 1
-            costs. Multiple items round up to full crafting batches.
+            <span className="text-[var(--text)]">
+              {t('calculator.baseCraftLabel')}
+            </span>{' '}
+            {t('calculator.baseCraftBody')}
           </li>
           <li>
-            <span className="text-[var(--text)]">Upgrade delta:</span> each
-            level above the current quality adds only the per-level materials,
-            not the base recipe again.
+            <span className="text-[var(--text)]">
+              {t('calculator.upgradeDeltaLabel')}
+            </span>{' '}
+            {t('calculator.upgradeDeltaBody')}
           </li>
           <li>
-            <span className="text-[var(--text)]">Raw rollup:</span> intermediate
-            crafts are recursively converted into raw materials. Cycles are
-            guarded.
+            <span className="text-[var(--text)]">
+              {t('calculator.rawRollupLabel')}
+            </span>{' '}
+            {t('calculator.rawRollupBody')}
           </li>
           <li>
-            <span className="text-[var(--text)]">Station level:</span> the
-            highest target quality sets the required station upgrade level.
+            <span className="text-[var(--text)]">
+              {t('calculator.stationLevelLabel')}
+            </span>{' '}
+            {t('calculator.stationLevelBody')}
           </li>
         </ul>
       </section>
@@ -190,6 +199,7 @@ function SelectedItem({
   indexes: Indexes
   onClear: () => void
 }) {
+  const { t } = useTranslation()
   return (
     <div className="card flex flex-wrap items-center gap-3 p-4">
       <ItemIcon icon={itemIconFor(indexes, entry.itemId)} size="lg" />
@@ -210,15 +220,21 @@ function SelectedItem({
             <Badge>{formatSubcategory(entry.subcategory)}</Badge>
           ) : null}
           {entry.stationName ? (
-            <Badge>Station: {entry.stationName}</Badge>
+            <Badge>
+              {t('calculator.selected.station', { station: entry.stationName })}
+            </Badge>
           ) : null}
           {entry.recipe?.canUpgrade ? (
-            <Badge>Up to level {maxLevelFor(entry.recipe)}</Badge>
+            <Badge>
+              {t('calculator.selected.upToLevel', {
+                level: maxLevelFor(entry.recipe),
+              })}
+            </Badge>
           ) : null}
         </div>
       </div>
       <button type="button" className="btn btn-ghost text-xs" onClick={onClear}>
-        Clear
+        {t('common.clear')}
       </button>
     </div>
   )

@@ -1,15 +1,5 @@
+import i18n from './i18n'
 import type { BiomeId, CategoryId } from './types'
-
-export const BIOME_LABELS: Record<BiomeId, string> = {
-  meadows: 'Meadows',
-  blackforest: 'Black Forest',
-  swamp: 'Swamp',
-  mountain: 'Mountain',
-  plains: 'Plains',
-  mistlands: 'Mistlands',
-  ashlands: 'Ashlands',
-  deepnorth: 'Deep North',
-}
 
 export const BIOME_BADGE: Record<BiomeId, string> = {
   meadows: 'border-emerald-700/50 bg-emerald-900/25 text-emerald-200',
@@ -22,16 +12,6 @@ export const BIOME_BADGE: Record<BiomeId, string> = {
   deepnorth: 'border-cyan-600/50 bg-cyan-900/20 text-cyan-100',
 }
 
-export const CATEGORY_LABELS: Record<CategoryId, string> = {
-  food: 'Food & drinks',
-  armor: 'Armor',
-  weapon: 'Weapons',
-  tool: 'Tools',
-  construction: 'Construction',
-  material: 'Materials',
-  other: 'Other',
-}
-
 export const CATEGORY_ORDER: CategoryId[] = [
   'weapon',
   'armor',
@@ -42,34 +22,27 @@ export const CATEGORY_ORDER: CategoryId[] = [
   'other',
 ]
 
-export const SUBCATEGORY_LABELS: Record<string, string> = {
-  melee: 'Melee',
-  ranged: 'Ranged',
-  magic: 'Magic',
-  grapple: 'Grapple',
-  harpoon: 'Harpoon',
-  bomb: 'Bombs & ammo',
-  shield: 'Shields',
-  trinket: 'Trinkets',
-  armor: 'Armor',
-  food: 'Food',
-  drink: 'Drinks',
-  tool: 'Tools',
-  utility: 'Utility',
-  bait: 'Bait',
-  fireworks: 'Fireworks',
-  furniture: 'Furniture',
-  building: 'Building',
-  crafting: 'Crafting',
-  misc: 'Misc',
-}
-
 export const SUBCATEGORY_ORDER: Partial<Record<CategoryId, string[]>> = {
   weapon: ['melee', 'ranged', 'magic', 'bomb', 'harpoon', 'grapple'],
   armor: ['armor', 'shield', 'trinket'],
   food: ['food', 'drink'],
   tool: ['tool', 'utility'],
   other: ['bait', 'fireworks'],
+}
+
+const COUNT_KEYS: Record<string, string> = {
+  recipe: 'recipe',
+  item: 'item',
+  station: 'station',
+  extension: 'extension',
+  result: 'result',
+  'visible entry': 'visibleEntry',
+  'visible recipe': 'visibleRecipe',
+  material: 'material',
+  offer: 'offer',
+  node: 'node',
+  patch: 'patch',
+  craft: 'craft',
 }
 
 function titleCase(value: string): string {
@@ -82,28 +55,40 @@ function titleCase(value: string): string {
 }
 
 export function formatCategory(category: CategoryId): string {
-  return CATEGORY_LABELS[category]
+  return i18n.t(`categories.${category}`, { defaultValue: category })
 }
 
 export function formatSubcategory(
   subcategory: string | null | undefined,
 ): string {
   if (!subcategory) return ''
-  return SUBCATEGORY_LABELS[subcategory.toLowerCase()] ?? titleCase(subcategory)
+  const key = subcategory.toLowerCase()
+  return i18n.t(`subcategories.${key}`, {
+    defaultValue: titleCase(subcategory),
+  })
 }
 
 export function formatBiome(biome: BiomeId): string {
-  return BIOME_LABELS[biome]
+  return i18n.t(`biomes.${biome}`, { defaultValue: biome })
 }
 
 export function formatUnlock(unlock: string | null | undefined): string {
   const value = unlock?.trim()
-  if (!value) return 'Unknown requirement'
+  if (!value) return i18n.t('unlock.unknown')
+
   const hildir = /^Hildir(\d)$/i.exec(value)
   if (hildir) {
     const numeral = ['', 'I', 'II', 'III', 'IV'][Number(hildir[1])] ?? '?'
-    return `Hildir's quest ${numeral}`
+    return i18n.t('unlock.hildir', { numeral })
   }
+
+  if (value.toLowerCase() === 'available immediately') {
+    return i18n.t('unlock.available')
+  }
+
+  const defeat = /^Defeat (.+)$/i.exec(value)
+  if (defeat) return i18n.t('unlock.defeat', { target: defeat[1] })
+
   return value
 }
 
@@ -115,11 +100,17 @@ export function formatDate(value: string | null | undefined): string {
   if (!value) return '—'
   const date = new Date(value)
   if (Number.isNaN(date.getTime())) return value
-  return new Intl.DateTimeFormat('en', {
+  return new Intl.DateTimeFormat(i18n.resolvedLanguage ?? i18n.language, {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
   }).format(date)
+}
+
+export function formatNumber(value: number): string {
+  return new Intl.NumberFormat(i18n.resolvedLanguage ?? i18n.language).format(
+    value,
+  )
 }
 
 export function pluralize(
@@ -127,6 +118,8 @@ export function pluralize(
   singular: string,
   plural = `${singular}s`,
 ): string {
+  const key = COUNT_KEYS[singular]
+  if (key) return i18n.t(`counts.${key}`, { count })
   return `${count} ${count === 1 ? singular : plural}`
 }
 

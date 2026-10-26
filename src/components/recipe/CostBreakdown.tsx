@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import type { CostNode } from '../../lib/calculator'
 import type { Indexes } from '../../lib/dataset'
 import { ingredientBiome, itemIconFor } from '../../lib/dataset'
 import { useBiomeVisibility } from '../../lib/dataset-context'
+import { formatNumber } from '../../lib/format'
 import { ItemIcon } from '../ui/ItemIcon'
 
 function CostTreeNode({
@@ -15,6 +17,7 @@ function CostTreeNode({
   indexes: Indexes
   depth: number
 }) {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(depth < 1 && Boolean(node.children?.length))
   const { isVisible } = useBiomeVisibility()
   if (!isVisible(ingredientBiome(indexes, node.itemId))) return null
@@ -30,7 +33,13 @@ function CostTreeNode({
               ? 'border-[var(--border-strong)] text-[var(--gold-soft)] hover:bg-[var(--surface-3)]'
               : 'border-transparent text-[var(--faint)]'
           }`}
-          aria-label={hasChildren ? (open ? 'Collapse' : 'Expand') : undefined}
+          aria-label={
+            hasChildren
+              ? open
+                ? t('recipe.collapse')
+                : t('recipe.expand')
+              : undefined
+          }
           aria-expanded={hasChildren ? open : undefined}
           disabled={!hasChildren}
           onClick={() => setOpen((value) => !value)}
@@ -46,11 +55,15 @@ function CostTreeNode({
           {node.name}
         </Link>
         {node.crafts && node.recipe && node.recipe.amount > 1 ? (
-          <span className="badge">{node.crafts}× batch</span>
+          <span className="badge">
+            {t('recipe.batch', { count: node.crafts })}
+          </span>
         ) : null}
-        {!hasChildren ? <span className="badge">raw</span> : null}
+        {!hasChildren ? (
+          <span className="badge">{t('recipe.raw')}</span>
+        ) : null}
         <span className="shrink-0 font-mono text-xs text-[var(--gold-soft)]">
-          {node.amount.toLocaleString('en')}
+          {formatNumber(node.amount)}
         </span>
       </div>
       {hasChildren && open ? (
@@ -76,8 +89,13 @@ export function CostTree({
   nodes: CostNode[]
   indexes: Indexes
 }) {
+  const { t } = useTranslation()
   if (nodes.length === 0) {
-    return <p className="text-xs text-[var(--faint)]">Nothing to expand.</p>
+    return (
+      <p className="text-xs text-[var(--faint)]">
+        {t('recipe.nothingToExpand')}
+      </p>
+    )
   }
 
   return (

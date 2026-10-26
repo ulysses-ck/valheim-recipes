@@ -1,6 +1,7 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { useTranslation } from 'react-i18next'
 
 import appCss from '../styles.css?url'
 import '../lib/i18n'
@@ -47,8 +48,10 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const { i18n } = useTranslation()
+
   return (
-    <html lang="en">
+    <html lang={i18n.resolvedLanguage ?? 'es'}>
       <head>
         <HeadContent />
       </head>

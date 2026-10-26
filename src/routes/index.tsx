@@ -7,6 +7,7 @@ import { createCatalogSearch, searchCatalog } from '../lib/search'
 import {
   formatBiome,
   formatCategory,
+  formatNumber,
   formatSubcategory,
   pluralize,
 } from '../lib/format'
@@ -99,7 +100,7 @@ function Home() {
   }, [dataset.traders, indexes.itemsById, isVisible])
 
   const selectionLabel =
-    selection === 'all' ? 'all biomes' : formatBiome(selection)
+    selection === 'all' ? t('home.allBiomes') : formatBiome(selection)
   const shown = filtered.slice(0, limit)
   const remaining = filtered.length - shown.length
 
@@ -109,45 +110,49 @@ function Home() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(700px_280px_at_20%_0%,rgba(143,191,98,0.12),transparent_70%)]" />
         <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-16">
           <p className="text-[0.68rem] font-semibold tracking-[0.24em] text-[var(--gold)] uppercase">
-            Unofficial Valheim crafting reference
+            {t('home.eyebrow')}
           </p>
           <h1 className="mt-3 max-w-3xl font-display text-4xl leading-[1.05] text-balance md:text-6xl">
-            Every recipe, every ingredient, one clear path.
+            {t('home.title')}
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--muted)] md:text-base">
-            Follow ingredient graphs, compare station requirements, and turn a
-            target quality into the exact materials you still need. The biome
-            gate keeps later-game names out of sight until you are ready.
+            {t('home.description')}
           </p>
 
           <div className="mt-6 flex flex-wrap items-end gap-3">
             <Link to="/calculator" className="btn btn-primary">
-              Open calculator
+              {t('home.openCalculator')}
             </Link>
             <a href="#catalog" className="btn">
-              Browse recipes
+              {t('home.browseRecipes')}
             </a>
             <span className="pb-1 text-xs text-[var(--faint)]">
-              Showing {selectionLabel}
+              {t('home.showing', { biome: selectionLabel })}
             </span>
           </div>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <Stat label="Visible entries" value={visible.length} />
-            <Stat label="Stations" value={visibleStations.length} />
             <Stat
-              label="Trader offers"
+              label={t('home.stats.visibleEntries')}
+              value={visible.length}
+            />
+            <Stat
+              label={t('home.stats.stations')}
+              value={visibleStations.length}
+            />
+            <Stat
+              label={t('home.stats.traderOffers')}
               value={traderGroups.reduce(
                 (sum, [, offers]) => sum + offers.length,
                 0,
               )}
             />
-            <Stat label="Biomes" value={biomes.length} />
+            <Stat label={t('home.stats.biomes')} value={biomes.length} />
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-1.5">
             <span className="mr-1 text-[0.65rem] font-semibold tracking-[0.16em] text-[var(--faint)] uppercase">
-              Progress
+              {t('home.progress')}
             </span>
             {[...biomes]
               .sort((a, b) => a.rank - b.rank)
@@ -166,7 +171,7 @@ function Home() {
               type="button"
               className="chip"
               aria-pressed={selection === 'all'}
-              title="Shows every biome, including spoilers"
+              title={t('home.allBiomesHint')}
               onClick={() => setBiome('all')}
             >
               {t('biome.all')}
@@ -175,20 +180,19 @@ function Home() {
 
           {selection === 'all' ? (
             <p className="mt-3 flex flex-wrap items-center gap-2 text-xs text-[var(--danger)]">
-              <Badge className="badge-danger">Spoilers on</Badge>
-              Every biome and trader offer is visible.
+              <Badge className="badge-danger">{t('home.spoilersOn')}</Badge>
+              {t('home.spoilersBody')}
               <button
                 type="button"
                 className="underline underline-offset-2 hover:text-[var(--text)]"
                 onClick={() => setBiome('meadows')}
               >
-                Return to Meadows
+                {t('home.returnMeadows')}
               </button>
             </p>
           ) : (
             <p className="mt-3 text-xs text-[var(--faint)]">
-              Anything above {formatBiome(selection)} is hidden from search,
-              graphs, and the calculator.
+              {t('home.hiddenAbove', { biome: formatBiome(selection) })}
             </p>
           )}
         </div>
@@ -200,10 +204,11 @@ function Home() {
       >
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="font-display text-2xl md:text-3xl">Catalog</h2>
+            <h2 className="font-display text-2xl md:text-3xl">
+              {t('home.catalogTitle')}
+            </h2>
             <p className="mt-1 text-xs text-[var(--faint)]">
-              {pluralize(visible.length, 'visible entry')} across every
-              category. Raw materials are included.
+              {t('home.catalogDescription', { count: visible.length })}
             </p>
           </div>
           <div className="relative w-full md:max-w-md">
@@ -211,13 +216,13 @@ function Home() {
               <SearchIcon />
             </span>
             <label htmlFor="catalog-search" className="sr-only">
-              Search recipes and materials
+              {t('home.searchLabel')}
             </label>
             <input
               id="catalog-search"
               className="input pr-20 pl-9"
               type="search"
-              placeholder="Search recipes, materials, stations…"
+              placeholder={t('home.searchPlaceholder')}
               value={query}
               onChange={(event) => setQuery(event.target.value)}
             />
@@ -227,7 +232,7 @@ function Home() {
                 className="absolute top-1/2 right-2 -translate-y-1/2 rounded px-2 py-1 text-[0.68rem] text-[var(--faint)] hover:text-[var(--text)]"
                 onClick={() => setQuery('')}
               >
-                Clear
+                {t('common.clear')}
               </button>
             ) : null}
           </div>
@@ -245,8 +250,12 @@ function Home() {
 
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-[var(--faint)]">
           <span>
-            {pluralize(filtered.length, 'result')}
-            {query.trim() ? ` for “${query.trim()}”` : ''}
+            {query.trim()
+              ? t('home.resultsFor', {
+                  count: filtered.length,
+                  query: query.trim(),
+                })
+              : pluralize(filtered.length, 'result')}
           </span>
           {category !== 'all' ? (
             <span className="badge">
@@ -276,18 +285,18 @@ function Home() {
                   className="btn"
                   onClick={() => setLimit((value) => value + PAGE_SIZE)}
                 >
-                  Show {Math.min(PAGE_SIZE, remaining)} more
+                  {t('home.showMore', {
+                    count: Math.min(PAGE_SIZE, remaining),
+                  })}
                 </button>
               </div>
             ) : null}
           </>
         ) : (
           <div className="card mt-6 p-8 text-center">
-            <p className="font-display text-lg">No visible entries.</p>
+            <p className="font-display text-lg">{t('home.emptyTitle')}</p>
             <p className="mt-1 text-xs text-[var(--faint)]">
-              {query.trim()
-                ? 'Try a different search or clear the filters.'
-                : 'Raise your progress in the biome gate to reveal more.'}
+              {query.trim() ? t('home.emptySearch') : t('home.emptyGate')}
             </p>
             <button
               type="button"
@@ -298,7 +307,7 @@ function Home() {
                 setSubcategory('all')
               }}
             >
-              Clear filters
+              {t('home.clearFilters')}
             </button>
           </div>
         )}
@@ -311,13 +320,15 @@ function Home() {
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
             <h2 className="font-display text-2xl md:text-3xl">
-              Crafting stations
+              {t('home.stationsTitle')}
             </h2>
             <p className="mt-1 text-xs text-[var(--faint)]">
-              Build costs and every available upgrade extension.
+              {t('home.stationsDescription')}
             </p>
           </div>
-          <span className="badge">{visibleStations.length} visible</span>
+          <span className="badge">
+            {t('home.stationsVisible', { count: visibleStations.length })}
+          </span>
         </div>
 
         {visibleStations.length > 0 ? (
@@ -342,7 +353,7 @@ function Home() {
           </div>
         ) : (
           <p className="mt-5 text-xs text-[var(--faint)]">
-            No stations visible at this progress level.
+            {t('home.noStations')}
           </p>
         )}
       </section>
@@ -353,14 +364,20 @@ function Home() {
       >
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
-            <h2 className="font-display text-2xl md:text-3xl">Traders</h2>
+            <h2 className="font-display text-2xl md:text-3xl">
+              {t('home.tradersTitle')}
+            </h2>
             <p className="mt-1 text-xs text-[var(--faint)]">
-              Offers appear once their unlock condition is inside your gate.
+              {t('home.tradersDescription')}
             </p>
           </div>
           <span className="badge">
-            {traderGroups.reduce((sum, [, offers]) => sum + offers.length, 0)}{' '}
-            offers
+            {t('home.traderOffers', {
+              count: traderGroups.reduce(
+                (sum, [, offers]) => sum + offers.length,
+                0,
+              ),
+            })}
           </span>
         </div>
 
@@ -377,7 +394,7 @@ function Home() {
           </div>
         ) : (
           <p className="mt-5 text-xs text-[var(--faint)]">
-            No trader offers visible at this progress level.
+            {t('home.noTraders')}
           </p>
         )}
       </section>
@@ -385,16 +402,16 @@ function Home() {
       <section className="mx-auto max-w-7xl border-t border-[var(--border)] px-4 py-10">
         <div className="grid gap-3 md:grid-cols-3">
           <InfoCard
-            title="Biome gate"
-            body="Each item derives a biome from its ingredients, crafting station, and trader unlock. Anything later than your selected progress is hidden — name included — from search, graphs, and the calculator."
+            title={t('home.info.biomeGate.title')}
+            body={t('home.info.biomeGate.body')}
           />
           <InfoCard
-            title="Upgrade math"
-            body="Starting from “Not crafted” counts the base recipe, then each per-level delta separately. Starting above level 1 counts only the upgrades, so you never pay for materials you already spent."
+            title={t('home.info.upgradeMath.title')}
+            body={t('home.info.upgradeMath.body')}
           />
           <InfoCard
-            title="Raw materials"
-            body="Break intermediate crafts down to raw materials, or keep the tree visible to see every batch. Costs round up to full crafting batches."
+            title={t('home.info.rawMaterials.title')}
+            body={t('home.info.rawMaterials.body')}
           />
         </div>
       </section>
@@ -406,7 +423,7 @@ function Stat({ label, value }: { label: string; value: number }) {
   return (
     <div className="card px-4 py-3">
       <p className="font-display text-2xl text-[var(--gold-soft)]">
-        {value.toLocaleString('en')}
+        {formatNumber(value)}
       </p>
       <p className="text-[0.68rem] tracking-wide text-[var(--faint)] uppercase">
         {label}

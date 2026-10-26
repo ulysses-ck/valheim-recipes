@@ -31,7 +31,9 @@ export function SiteFooter() {
             {pluralize(dataset.stations.length, 'station')}
           </p>
           <p className="mt-1 text-[var(--faint)]">
-            Dataset updated {formatDate(dataset.meta.generatedAt)}
+            {t('footer.datasetUpdated', {
+              date: formatDate(dataset.meta.generatedAt),
+            })}
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <a

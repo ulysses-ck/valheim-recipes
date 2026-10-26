@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { BiomeSelector } from './BiomeSelector'
+import { LanguageSelector } from './LanguageSelector'
 
 const navLinkClass =
   'rounded px-2 py-1 text-[var(--muted)] transition-colors hover:text-[var(--text)]'
@@ -23,14 +24,15 @@ export function SiteHeader() {
               Valheim Recipes
             </span>
           </Link>
-          <div className="sm:hidden">
+          <div className="flex items-center gap-1.5 sm:hidden">
+            <LanguageSelector />
             <BiomeSelector />
           </div>
         </div>
 
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
           <nav
-            aria-label="Main"
+            aria-label={t('nav.main')}
             className="flex flex-wrap items-center gap-0.5 text-sm"
           >
             <Link
@@ -66,7 +68,8 @@ export function SiteHeader() {
               </Link>
             ) : null}
           </nav>
-          <div className="hidden sm:block">
+          <div className="hidden items-center gap-2 sm:flex">
+            <LanguageSelector />
             <BiomeSelector />
           </div>
         </div>

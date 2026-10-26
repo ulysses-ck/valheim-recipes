@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import { maxVisibleLevel } from '../../lib/dataset'
 import type { Indexes } from '../../lib/dataset'
 import { useBiomeVisibility } from '../../lib/dataset-context'
@@ -11,7 +12,6 @@ import {
   maxLevelFor,
   requiredStationLevel,
 } from '../../lib/calculator'
-import { pluralize } from '../../lib/format'
 import { Badge } from '../ui/Badge'
 import { CostTree } from '../recipe/CostBreakdown'
 import { IngredientList } from '../recipe/IngredientList'
@@ -35,6 +35,7 @@ export function CalculatorPanel({
   initialTarget,
   initialQuantity,
 }: CalculatorPanelProps) {
+  const { t } = useTranslation()
   const { selection } = useBiomeVisibility()
   const maximum = maxVisibleLevel(recipe, indexes, selection)
   const fullMaximum = maxLevelFor(recipe)
@@ -82,9 +83,11 @@ export function CalculatorPanel({
     <div className="card space-y-4 p-4">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
-          <h2 className="font-display text-lg">Material calculator</h2>
+          <h2 className="font-display text-lg">
+            {t('calculator.panel.title')}
+          </h2>
           <p className="text-xs text-[var(--faint)]">
-            Base craft plus upgrade deltas. Upgrade costs apply per item.
+            {t('calculator.panel.subtitle')}
           </p>
         </div>
         <button
@@ -97,7 +100,7 @@ export function CalculatorPanel({
             setRecursive(true)
           }}
         >
-          Reset
+          {t('calculator.panel.reset')}
         </button>
       </div>
 
@@ -105,7 +108,7 @@ export function CalculatorPanel({
         {canChooseLevels ? (
           <>
             <label className="block text-xs text-[var(--muted)]">
-              Current quality
+              {t('calculator.panel.currentQuality')}
               <select
                 className="input mt-1"
                 value={current}
@@ -116,14 +119,16 @@ export function CalculatorPanel({
                   (_, index) => minimum + index,
                 ).map((level) => (
                   <option key={level} value={level}>
-                    {level === 0 ? 'Not crafted' : `Level ${level}`}
+                    {level === 0
+                      ? t('calculator.panel.notCrafted')
+                      : t('calculator.panel.level', { level })}
                   </option>
                 ))}
               </select>
             </label>
 
             <label className="block text-xs text-[var(--muted)]">
-              Target quality
+              {t('calculator.panel.targetQuality')}
               <select
                 className="input mt-1"
                 value={target}
@@ -134,7 +139,7 @@ export function CalculatorPanel({
                   (_, index) => current + 1 + index,
                 ).map((level) => (
                   <option key={level} value={level}>
-                    Level {level}
+                    {t('calculator.panel.level', { level })}
                   </option>
                 ))}
               </select>
@@ -143,7 +148,7 @@ export function CalculatorPanel({
         ) : null}
 
         <label className="block text-xs text-[var(--muted)]">
-          Quantity
+          {t('calculator.panel.quantity')}
           <input
             className="input mt-1"
             type="number"
@@ -159,15 +164,13 @@ export function CalculatorPanel({
 
       {recipe.upgradeOnly ? (
         <p className="rounded border border-[rgba(217,164,65,0.25)] bg-[rgba(217,164,65,0.06)] px-3 py-2 text-xs text-[var(--gold-soft)]">
-          This is an upgrade-only recipe. The base item is obtained elsewhere,
-          so only upgrade materials are counted.
+          {t('calculator.panel.upgradeOnlyNote')}
         </p>
       ) : null}
 
       {capped ? (
         <p className="rounded border border-[rgba(217,164,65,0.25)] bg-[rgba(217,164,65,0.06)] px-3 py-2 text-xs text-[var(--gold-soft)]">
-          Upgrades above level {maximum} are hidden until later-biome materials
-          are visible.
+          {t('calculator.panel.cappedNote', { level: maximum })}
         </p>
       ) : null}
 
@@ -179,7 +182,7 @@ export function CalculatorPanel({
             checked={recursive}
             onChange={(event) => setRecursive(event.target.checked)}
           />
-          Break down to raw materials
+          {t('calculator.panel.breakDown')}
         </label>
         {station ? (
           <Link
@@ -187,11 +190,17 @@ export function CalculatorPanel({
             params={{ id: station.id }}
             className="text-[var(--gold-soft)] hover:underline"
           >
-            {station.name} · level {stationLevel}
+            {t('calculator.panel.stationLevel', {
+              station: station.name,
+              level: stationLevel,
+            })}
           </Link>
         ) : (
           <span className="text-[var(--faint)]">
-            {recipe.stationName} · level {stationLevel}
+            {t('calculator.panel.stationLevel', {
+              station: recipe.stationName,
+              level: stationLevel,
+            })}
           </span>
         )}
       </div>
@@ -199,19 +208,27 @@ export function CalculatorPanel({
       <div className="space-y-3">
         {total.steps.length === 0 ? (
           <p className="text-xs text-[var(--faint)]">
-            No materials needed for this selection.
+            {t('calculator.panel.noMaterials')}
           </p>
         ) : (
           total.steps.map((step) => (
             <section key={step.key}>
               <div className="mb-1 flex items-center justify-between gap-2">
                 <h3 className="text-xs font-semibold tracking-wide text-[var(--muted)] uppercase">
-                  {step.label}
+                  {step.key === 'base'
+                    ? t('calculator.panel.baseCraft')
+                    : t('calculator.panel.upgradeTo', {
+                        level: step.level ?? '',
+                      })}
                 </h3>
                 <Badge>
-                  {step.label === 'Base craft'
-                    ? `${total.baseCrafts} craft${total.baseCrafts === 1 ? '' : 's'}`
-                    : `station level ${step.stationLevel}`}
+                  {step.key === 'base'
+                    ? t('calculator.panel.baseCrafts', {
+                        count: total.baseCrafts,
+                      })
+                    : t('calculator.panel.stationLevelBadge', {
+                        level: step.stationLevel,
+                      })}
                 </Badge>
               </div>
               <IngredientList
@@ -226,10 +243,12 @@ export function CalculatorPanel({
       <section className="border-t border-[var(--border)] pt-3">
         <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
           <h3 className="font-display text-base">
-            {recursive ? 'Raw materials' : 'Total ingredients'}
+            {recursive
+              ? t('calculator.panel.rawMaterials')
+              : t('calculator.panel.totalIngredients')}
           </h3>
           <span className="text-[0.68rem] text-[var(--faint)]">
-            For {pluralize(total.quantity, 'item')}
+            {t('calculator.panel.forItems', { count: total.quantity })}
           </span>
         </div>
         <IngredientList
@@ -241,7 +260,7 @@ export function CalculatorPanel({
       {recursive ? (
         <details className="group">
           <summary className="cursor-pointer text-xs text-[var(--gold-soft)] hover:underline">
-            Show crafting tree
+            {t('calculator.panel.showTree')}
           </summary>
           <div className="mt-2">
             <CostTree nodes={tree} indexes={indexes} />
@@ -250,9 +269,7 @@ export function CalculatorPanel({
       ) : null}
 
       <p className="text-[0.66rem] leading-relaxed text-[var(--faint)]">
-        Batches round up: if an ingredient is crafted in batches, the tree
-        counts the full batch. Upgrade ingredients are the per-level delta from
-        the current quality to the target.
+        {t('calculator.panel.batchesNote')}
       </p>
     </div>
   )

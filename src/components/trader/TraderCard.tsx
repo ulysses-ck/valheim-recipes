@@ -1,7 +1,8 @@
 import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import type { Indexes } from '../../lib/dataset'
 import { itemIconFor } from '../../lib/dataset'
-import { formatPrice, formatUnlock } from '../../lib/format'
+import { formatPrice, formatUnlock, pluralize } from '../../lib/format'
 import type { TraderListing } from '../../lib/types'
 import { ItemIcon } from '../ui/ItemIcon'
 
@@ -14,6 +15,7 @@ export function TraderCard({
   offers: TraderListing[]
   indexes: Indexes
 }) {
+  const { t } = useTranslation()
   if (offers.length === 0) return null
 
   const unlocks = [
@@ -34,7 +36,7 @@ export function TraderCard({
         <div>
           <h3 className="font-display text-base">{trader}</h3>
           <p className="text-[0.68rem] text-[var(--faint)]">
-            {offers.length} offer{offers.length === 1 ? '' : 's'}
+            {pluralize(offers.length, 'offer')}
           </p>
         </div>
       </div>
@@ -80,13 +82,13 @@ export function TraderCard({
 
       {offers.length > 4 ? (
         <p className="mt-2 text-[0.68rem] text-[var(--faint)]">
-          +{offers.length - 4} more
+          {t('catalogCard.more', { count: offers.length - 4 })}
         </p>
       ) : null}
 
       {unlocks.length > 0 ? (
         <p className="mt-auto border-t border-[var(--border)] pt-2 text-[0.66rem] text-[var(--faint)]">
-          Unlock: {unlocks.join(' · ')}
+          {t('trader.unlock', { unlocks: unlocks.join(' · ') })}
         </p>
       ) : null}
     </div>

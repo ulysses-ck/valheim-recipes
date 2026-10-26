@@ -14,6 +14,7 @@ Search any item, expand its ingredients as a graph, and calculate the raw materi
 - **Stations** — station badge on every card; click it to see the station card and its upgrade extensions with their build costs.
 - **Traders** — Haldor, Hildir, and the Bog Witch inventories gated by progression.
 - **Local corrections** — `/admin` applies versioned overrides in the browser; download the JSON to commit it. No database or auth.
+- **Bilingual UI** — Spanish default with an English toggle; the choice persists. Dataset names stay in their source language.
 
 ## Stack
 

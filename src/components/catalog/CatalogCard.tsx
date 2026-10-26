@@ -1,8 +1,9 @@
 import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import type { CatalogEntry, Indexes } from '../../lib/dataset'
 import { itemIconFor, visibleIngredients } from '../../lib/dataset'
 import { useBiomeVisibility } from '../../lib/dataset-context'
-import { formatCategory } from '../../lib/format'
+import { formatCategory, pluralize } from '../../lib/format'
 import { Badge, BiomeBadge } from '../ui/Badge'
 import { ItemIcon } from '../ui/ItemIcon'
 
@@ -13,6 +14,7 @@ export function CatalogCard({
   entry: CatalogEntry
   indexes: Indexes
 }) {
+  const { t } = useTranslation()
   const { selection } = useBiomeVisibility()
   const ingredients = visibleIngredients(entry.ingredients, indexes, selection)
   const preview = ingredients.slice(0, 3)
@@ -58,15 +60,15 @@ export function CatalogCard({
             ))}
             {extra > 0 ? (
               <span className="text-[0.68rem] text-[var(--faint)]">
-                +{extra} more
+                {t('catalogCard.more', { count: extra })}
               </span>
             ) : null}
           </div>
         ) : (
           <p className="text-[0.72rem] text-[var(--faint)]">
             {entry.usedIn > 0
-              ? `Used in ${entry.usedIn} recipe${entry.usedIn === 1 ? '' : 's'}`
-              : 'Raw material'}
+              ? t('catalogCard.usedInRecipes', { count: entry.usedIn })
+              : t('catalogCard.rawMaterial')}
           </p>
         )}
       </div>
@@ -74,20 +76,22 @@ export function CatalogCard({
       <div className="mt-3 flex items-center justify-between gap-2 border-t border-[var(--border)] pt-2 text-[0.68rem] text-[var(--faint)]">
         <span className="truncate">
           {entry.stationName
-            ? `Station: ${entry.stationName}`
+            ? t('catalogCard.station', { station: entry.stationName })
             : entry.kind === 'food'
-              ? 'Consumable'
-              : 'Material'}
+              ? t('catalogCard.consumable')
+              : t('catalogCard.material')}
         </span>
         <span className="flex shrink-0 items-center gap-1.5">
           {entry.recipes.length > 1 ? (
-            <span className="badge">{entry.recipes.length} recipes</span>
+            <span className="badge">
+              {pluralize(entry.recipes.length, 'recipe')}
+            </span>
           ) : null}
           {entry.recipe?.upgradeOnly ? (
-            <span className="badge">Upgrade only</span>
+            <span className="badge">{t('catalogCard.upgradeOnly')}</span>
           ) : null}
           {entry.usedIn > 0 && entry.recipe ? (
-            <span>Used in {entry.usedIn}</span>
+            <span>{t('catalogCard.usedIn', { count: entry.usedIn })}</span>
           ) : null}
         </span>
       </div>

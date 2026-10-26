@@ -9,6 +9,7 @@ import {
   useNodesState,
 } from '@xyflow/react'
 import type { Edge, Node, NodeProps } from '@xyflow/react'
+import { useTranslation } from 'react-i18next'
 import '@xyflow/react/dist/style.css'
 import type { BiomeId } from '../../lib/types'
 import type { Indexes } from '../../lib/dataset'
@@ -29,6 +30,7 @@ export interface ItemNodeData extends Record<string, unknown> {
 type ItemFlowNode = Node<ItemNodeData, 'item'>
 
 function ItemNode({ data }: NodeProps<ItemFlowNode>) {
+  useTranslation()
   return (
     <div
       className={`w-[210px] rounded-lg border px-2.5 py-2 ${
@@ -154,6 +156,7 @@ export function RecipeGraph({
   rootId: string
   indexes: Indexes
 }) {
+  const { t } = useTranslation()
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set([rootId]))
   const { isVisible } = useBiomeVisibility()
   const derived = useMemo(
@@ -178,7 +181,7 @@ export function RecipeGraph({
   if (!mounted) {
     return (
       <div className="flex h-[520px] items-center justify-center rounded-lg border border-[var(--border)] bg-[rgba(0,0,0,0.18)] text-xs text-[var(--faint)]">
-        Loading graph…
+        {t('recipe.graphLoading')}
       </div>
     )
   }
@@ -186,8 +189,8 @@ export function RecipeGraph({
   return (
     <div className="overflow-hidden rounded-lg border border-[var(--border)] bg-[rgba(0,0,0,0.18)]">
       <div className="flex items-center justify-between border-b border-[var(--border)] px-3 py-2 text-[0.68rem] text-[var(--faint)]">
-        <span>Click a node with + to expand its recipe.</span>
-        <span>{nodes.length} nodes</span>
+        <span>{t('recipe.graphHint')}</span>
+        <span>{t('recipe.nodeCount', { count: nodes.length })}</span>
       </div>
       <div style={{ height: 520 }}>
         <ReactFlow
