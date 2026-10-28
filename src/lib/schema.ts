@@ -6,6 +6,7 @@ import type {
   Dataset,
   Ingredient,
   Item,
+  ItemStats,
   Meta,
   Recipe,
   Station,
@@ -44,6 +45,42 @@ const RecipeObject = z.object({
 })
 export const RecipeSchema: z.ZodType<Recipe> = RecipeObject
 
+const DamageTypeSchema = z.enum([
+  'slash',
+  'pierce',
+  'blunt',
+  'fire',
+  'frost',
+  'lightning',
+  'poison',
+  'spirit',
+  'chop',
+  'pickaxe',
+])
+
+const ItemStatsSchema: z.ZodType<ItemStats> = z.object({
+  damage: z
+    .partialRecord(DamageTypeSchema, z.number().nonnegative())
+    .optional(),
+  armor: z.number().nonnegative().optional(),
+  blockArmor: z.number().nonnegative().optional(),
+  durability: z.number().nonnegative().optional(),
+  weight: z.number().nonnegative().optional(),
+  stamina: z.number().nonnegative().optional(),
+  knockback: z.number().nonnegative().optional(),
+  attackForce: z.number().nonnegative().optional(),
+  backstabBonus: z.number().nonnegative().optional(),
+  health: z.number().nonnegative().optional(),
+  foodStamina: z.number().nonnegative().optional(),
+  eitr: z.number().nonnegative().optional(),
+  duration: z.number().nonnegative().optional(),
+  regen: z.number().optional(),
+  cooldown: z.number().nonnegative().optional(),
+  movement: z.number().optional(),
+  effect: z.string().optional(),
+  stack: z.number().int().nonnegative().optional(),
+})
+
 const ItemObject = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
@@ -54,6 +91,7 @@ const ItemObject = z.object({
   biome: BiomeIdSchema,
   kind: ItemKindSchema,
   description: z.string().optional(),
+  stats: ItemStatsSchema.optional(),
 })
 export const ItemSchema: z.ZodType<Item> = ItemObject
 

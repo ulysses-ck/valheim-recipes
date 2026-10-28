@@ -31,6 +31,69 @@ const buildingsRaw = readJson('building.json')
 const itemsRaw = readJson('items.json')
 const foodsRaw = readJson('food.json')
 const tradersRaw = readJson('traders.json')
+const detailSettings = fs.existsSync(path.join(rawDir, 'detail-settings.json'))
+  ? readJson('detail-settings.json')
+  : {}
+const wikiStats = fs.existsSync(path.join(rawDir, 'wiki-stats.json'))
+  ? readJson('wiki-stats.json')
+  : {}
+
+function itemStats(id, food, rawItem) {
+  const stats = {}
+  const foodData = food?.food
+  if (foodData) {
+    for (const key of ['health', 'eitr', 'duration', 'regen']) {
+      if (typeof foodData[key] === 'number') stats[key] = foodData[key]
+    }
+    if (typeof foodData.stamina === 'number')
+      stats.foodStamina = foodData.stamina
+    if (typeof food.weight === 'number') stats.weight = food.weight
+    if (typeof food.maxStackSize === 'number') stats.stack = food.maxStackSize
+  }
+
+  const detail = detailSettings[id]
+  if (detail) {
+    if (typeof detail.m_armor === 'number') stats.armor = detail.m_armor
+    if (typeof detail.m_blockPower === 'number')
+      stats.blockArmor = detail.m_blockPower
+    if (typeof detail.m_weight === 'number') stats.weight = detail.m_weight
+    if (typeof detail.m_maxDurability === 'number')
+      stats.durability = detail.m_maxDurability
+    if (typeof detail.m_movementModifier === 'number')
+      stats.movement = detail.m_movementModifier
+    if (typeof detail.m_attackForce === 'number')
+      stats.attackForce = detail.m_attackForce
+    if (typeof detail.m_backstabBonus === 'number')
+      stats.backstabBonus = detail.m_backstabBonus
+  }
+
+  const wiki = wikiStats[id]
+  if (wiki?.damage) stats.damage = wiki.damage
+  if (wiki) {
+    const categories = Array.isArray(rawItem?.category)
+      ? rawItem.category
+      : [rawItem?.category]
+    const isMead = categories.includes('Mead')
+    for (const key of ['stamina', 'knockback']) {
+      if (!isMead && typeof wiki[key] === 'number' && stats[key] === undefined)
+        stats[key] = wiki[key]
+    }
+    if (isMead) {
+      for (const key of ['weight', 'stack', 'duration', 'cooldown', 'regen']) {
+        if (typeof wiki[key] === 'number') stats[key] = wiki[key]
+      }
+      if (wiki.effect && !/[{}]/.test(wiki.effect) && wiki.effect.length > 2)
+        stats.effect = wiki.effect
+    }
+  }
+
+  for (const [key, value] of Object.entries(stats)) {
+    if (typeof value === 'number')
+      stats[key] = Math.round(value * 1000) / 1000
+  }
+
+  return Object.keys(stats).length > 0 ? stats : undefined
+}
 
 const itemIcon = (slug) => `/icons/item/${slug}.webp`
 const stationIcon = (icon, id) =>
@@ -39,6 +102,20 @@ const isUpgrader = (itemId) => /^Upgrader\d/i.test(itemId)
 
 const itemsById = new Map(itemsRaw.map((item) => [item.id, item]))
 const foodsById = new Map(foodsRaw.map((food) => [food.id, food]))
+const fermenterOutputIds = new Set(
+  itemsRaw
+    .filter((item) => /^Mead(?!Base)/.test(item.id) || item.id === 'BarleyWine')
+    .map((item) => item.id),
+)
+const meadBaseByOutputId = new Map()
+for (const id of fermenterOutputIds) {
+  const baseId =
+    id === 'BarleyWine' ? 'BarleyWineBase' : id.replace(/^Mead/, 'MeadBase')
+  const match = itemsRaw.find(
+    (item) => item.id.toLowerCase() === baseId.toLowerCase(),
+  )
+  if (match) meadBaseByOutputId.set(id, match.id)
+}
 const buildingsById = new Map(
   buildingsRaw.map((building) => [building.id, building]),
 )
@@ -238,6 +315,13 @@ function resolveBiome(itemId) {
     known = true
   }
 
+  const baseMeadId = meadBaseByOutputId.get(itemId)
+  if (baseMeadId) {
+    const baseMead = resolveBiome(baseMeadId)
+    values.push(baseMead.biome)
+    if (baseMead.known) known = true
+  }
+
   const station = stationsById.get(itemId)
   if (station) {
     values.push(station.biome)
@@ -405,6 +489,7 @@ const itemIds = new Set()
 for (const id of ingredientIds) itemIds.add(id)
 for (const recipe of enabledRecipes) itemIds.add(recipe.item)
 for (const food of foodsRaw) itemIds.add(food.id)
+for (const id of fermenterOutputIds) itemIds.add(id)
 for (const building of buildingsRaw) itemIds.add(building.id)
 for (const trader of traders) if (trader.itemId) itemIds.add(trader.itemId)
 
@@ -415,7 +500,7 @@ const items = [...itemIds]
     const building = buildingsById.get(id)
     const recipe = recipesByItem.get(id)?.[0]
     const kind = classifyKind({
-      isFood: Boolean(food),
+      isFood: Boolean(food) || fermenterOutputIds.has(id),
       isStation: Boolean(building?.isCraftingStation),
       isBuilding: Boolean(building),
       hasRecipe: Boolean(recipe),
@@ -440,6 +525,7 @@ const items = [...itemIds]
       classification = { category: 'other' }
     }
 
+    const stats = itemStats(id, food, rawItem)
     const base = {
       id,
       name,
@@ -454,6 +540,7 @@ const items = [...itemIds]
       ...(rawItem?.game_description || rawItem?.description
         ? { description: rawItem.game_description || rawItem.description }
         : {}),
+      ...(stats ? { stats } : {}),
     }
     return { ...base, ...overrides.items[id] }
   })

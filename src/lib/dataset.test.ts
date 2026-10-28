@@ -4,6 +4,7 @@ import {
   applyOverrides,
   baseDataset as generatedDataset,
   createIndexes,
+  entriesInBiome,
   isBiomeVisible,
   maxVisibleLevel,
   visibleEntries,
@@ -50,6 +51,15 @@ function base(): Dataset {
         biome: 'swamp',
         kind: 'material',
       },
+      {
+        id: 'Wood',
+        name: 'Wood',
+        slug: 'wood',
+        icon: '/icons/item/wood.webp',
+        category: 'material',
+        biome: 'meadows',
+        kind: 'material',
+      },
     ],
     stations: [],
     traders: [],
@@ -87,10 +97,17 @@ describe('biome gate', () => {
     const indexes = createIndexes(base())
     expect(
       visibleEntries(indexes.catalogEntries, 'meadows', indexes.biomeRank),
-    ).toHaveLength(0)
+    ).toHaveLength(1)
     expect(
       visibleEntries(indexes.catalogEntries, 'swamp', indexes.biomeRank),
-    ).toHaveLength(2)
+    ).toHaveLength(3)
+  })
+
+  it('keeps only the selected biome in entriesInBiome', () => {
+    const indexes = createIndexes(base())
+    expect(entriesInBiome(indexes.catalogEntries, 'meadows')).toHaveLength(1)
+    expect(entriesInBiome(indexes.catalogEntries, 'swamp')).toHaveLength(2)
+    expect(entriesInBiome(indexes.catalogEntries, 'all')).toHaveLength(3)
   })
 })
 
@@ -105,6 +122,27 @@ describe('generated dataset gate', () => {
     ]) {
       expect(indexes.entriesById.get(id)?.biome).toBe('meadows')
     }
+  })
+
+  it('attaches weapon, armor, and food stats', () => {
+    const indexes = createIndexes(generatedDataset)
+    expect(indexes.itemsById.get('SwordBronze')?.stats?.damage?.slash).toBe(35)
+    expect(indexes.itemsById.get('ArmorBronzeChest')?.stats?.armor).toBe(8)
+    expect(indexes.itemsById.get('CookedMeat')?.stats?.health).toBe(30)
+    expect(indexes.itemsById.get('CookedMeat')?.stats?.foodStamina).toBe(10)
+  })
+
+  it('includes fermented meads as consumables with wiki stats', () => {
+    const indexes = createIndexes(generatedDataset)
+    const mead = indexes.entriesById.get('MeadHealthMinor')
+    expect(mead?.kind).toBe('food')
+    expect(mead?.category).toBe('food')
+    expect(mead?.subcategory).toBe('drink')
+    expect(mead?.biome).toBe('blackforest')
+    expect(mead?.recipe).toBeUndefined()
+    expect(mead?.item?.stats?.regen).toBe(50)
+    expect(mead?.item?.stats?.duration).toBe(10)
+    expect(indexes.entriesById.get('BarleyWine')?.biome).toBe('plains')
   })
 
   it('caps upgrade levels and hides locked upgrade materials', () => {

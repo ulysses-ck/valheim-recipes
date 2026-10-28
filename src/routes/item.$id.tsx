@@ -1,7 +1,7 @@
-import { Link, createFileRoute } from '@tanstack/react-router'
+import { Link, createFileRoute, notFound } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import type { Indexes } from '../lib/dataset'
-import { itemIconFor } from '../lib/dataset'
+import { baseIndexes, itemIconFor } from '../lib/dataset'
 import { useDataset, useBiomeVisibility } from '../lib/dataset-context'
 import {
   formatBiome,
@@ -18,8 +18,15 @@ import { ItemIcon } from '../components/ui/ItemIcon'
 import { IngredientList } from '../components/recipe/IngredientList'
 import { RecipeGraph } from '../components/recipe/RecipeGraph'
 import { CalculatorPanel } from '../components/calculator/CalculatorPanel'
+import { ItemStats } from '../components/item/ItemStats'
+import { NotFoundPage } from '../components/layout/NotFoundPage'
 
-export const Route = createFileRoute('/item/$id')({ component: ItemPage })
+export const Route = createFileRoute('/item/$id')({
+  beforeLoad: ({ params }) => {
+    if (!baseIndexes.entriesById.has(params.id)) throw notFound()
+  },
+  component: ItemPage,
+})
 
 function ItemPage() {
   const { t } = useTranslation()
@@ -29,19 +36,7 @@ function ItemPage() {
   const entry = indexes.entriesById.get(id)
 
   if (!entry) {
-    return (
-      <div className="mx-auto max-w-3xl px-4 py-16">
-        <div className="card p-8 text-center">
-          <p className="font-display text-2xl">{t('item.notFound')}</p>
-          <p className="mt-2 text-xs text-[var(--faint)]">
-            {t('item.notFoundBody')}
-          </p>
-          <Link to="/" className="btn mt-5">
-            {t('item.backCatalog')}
-          </Link>
-        </div>
-      </div>
-    )
+    return <NotFoundPage />
   }
 
   if (!isVisible(entry.biome)) {
@@ -254,6 +249,8 @@ function ItemPage() {
         </div>
 
         <aside className="space-y-5">
+          {entry.item?.stats ? <ItemStats stats={entry.item.stats} /> : null}
+
           <section className="card p-4">
             <h2 className="font-display text-lg">{t('item.details')}</h2>
             <dl className="mt-3 space-y-2 text-xs">

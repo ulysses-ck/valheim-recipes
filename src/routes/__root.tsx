@@ -9,6 +9,7 @@ import { DatasetProvider } from '../lib/dataset-context'
 import { StoreHydration } from '../components/StoreHydration'
 import { SiteHeader } from '../components/layout/SiteHeader'
 import { SiteFooter } from '../components/layout/SiteFooter'
+import { NotFoundPage } from '../components/layout/NotFoundPage'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -45,6 +46,7 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: RootDocument,
+  notFoundComponent: NotFoundPage,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {

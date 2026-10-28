@@ -1,0 +1,1699 @@
+{
+  "AxeBlackMetal": {
+    "damage": {
+      "slash": 100,
+      "chop": 60
+    },
+    "blockArmor": 39,
+    "durability": 175,
+    "knockback": 60,
+    "stamina": 14
+  },
+  "AxeBronze": {
+    "damage": {
+      "slash": 40,
+      "chop": 40
+    },
+    "blockArmor": 12,
+    "durability": 125,
+    "knockback": 50,
+    "stamina": 8
+  },
+  "AxeFlint": {
+    "damage": {
+      "slash": 20,
+      "chop": 30
+    },
+    "blockArmor": 4,
+    "durability": 100,
+    "weight": 1.5,
+    "knockback": 50,
+    "stamina": 6
+  },
+  "AxeIron": {
+    "damage": {
+      "slash": 60,
+      "chop": 50
+    },
+    "blockArmor": 21,
+    "durability": 175,
+    "knockback": 50,
+    "stamina": 10
+  },
+  "AxeStone": {
+    "damage": {
+      "slash": 15,
+      "chop": 20
+    },
+    "blockArmor": 3,
+    "durability": 100,
+    "weight": 1.5,
+    "knockback": 50,
+    "stamina": 5
+  },
+  "Cultivator": {
+    "durability": 200,
+    "weight": 2
+  },
+  "FishingRod": {
+    "damage": {
+      "blunt": 5
+    },
+    "weight": 1.5,
+    "knockback": 5,
+    "movement": -0.05
+  },
+  "Hammer": {
+    "durability": 100,
+    "weight": 2
+  },
+  "Hoe": {
+    "durability": 200,
+    "weight": 2
+  },
+  "PickaxeAntler": {
+    "damage": {
+      "pierce": 18,
+      "pickaxe": 18
+    },
+    "durability": 100,
+    "stamina": 6
+  },
+  "PickaxeBronze": {
+    "damage": {
+      "pierce": 25,
+      "pickaxe": 25
+    },
+    "durability": 120,
+    "stamina": 8
+  },
+  "PickaxeIron": {
+    "damage": {
+      "pierce": 33,
+      "pickaxe": 33
+    },
+    "durability": 150,
+    "stamina": 10
+  },
+  "SpearChitin": {
+    "damage": {
+      "pierce": 10
+    },
+    "blockArmor": 21,
+    "durability": 50,
+    "stamina": 15
+  },
+  "AtgeirBlackmetal": {
+    "damage": {
+      "pierce": 105
+    },
+    "blockArmor": 52,
+    "stamina": 18
+  },
+  "AtgeirBronze": {
+    "damage": {
+      "pierce": 45
+    },
+    "blockArmor": 16,
+    "durability": 125,
+    "stamina": 12
+  },
+  "AtgeirIron": {
+    "damage": {
+      "pierce": 65
+    },
+    "blockArmor": 28,
+    "stamina": 14
+  },
+  "Battleaxe": {
+    "damage": {
+      "slash": 70,
+      "chop": 40
+    },
+    "blockArmor": 28,
+    "durability": 200,
+    "knockback": 70,
+    "stamina": 16
+  },
+  "BattleaxeCrystal": {
+    "damage": {
+      "slash": 90,
+      "spirit": 30,
+      "chop": 50
+    },
+    "blockArmor": 40,
+    "durability": 200,
+    "knockback": 70,
+    "stamina": 18
+  },
+  "Bow": {
+    "damage": {
+      "pierce": 22
+    },
+    "blockArmor": 3,
+    "durability": 50,
+    "knockback": 0,
+    "stamina": 4
+  },
+  "BowFineWood": {
+    "damage": {
+      "pierce": 32
+    },
+    "knockback": 5,
+    "stamina": 6
+  },
+  "BowHuntsman": {
+    "damage": {
+      "pierce": 42
+    },
+    "knockback": 10,
+    "stamina": 8
+  },
+  "Club": {
+    "damage": {
+      "blunt": 12
+    },
+    "blockArmor": 3,
+    "durability": 100,
+    "knockback": 30,
+    "stamina": 6
+  },
+  "KnifeBlackMetal": {
+    "damage": {
+      "slash": 34,
+      "pierce": 34
+    },
+    "stamina": 12
+  },
+  "KnifeCopper": {
+    "damage": {
+      "slash": 12,
+      "pierce": 12
+    },
+    "stamina": 6
+  },
+  "KnifeFlint": {
+    "damage": {
+      "slash": 5,
+      "pierce": 5
+    },
+    "stamina": 4
+  },
+  "KnifeSilver": {
+    "damage": {
+      "slash": 25,
+      "pierce": 25,
+      "spirit": 12
+    },
+    "stamina": 10
+  },
+  "MaceBronze": {
+    "damage": {
+      "blunt": 35
+    },
+    "blockArmor": 12,
+    "durability": 200,
+    "knockback": 80,
+    "stamina": 8
+  },
+  "MaceIron": {
+    "damage": {
+      "blunt": 55
+    },
+    "blockArmor": 21,
+    "durability": 200,
+    "knockback": 90,
+    "stamina": 10
+  },
+  "MaceNeedle": {
+    "damage": {
+      "pierce": 45,
+      "blunt": 50
+    },
+    "blockArmor": 39,
+    "durability": 150,
+    "knockback": 100,
+    "stamina": 14
+  },
+  "MaceSilver": {
+    "damage": {
+      "blunt": 35,
+      "frost": 40,
+      "spirit": 20
+    },
+    "blockArmor": 30,
+    "durability": 200,
+    "knockback": 100,
+    "stamina": 12
+  },
+  "ShieldBanded": {
+    "blockArmor": 42,
+    "movement": -0.05
+  },
+  "ShieldBlackmetal": {
+    "blockArmor": 78
+  },
+  "ShieldBlackmetalTower": {
+    "blockArmor": 104
+  },
+  "ShieldBoneTower": {
+    "blockArmor": 32,
+    "weight": 4
+  },
+  "ShieldBronzeBuckler": {
+    "blockArmor": 16,
+    "weight": 3
+  },
+  "ShieldIronBuckler": {
+    "blockArmor": 28,
+    "weight": 4,
+    "movement": -0.05
+  },
+  "ShieldIronSquare": {
+    "blockArmor": 35,
+    "durability": 200,
+    "weight": 4,
+    "movement": -0.2
+  },
+  "ShieldIronTower": {
+    "blockArmor": 52,
+    "weight": 4
+  },
+  "ShieldKnight": {
+    "blockArmor": 120,
+    "durability": 100,
+    "weight": 4
+  },
+  "ShieldSerpentscale": {
+    "blockArmor": 60,
+    "durability": 250,
+    "movement": -0.1
+  },
+  "ShieldSilver": {
+    "blockArmor": 60
+  },
+  "ShieldWood": {
+    "blockArmor": 6,
+    "weight": 4
+  },
+  "ShieldWoodTower": {
+    "blockArmor": 10,
+    "weight": 4
+  },
+  "SledgeIron": {
+    "damage": {
+      "blunt": 55
+    },
+    "blockArmor": 28,
+    "durability": 100,
+    "knockback": 200,
+    "stamina": 20
+  },
+  "SledgeStagbreaker": {
+    "damage": {
+      "pierce": 5,
+      "blunt": 20
+    },
+    "blockArmor": 4,
+    "durability": 100,
+    "knockback": 150,
+    "stamina": 12
+  },
+  "SpearBronze": {
+    "damage": {
+      "pierce": 35
+    },
+    "blockArmor": 12,
+    "stamina": 8
+  },
+  "SpearElderbark": {
+    "damage": {
+      "pierce": 55
+    },
+    "blockArmor": 21,
+    "stamina": 10
+  },
+  "SpearFlint": {
+    "damage": {
+      "pierce": 20
+    },
+    "blockArmor": 4,
+    "stamina": 6
+  },
+  "SpearWolfFang": {
+    "damage": {
+      "pierce": 75
+    },
+    "blockArmor": 30,
+    "stamina": 12
+  },
+  "SwordBlackmetal": {
+    "damage": {
+      "slash": 95
+    },
+    "blockArmor": 39,
+    "stamina": 14
+  },
+  "SwordBronze": {
+    "damage": {
+      "slash": 35
+    },
+    "blockArmor": 12,
+    "stamina": 8
+  },
+  "SwordCheat": {
+    "damage": {
+      "slash": 10000,
+      "chop": 10000,
+      "pickaxe": 10000
+    },
+    "weight": 2,
+    "knockback": 40
+  },
+  "SwordIron": {
+    "damage": {
+      "slash": 55
+    },
+    "blockArmor": 21,
+    "stamina": 10
+  },
+  "SwordIronFire": {
+    "damage": {
+      "slash": 145,
+      "fire": 10
+    },
+    "blockArmor": 57,
+    "durability": 200,
+    "weight": 0.8,
+    "knockback": 40,
+    "stamina": 16
+  },
+  "SwordSilver": {
+    "damage": {
+      "slash": 75,
+      "spirit": 30
+    },
+    "blockArmor": 30,
+    "weight": 1,
+    "stamina": 12
+  },
+  "Tankard": {
+    "blockArmor": 4,
+    "durability": 0,
+    "weight": 1,
+    "knockback": 30
+  },
+  "TankardOdin": {
+    "blockArmor": 4,
+    "weight": 1,
+    "knockback": 30
+  },
+  "Torch": {
+    "damage": {
+      "blunt": 4,
+      "fire": 15
+    },
+    "durability": 20,
+    "weight": 1,
+    "knockback": 30,
+    "stamina": 4
+  },
+  "ArrowBronze": {
+    "damage": {
+      "pierce": 32
+    }
+  },
+  "ArrowFire": {
+    "damage": {
+      "pierce": 11,
+      "fire": 22
+    }
+  },
+  "ArrowFlint": {
+    "damage": {
+      "pierce": 27
+    }
+  },
+  "ArrowFrost": {
+    "damage": {
+      "pierce": 26,
+      "frost": 52
+    }
+  },
+  "ArrowIron": {
+    "damage": {
+      "pierce": 42
+    }
+  },
+  "ArrowNeedle": {
+    "damage": {
+      "pierce": 62
+    },
+    "knockback": 15
+  },
+  "ArrowObsidian": {
+    "damage": {
+      "pierce": 52
+    }
+  },
+  "ArrowPoison": {
+    "damage": {
+      "pierce": 26,
+      "poison": 52
+    }
+  },
+  "ArrowSilver": {
+    "damage": {
+      "pierce": 52,
+      "spirit": 20
+    }
+  },
+  "ArrowWood": {
+    "damage": {
+      "pierce": 22
+    }
+  },
+  "BarleyWine": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 600,
+    "cooldown": 600,
+    "effect": "Resistance vs. Fire"
+  },
+  "MeadFrostResist": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 600,
+    "cooldown": 600,
+    "effect": "Resistant (0.5x) VS Frost"
+  },
+  "MeadHealthMedium": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 10,
+    "cooldown": 120,
+    "regen": 75
+  },
+  "MeadHealthMinor": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 10,
+    "cooldown": 120,
+    "regen": 50
+  },
+  "MeadPoisonResist": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 600,
+    "cooldown": 600,
+    "effect": "Very resistant vs. Poison"
+  },
+  "MeadStaminaMedium": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 2,
+    "cooldown": 120,
+    "regen": 160
+  },
+  "MeadStaminaMinor": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 2,
+    "cooldown": 120,
+    "regen": 80
+  },
+  "MeadTasty": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 10,
+    "cooldown": 10,
+    "regen": -50
+  },
+  "BombOoze": {
+    "damage": {
+      "blunt": 5
+    },
+    "blockArmor": 2,
+    "weight": 0.3,
+    "knockback": 40,
+    "stamina": 8
+  },
+  "BlackSoup": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 17,
+    "health": 50,
+    "duration": 1200,
+    "effect": "}}"
+  },
+  "Fiddleheadfern": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 30,
+    "health": 30,
+    "duration": 900
+  },
+  "FierySvinstew": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 32,
+    "health": 95,
+    "duration": 1500,
+    "effect": "}}"
+  },
+  "FishAndBread": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 90,
+    "health": 30,
+    "duration": 1800
+  },
+  "HoneyGlazedChicken": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 26,
+    "health": 80,
+    "duration": 1800
+  },
+  "MagicallyStuffedShroom": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 12,
+    "health": 25,
+    "eitr": 75,
+    "duration": 1500
+  },
+  "MarinatedGreens": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 16,
+    "health": 32,
+    "eitr": 95,
+    "duration": 1800
+  },
+  "MashedMeat": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 34,
+    "health": 100,
+    "duration": 1500
+  },
+  "MeadBugRepellent": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 600,
+    "cooldown": 0,
+    "effect": "* Prevent Deathsquito attacks"
+  },
+  "MeadBzerker": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 20,
+    "cooldown": 120,
+    "effect": "* Attack, Block and Dodge Stamina use -80%"
+  },
+  "MeadEitrLingering": {
+    "weight": 1,
+    "stack": 10,
+    "eitr": 25,
+    "duration": 300
+  },
+  "MeadEitrMinor": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 10,
+    "cooldown": 120,
+    "regen": 125
+  },
+  "MeadHasty": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 600,
+    "cooldown": 0,
+    "effect": "* +15% walking and running speed"
+  },
+  "MeadHealthLingering": {
+    "weight": 1,
+    "stack": 10,
+    "health": 25,
+    "duration": 300
+  },
+  "MeadHealthMajor": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 10,
+    "cooldown": 120,
+    "regen": 125
+  },
+  "MeadLightfoot": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 600,
+    "cooldown": 0,
+    "effect": "* -30% jump stamina cost"
+  },
+  "MeadStaminaLingering": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 300,
+    "regen": 25
+  },
+  "MeadStrength": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 300,
+    "cooldown": 120,
+    "effect": "* +250.0 carry weight"
+  },
+  "MeadSwimmer": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 300,
+    "cooldown": 0,
+    "effect": "-50% swimming stamina consumption"
+  },
+  "MeadTamer": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 600,
+    "cooldown": 0,
+    "effect": "x2 taming speed"
+  },
+  "MeadTrollPheromones": {
+    "weight": 1,
+    "stack": 10,
+    "duration": 300,
+    "cooldown": 0
+  },
+  "MeatPlatter": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 26,
+    "health": 80,
+    "duration": 1800
+  },
+  "MisthareSupreme": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 28,
+    "health": 85,
+    "duration": 1500
+  },
+  "MushroomJotunPuffs": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 25,
+    "health": 25,
+    "duration": 900
+  },
+  "MushroomMagecap": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 25,
+    "health": 25,
+    "eitr": 25,
+    "duration": 900
+  },
+  "MushroomOmelette": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 85,
+    "health": 28,
+    "duration": 1500
+  },
+  "MushroomSmokePuff": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 15,
+    "health": 15,
+    "duration": 900
+  },
+  "PiquantPie": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 35,
+    "health": 105,
+    "duration": 1800
+  },
+  "RoastedCrustPie": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 100,
+    "health": 34,
+    "duration": 1800
+  },
+  "RottenMeat": {
+    "weight": 0.5,
+    "stack": 20,
+    "duration": 15,
+    "effect": "'''Feeling sick'''"
+  },
+  "RoyalJelly": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 15,
+    "health": 15,
+    "duration": 900
+  },
+  "Salad": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 80,
+    "health": 26,
+    "duration": 1500
+  },
+  "ScorchingMedley": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 95,
+    "health": 32,
+    "duration": 1500
+  },
+  "SeekerAspic": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 14,
+    "health": 28,
+    "eitr": 85,
+    "duration": 1800
+  },
+  "SizzlingBerryBroth": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 14,
+    "health": 28,
+    "eitr": 85,
+    "duration": 1500
+  },
+  "SparklingShroomshake": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 15,
+    "health": 30,
+    "eitr": 90,
+    "duration": 1500
+  },
+  "SpicyMarmalade": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 90,
+    "health": 30,
+    "duration": 1500
+  },
+  "VikingCupcake": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 43,
+    "health": 43,
+    "duration": 1800
+  },
+  "Vineberry": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 30,
+    "health": 30,
+    "eitr": 30,
+    "duration": 900
+  },
+  "YggdrasilPorridge": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 13,
+    "health": 27,
+    "eitr": 80,
+    "duration": 1500
+  },
+  "TankardAnniversary": {
+    "blockArmor": 4,
+    "durability": 0,
+    "weight": 1,
+    "knockback": 30
+  },
+  "Tankard_dvergr": {
+    "blockArmor": 4,
+    "weight": 1,
+    "knockback": 30
+  },
+  "ShieldCarapace": {
+    "blockArmor": 96
+  },
+  "ShieldCarapaceBuckler": {
+    "blockArmor": 78,
+    "weight": 5
+  },
+  "ShieldFlametal": {
+    "blockArmor": 114
+  },
+  "ShieldFlametalTower": {
+    "blockArmor": 140,
+    "movement": -0.1
+  },
+  "Feaster": {
+    "durability": 100,
+    "weight": 2
+  },
+  "Scythe": {
+    "durability": 200,
+    "weight": 2
+  },
+  "ArrowCarapace": {
+    "damage": {
+      "pierce": 72
+    },
+    "knockback": 15
+  },
+  "ArrowCharred": {
+    "damage": {
+      "pierce": 82
+    },
+    "knockback": 15
+  },
+  "AtgeirHimminAfl": {
+    "damage": {
+      "pierce": 85,
+      "lightning": 40
+    },
+    "blockArmor": 64,
+    "durability": 175,
+    "weight": 2.5,
+    "stamina": 20
+  },
+  "AxeBerzerkr": {
+    "damage": {
+      "slash": 140,
+      "chop": 80
+    },
+    "blockArmor": 57,
+    "durability": 175,
+    "weight": 2,
+    "knockback": 20,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "AxeBerzerkrBlood": {
+    "damage": {
+      "slash": 140,
+      "chop": 80
+    },
+    "blockArmor": 57,
+    "durability": 175,
+    "weight": 2,
+    "knockback": 20,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "AxeBerzerkrLightning": {
+    "damage": {
+      "slash": 140,
+      "lightning": 10,
+      "chop": 80
+    },
+    "blockArmor": 57,
+    "durability": 175,
+    "weight": 2,
+    "knockback": 20,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "AxeBerzerkrNature": {
+    "damage": {
+      "slash": 140,
+      "poison": 10,
+      "chop": 80
+    },
+    "blockArmor": 57,
+    "durability": 175,
+    "knockback": 20,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "AxeEarly": {
+    "damage": {
+      "slash": 30,
+      "chop": 35
+    },
+    "blockArmor": 4,
+    "durability": 175,
+    "weight": 2,
+    "knockback": 20,
+    "stamina": 6,
+    "movement": -0.05
+  },
+  "AxeJotunBane": {
+    "damage": {
+      "slash": 80,
+      "poison": 40,
+      "chop": 70
+    },
+    "blockArmor": 48,
+    "durability": 175,
+    "weight": 2,
+    "stamina": 16
+  },
+  "BattleaxeBlackmetal": {
+    "damage": {
+      "slash": 110,
+      "chop": 60
+    },
+    "blockArmor": 52,
+    "durability": 200,
+    "knockback": 70,
+    "stamina": 20,
+    "movement": -0.15
+  },
+  "BattleaxeSkullSplittur": {
+    "damage": {
+      "slash": 130,
+      "chop": 70
+    },
+    "blockArmor": 64,
+    "durability": 200,
+    "knockback": 70,
+    "stamina": 22
+  },
+  "BoltBlackmetal": {
+    "damage": {
+      "pierce": 62
+    },
+    "knockback": 0
+  },
+  "BoltBone": {
+    "damage": {
+      "pierce": 32
+    },
+    "knockback": 0
+  },
+  "BoltCarapace": {
+    "damage": {
+      "pierce": 72
+    },
+    "knockback": 0
+  },
+  "BoltCharred": {
+    "damage": {
+      "pierce": 82
+    },
+    "knockback": 0
+  },
+  "BoltIron": {
+    "damage": {
+      "pierce": 42
+    },
+    "knockback": 0
+  },
+  "BombBile": {
+    "damage": {
+      "blunt": 5
+    },
+    "blockArmor": 2,
+    "weight": 0.3,
+    "knockback": 40,
+    "stamina": 8
+  },
+  "BombLava": {
+    "blockArmor": 2,
+    "weight": 0.3,
+    "knockback": 40,
+    "stamina": 8
+  },
+  "BombSmoke": {
+    "damage": {
+      "blunt": 5
+    },
+    "blockArmor": 2,
+    "weight": 0.3,
+    "knockback": 40,
+    "stamina": 8
+  },
+  "BowAshlands": {
+    "damage": {
+      "pierce": 82,
+      "spirit": 0
+    },
+    "blockArmor": 3,
+    "durability": 100,
+    "knockback": 25,
+    "stamina": 14
+  },
+  "BowAshlandsBlood": {
+    "damage": {
+      "pierce": 82,
+      "spirit": 0
+    },
+    "blockArmor": 3,
+    "knockback": 25,
+    "stamina": 14
+  },
+  "BowAshlandsRoot": {
+    "damage": {
+      "pierce": 82,
+      "poison": 10,
+      "spirit": 0
+    },
+    "blockArmor": 3,
+    "knockback": 25,
+    "stamina": 14
+  },
+  "BowAshlandsStorm": {
+    "damage": {
+      "pierce": 82,
+      "lightning": 10,
+      "spirit": 0
+    },
+    "knockback": 25,
+    "stamina": 14
+  },
+  "BowSpineSnap": {
+    "damage": {
+      "pierce": 72,
+      "spirit": 5
+    },
+    "knockback": 25,
+    "stamina": 14
+  },
+  "CrossbowArbalest": {
+    "damage": {
+      "pierce": 200
+    },
+    "stamina": 1
+  },
+  "CrossbowRipper": {
+    "damage": {
+      "pierce": 220
+    },
+    "stamina": 1
+  },
+  "CrossbowRipperBlood": {
+    "damage": {
+      "pierce": 220
+    },
+    "stamina": 1
+  },
+  "CrossbowRipperLightning": {
+    "damage": {
+      "pierce": 220,
+      "lightning": 10
+    },
+    "stamina": 1
+  },
+  "CrossbowRipperNature": {
+    "damage": {
+      "pierce": 220,
+      "poison": 10
+    },
+    "stamina": 1
+  },
+  "KnifeButcher": {
+    "blockArmor": 2,
+    "knockback": 0,
+    "stamina": 5
+  },
+  "KnifeSkollAndHati": {
+    "damage": {
+      "slash": 45,
+      "pierce": 45
+    },
+    "stamina": 14
+  },
+  "Lantern": {
+    "blockArmor": 3,
+    "durability": 0,
+    "weight": 2,
+    "stamina": 4,
+    "movement": -0.05
+  },
+  "MaceEldner": {
+    "damage": {
+      "blunt": 135
+    },
+    "blockArmor": 57,
+    "durability": 150,
+    "knockback": 100,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "MaceEldnerBlood": {
+    "damage": {
+      "blunt": 135
+    },
+    "blockArmor": 57,
+    "durability": 150,
+    "knockback": 100,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "MaceEldnerLightning": {
+    "damage": {
+      "blunt": 135,
+      "lightning": 10
+    },
+    "blockArmor": 57,
+    "durability": 150,
+    "knockback": 100,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "MaceEldnerNature": {
+    "damage": {
+      "blunt": 135,
+      "poison": 10
+    },
+    "blockArmor": 57,
+    "durability": 150,
+    "knockback": 100,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "PickaxeBlackMetal": {
+    "damage": {
+      "pierce": 49,
+      "pickaxe": 49
+    },
+    "durability": 210,
+    "stamina": 14
+  },
+  "SledgeDemolisher": {
+    "damage": {
+      "blunt": 145
+    },
+    "blockArmor": 52,
+    "durability": 100,
+    "knockback": 210,
+    "stamina": 28
+  },
+  "Sparkler": {
+    "durability": 100
+  },
+  "SpearCarapace": {
+    "damage": {
+      "pierce": 115
+    },
+    "blockArmor": 48,
+    "durability": 100,
+    "weight": 1.5,
+    "stamina": 16
+  },
+  "SpearSplitner": {
+    "damage": {
+      "pierce": 135
+    },
+    "blockArmor": 57,
+    "knockback": 20,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "SpearSplitner_Blood": {
+    "damage": {
+      "pierce": 135
+    },
+    "blockArmor": 57,
+    "knockback": 20,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "SpearSplitner_Lightning": {
+    "damage": {
+      "pierce": 135
+    },
+    "blockArmor": 57,
+    "knockback": 20,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "SpearSplitner_Nature": {
+    "damage": {
+      "pierce": 135,
+      "poison": 10
+    },
+    "blockArmor": 57,
+    "knockback": 20,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "StaffClusterbomb": {
+    "damage": {
+      "blunt": 12,
+      "fire": 12
+    },
+    "blockArmor": 48,
+    "durability": 200,
+    "weight": 0.3,
+    "knockback": 100,
+    "eitr": 30,
+    "movement": -0.05
+  },
+  "StaffFireball": {
+    "damage": {
+      "blunt": 120,
+      "fire": 120
+    },
+    "blockArmor": 48,
+    "weight": 0.3,
+    "knockback": 100,
+    "eitr": 35
+  },
+  "StaffGreenRoots": {
+    "damage": {
+      "blunt": 20,
+      "poison": 20
+    },
+    "blockArmor": 48,
+    "durability": 200,
+    "weight": 0.3,
+    "eitr": 55,
+    "movement": -0.05
+  },
+  "StaffIceShards": {
+    "damage": {
+      "frost": 30
+    },
+    "blockArmor": 48,
+    "durability": 200,
+    "weight": 0.3,
+    "knockback": 10,
+    "eitr": 5,
+    "movement": -0.05
+  },
+  "StaffLightning": {
+    "damage": {
+      "lightning": 20
+    },
+    "blockArmor": 48,
+    "durability": 200,
+    "weight": 1.5,
+    "knockback": 210,
+    "eitr": 25,
+    "movement": -0.05
+  },
+  "StaffRedTroll": {
+    "damage": {
+      "fire": 300,
+      "chop": 100,
+      "pickaxe": 100
+    },
+    "blockArmor": 48,
+    "weight": 0.3,
+    "health": 60,
+    "eitr": 120,
+    "movement": -0.05
+  },
+  "StaffShield": {
+    "blockArmor": 48,
+    "durability": 200,
+    "weight": 0.3,
+    "health": 40,
+    "eitr": 60,
+    "movement": -0.05
+  },
+  "StaffSkeleton": {
+    "blockArmor": 48,
+    "durability": 200,
+    "weight": 0.3,
+    "health": 40,
+    "eitr": 100,
+    "movement": -0.05
+  },
+  "SwordDyrnwyn": {
+    "damage": {
+      "slash": 145,
+      "fire": 10
+    },
+    "blockArmor": 57,
+    "durability": 200,
+    "weight": 0.8,
+    "knockback": 40,
+    "stamina": 16
+  },
+  "SwordMistwalker": {
+    "damage": {
+      "slash": 75,
+      "frost": 40,
+      "spirit": 0
+    },
+    "blockArmor": 48,
+    "stamina": 16
+  },
+  "SwordNiedhogg": {
+    "damage": {
+      "slash": 135
+    },
+    "blockArmor": 57,
+    "durability": 200,
+    "knockback": 40,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "SwordNiedhoggBlood": {
+    "damage": {
+      "slash": 135
+    },
+    "blockArmor": 57,
+    "durability": 200,
+    "knockback": 40,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "SwordNiedhoggLightning": {
+    "damage": {
+      "slash": 135,
+      "lightning": 10
+    },
+    "blockArmor": 57,
+    "durability": 200,
+    "knockback": 40,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "SwordNiedhoggNature": {
+    "damage": {
+      "slash": 135,
+      "poison": 10
+    },
+    "blockArmor": 57,
+    "durability": 200,
+    "knockback": 40,
+    "stamina": 16,
+    "movement": -0.05
+  },
+  "THSwordKrom": {
+    "damage": {
+      "slash": 150
+    },
+    "blockArmor": 52,
+    "knockback": 55,
+    "stamina": 20
+  },
+  "THSwordSlayer": {
+    "damage": {
+      "slash": 170
+    },
+    "blockArmor": 64,
+    "durability": 200,
+    "weight": 4,
+    "knockback": 55,
+    "stamina": 20,
+    "movement": -0.05
+  },
+  "THSwordSlayerBlood": {
+    "damage": {
+      "slash": 170
+    },
+    "blockArmor": 64,
+    "durability": 200,
+    "weight": 4,
+    "knockback": 55,
+    "stamina": 20,
+    "movement": -0.05
+  },
+  "THSwordSlayerLightning": {
+    "damage": {
+      "slash": 170,
+      "lightning": 10
+    },
+    "blockArmor": 64,
+    "durability": 200,
+    "weight": 4,
+    "knockback": 55,
+    "stamina": 20,
+    "movement": -0.05
+  },
+  "THSwordSlayerNature": {
+    "damage": {
+      "slash": 170,
+      "poison": 10
+    },
+    "blockArmor": 64,
+    "durability": 200,
+    "weight": 4,
+    "knockback": 55,
+    "stamina": 20,
+    "movement": -0.05
+  },
+  "PulledBear": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 16,
+    "health": 37,
+    "duration": 1800,
+    "effect": "}}"
+  },
+  "ShieldRoots": {
+    "blockArmor": 48,
+    "durability": 200,
+    "weight": 4,
+    "movement": 0
+  },
+  "AsksvinMeat": {
+    "weight": 1,
+    "stack": 20
+  },
+  "BjornMeat": {
+    "weight": 1,
+    "stack": 20
+  },
+  "BloodPudding": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 75,
+    "health": 25,
+    "duration": 1800,
+    "effect": "}}"
+  },
+  "Blueberries": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 25,
+    "health": 8,
+    "duration": 600
+  },
+  "BoarJerky": {
+    "weight": 0.5,
+    "stack": 20,
+    "foodStamina": 23,
+    "health": 23,
+    "duration": 1800,
+    "effect": "}}"
+  },
+  "Bread": {
+    "weight": 0.5,
+    "stack": 20,
+    "foodStamina": 70,
+    "health": 23,
+    "duration": 1500
+  },
+  "BugMeat": {
+    "weight": 1,
+    "stack": 20
+  },
+  "Carrot": {
+    "weight": 0.3,
+    "stack": 50,
+    "foodStamina": 32,
+    "health": 10,
+    "duration": 900
+  },
+  "CarrotSoup": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 45,
+    "health": 15,
+    "duration": 1500,
+    "effect": "}}"
+  },
+  "ChickenEgg": {
+    "weight": 1,
+    "stack": 20
+  },
+  "ChickenMeat": {
+    "weight": 1,
+    "stack": 20
+  },
+  "Cloudberry": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 40,
+    "health": 13,
+    "duration": 900
+  },
+  "DeerMeat": {
+    "weight": 1,
+    "stack": 20
+  },
+  "DeerStew": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 15,
+    "health": 45,
+    "duration": 1500,
+    "effect": "}}"
+  },
+  "Eyescream": {
+    "weight": 0.5,
+    "stack": 10,
+    "foodStamina": 65,
+    "health": 21,
+    "duration": 1500,
+    "effect": "}}"
+  },
+  "FishAnglerRaw": {
+    "weight": 1,
+    "stack": 20
+  },
+  "FishRaw": {
+    "weight": 1,
+    "stack": 20
+  },
+  "FishWraps": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 23,
+    "health": 70,
+    "duration": 1500,
+    "effect": "}}"
+  },
+  "HareMeat": {
+    "weight": 1,
+    "stack": 20
+  },
+  "LoxMeat": {
+    "weight": 1,
+    "stack": 20
+  },
+  "LoxPie": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 24,
+    "health": 75,
+    "duration": 1800
+  },
+  "MinceMeatSauce": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 13,
+    "health": 40,
+    "duration": 1500,
+    "effect": "}}"
+  },
+  "Mushroom": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 15,
+    "health": 15,
+    "duration": 900,
+    "effect": "}}"
+  },
+  "MushroomBlue": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 20,
+    "health": 20,
+    "duration": 600,
+    "effect": "}}"
+  },
+  "MushroomYellow": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 30,
+    "health": 10,
+    "duration": 600,
+    "effect": "}}"
+  },
+  "Onion": {
+    "weight": 0.3,
+    "stack": 50,
+    "foodStamina": 40,
+    "health": 13,
+    "duration": 900
+  },
+  "OnionSoup": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 60,
+    "health": 20,
+    "duration": 1200,
+    "effect": "}}"
+  },
+  "QueensJam": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 40,
+    "health": 14,
+    "duration": 1200,
+    "effect": "}}"
+  },
+  "Raspberry": {
+    "weight": 0.1,
+    "stack": 50,
+    "foodStamina": 20,
+    "health": 7,
+    "duration": 600,
+    "effect": "}}"
+  },
+  "RawMeat": {
+    "weight": 1,
+    "stack": 20
+  },
+  "Sausages": {
+    "weight": 0.5,
+    "stack": 20,
+    "foodStamina": 18,
+    "health": 55,
+    "duration": 1500,
+    "effect": "}}"
+  },
+  "SerpentStew": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 26,
+    "health": 80,
+    "duration": 1800
+  },
+  "ShocklateSmoothie": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 50,
+    "health": 16,
+    "duration": 1200,
+    "effect": "}}"
+  },
+  "TurnipStew": {
+    "weight": 1,
+    "stack": 10,
+    "foodStamina": 55,
+    "health": 18,
+    "duration": 1500,
+    "effect": "}}"
+  },
+  "VoltureMeat": {
+    "weight": 1,
+    "stack": 20
+  },
+  "WolfJerky": {
+    "weight": 0.5,
+    "stack": 20,
+    "foodStamina": 33,
+    "health": 33,
+    "duration": 1800,
+    "effect": "}}"
+  },
+  "WolfMeat": {
+    "weight": 1,
+    "stack": 20
+  },
+  "WolfMeatSkewer": {
+    "weight": 0.5,
+    "stack": 20,
+    "foodStamina": 21,
+    "health": 65,
+    "duration": 1500,
+    "effect": "}}"
+  },
+  "Honey": {
+    "weight": 0.2,
+    "stack": 50,
+    "foodStamina": 35,
+    "health": 8,
+    "duration": 900,
+    "effect": "}}"
+  }
+}

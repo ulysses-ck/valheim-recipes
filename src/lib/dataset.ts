@@ -237,6 +237,14 @@ export function visibleEntries(
   )
 }
 
+export function entriesInBiome(
+  entries: CatalogEntry[],
+  selected: BiomeId | 'all',
+): CatalogEntry[] {
+  if (selected === 'all') return entries
+  return entries.filter((entry) => entry.biome === selected)
+}
+
 export function ingredientBiome(indexes: Indexes, itemId: string): BiomeId {
   return indexes.itemsById.get(itemId)?.biome ?? 'meadows'
 }
@@ -288,3 +296,5 @@ export function itemIconFor(indexes: Indexes, itemId: string): string {
 export function itemNameFor(indexes: Indexes, itemId: string): string {
   return indexes.itemsById.get(itemId)?.name ?? itemId
 }
+
+export const baseIndexes = createIndexes(baseDataset)

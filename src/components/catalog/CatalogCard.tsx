@@ -6,6 +6,7 @@ import { useBiomeVisibility } from '../../lib/dataset-context'
 import { formatCategory, pluralize } from '../../lib/format'
 import { Badge, BiomeBadge } from '../ui/Badge'
 import { ItemIcon } from '../ui/ItemIcon'
+import { StatSummary } from '../item/ItemStats'
 
 export function CatalogCard({
   entry,
@@ -36,6 +37,7 @@ export function CatalogCard({
             <Badge>{formatCategory(entry.category)}</Badge>
             <BiomeBadge biome={entry.biome} />
           </div>
+          {entry.item?.stats ? <StatSummary stats={entry.item.stats} /> : null}
         </div>
       </div>
 

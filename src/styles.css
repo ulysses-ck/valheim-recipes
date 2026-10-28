@@ -15,7 +15,22 @@
   --gold-soft: #f0cf8a;
   --moss: #8fbf62;
   --danger: #d47a68;
+  --stat-health: #ff8a8a;
+  --stat-stamina: #ffd166;
+  --stat-eitr: #7cc4ff;
   --shadow: 0 18px 50px -28px rgba(0, 0, 0, 0.9);
+}
+
+.stat-health {
+  color: var(--stat-health);
+}
+
+.stat-stamina {
+  color: var(--stat-stamina);
+}
+
+.stat-eitr {
+  color: var(--stat-eitr);
 }
 
 * {

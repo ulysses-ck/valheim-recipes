@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
-import { visibleEntries } from '../lib/dataset'
+import { entriesInBiome } from '../lib/dataset'
 import { useDataset, useBiomeVisibility } from '../lib/dataset-context'
 import { createCatalogSearch, searchCatalog } from '../lib/search'
 import {
@@ -49,7 +49,7 @@ function Home() {
   const [limit, setLimit] = useState(PAGE_SIZE)
 
   const visible = useMemo(
-    () => visibleEntries(indexes.catalogEntries, selection, indexes.biomeRank),
+    () => entriesInBiome(indexes.catalogEntries, selection),
     [indexes, selection],
   )
   const search = useMemo(() => createCatalogSearch(visible), [visible])
@@ -192,7 +192,7 @@ function Home() {
             </p>
           ) : (
             <p className="mt-3 text-xs text-[var(--faint)]">
-              {t('home.hiddenAbove', { biome: formatBiome(selection) })}
+              {t('home.onlyBiome', { biome: formatBiome(selection) })}
             </p>
           )}
         </div>

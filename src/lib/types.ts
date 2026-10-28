@@ -58,6 +58,39 @@ export interface Recipe {
   ingredients: Ingredient[]
 }
 
+export type DamageType =
+  | 'slash'
+  | 'pierce'
+  | 'blunt'
+  | 'fire'
+  | 'frost'
+  | 'lightning'
+  | 'poison'
+  | 'spirit'
+  | 'chop'
+  | 'pickaxe'
+
+export interface ItemStats {
+  damage?: Partial<Record<DamageType, number>>
+  armor?: number
+  blockArmor?: number
+  durability?: number
+  weight?: number
+  stamina?: number
+  knockback?: number
+  attackForce?: number
+  backstabBonus?: number
+  health?: number
+  foodStamina?: number
+  eitr?: number
+  duration?: number
+  regen?: number
+  cooldown?: number
+  movement?: number
+  effect?: string
+  stack?: number
+}
+
 export interface Item {
   id: string
   name: string
@@ -68,6 +101,7 @@ export interface Item {
   biome: BiomeId
   kind: ItemKind
   description?: string
+  stats?: ItemStats
 }
 
 export interface StationExtension {

@@ -63,6 +63,20 @@ Icons are served from:
 
 Download them at fetch time into `public/icons/`. Use a placeholder when a file is missing.
 
+### Item stats
+
+Two snapshots extend the item records. Both are produced by scripts and merged by `build-data.mjs`.
+
+| Snapshot | Script | Shape |
+|---|---|---|
+| `data/raw/detail-settings.json` | `scripts/fetch-detail-settings.mjs` | `{ [itemId]: { m_armor, m_blockPower, m_weight, m_maxDurability, m_movementModifier, m_attackForce, m_backstabBonus } }` from `https://valheimcheats.com/data/detail-settings/item/<slug>.json` |
+| `data/raw/wiki-stats.json` | `scripts/fetch-wiki-stats.mjs` | `{ [itemId]: { damage: { slash, pierce, … }, stamina, knockback, weight, stack, duration, cooldown, regen, effect } }` from the Fandom infoboxes |
+
+- `detail-settings` covers armor and equipment but **has no damage fields**; weapon damage comes from the wiki.
+- Armor pieces do not map 1:1 to wiki pages (they live on set pages), so armor stats come from `detail-settings`.
+- Wiki data is read from `https://valheim.fandom.com/api.php` (`action=query`, category members, then `prop=revisions`). `valheim.fandom.com` has no Cargo tables; `wiki.gg` returns 403.
+- Finished meads and barley wine are included as consumables even though their fermenter recipes are `enabled === false`; `build-data.mjs` derives their biome from the matching `MeadBase*`/`BarleyWineBase` recipe.
+
 ## Other sources
 
 - [valheim-stats](https://github.com/XanderG2/valheim-stats) — useful as a reference for scraping, but `data/crafting.json` is incomplete and wrong for upgrades (e.g. Iron mace `Iron: 1` versus the real `20 (+10/lvl)`). Do not use it as the dataset.

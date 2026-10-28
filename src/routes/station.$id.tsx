@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
-import { Link, createFileRoute } from '@tanstack/react-router'
+import { Link, createFileRoute, notFound } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import type { Indexes } from '../lib/dataset'
-import { itemIconFor } from '../lib/dataset'
+import { baseIndexes, itemIconFor } from '../lib/dataset'
 import { useDataset, useBiomeVisibility } from '../lib/dataset-context'
 import { formatBiome, pluralize } from '../lib/format'
 import type { Recipe } from '../lib/types'
@@ -10,8 +10,14 @@ import { Badge, BiomeBadge } from '../components/ui/Badge'
 import { ItemIcon } from '../components/ui/ItemIcon'
 import { IngredientList } from '../components/recipe/IngredientList'
 import { CatalogCard } from '../components/catalog/CatalogCard'
+import { NotFoundPage } from '../components/layout/NotFoundPage'
 
-export const Route = createFileRoute('/station/$id')({ component: StationPage })
+export const Route = createFileRoute('/station/$id')({
+  beforeLoad: ({ params }) => {
+    if (!baseIndexes.stationsById.has(params.id)) throw notFound()
+  },
+  component: StationPage,
+})
 
 function StationPage() {
   const { t } = useTranslation()
@@ -32,16 +38,7 @@ function StationPage() {
   }, [id, indexes.recipesByStationId, isVisible])
 
   if (!station) {
-    return (
-      <div className="mx-auto max-w-3xl px-4 py-16">
-        <div className="card p-8 text-center">
-          <p className="font-display text-2xl">{t('station.notFound')}</p>
-          <Link to="/" className="btn mt-5">
-            {t('station.backCatalog')}
-          </Link>
-        </div>
-      </div>
-    )
+    return <NotFoundPage />
   }
 
   if (!isVisible(station.biome)) {

@@ -35,6 +35,15 @@ describe('i18n formatting', () => {
     expect(pluralize(3, 'recipe')).toBe('3 recipes')
   })
 
+  it('translates the custom not-found page', async () => {
+    await i18n.changeLanguage('es')
+    expect(i18n.t('notFound.title')).toBe('Te perdiste en el bosque.')
+    expect(i18n.t('notFound.backCatalog')).toBe('Volver al catálogo')
+
+    await i18n.changeLanguage('en')
+    expect(i18n.t('notFound.title')).toBe('You got lost in the woods.')
+  })
+
   it('translates trader unlock conditions', async () => {
     await i18n.changeLanguage('es')
     expect(formatUnlock('Available immediately')).toBe('Disponible de inmediato')
