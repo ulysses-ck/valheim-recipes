@@ -3,6 +3,7 @@ import type { Dataset, Recipe } from './types'
 import {
   aggregateRaw,
   buildCostTree,
+  computePlan,
   computeTotal,
   requiredStationLevel,
   upgradeDelta,
@@ -215,5 +216,97 @@ describe('buildCostTree', () => {
 
     expect(tree[0]?.children?.[0]?.children?.[0]?.itemId).toBe('A')
     expect(tree[0]?.children?.[0]?.children?.[0]?.children).toBeUndefined()
+  })
+})
+
+describe('computePlan', () => {
+  const ingot = makeRecipe({
+    id: 'Recipe_Ingot',
+    itemId: 'Ingot',
+    name: 'Ingot',
+    slug: 'ingot',
+    category: 'material',
+    biome: 'blackforest',
+    stationId: 'forge',
+    stationName: 'Forge',
+    stationLevel: 2,
+    amount: 1,
+    canUpgrade: false,
+    maxLevel: 1,
+    ingredients: [{ itemId: 'Ore', name: 'Ore', amount: 2, amountPerLevel: 0 }],
+  })
+  const sword = makeRecipe({
+    id: 'Recipe_Sword',
+    itemId: 'Sword',
+    name: 'Sword',
+    slug: 'sword',
+    category: 'weapon',
+    biome: 'swamp',
+    stationId: 'forge',
+    stationName: 'Forge',
+    stationLevel: 1,
+    canUpgrade: false,
+    maxLevel: 1,
+    ingredients: [{ itemId: 'Ingot', name: 'Ingot', amount: 1, amountPerLevel: 0 }],
+  })
+  const shield = makeRecipe({
+    id: 'Recipe_Shield',
+    itemId: 'Shield',
+    name: 'Shield',
+    slug: 'shield',
+    category: 'armor',
+    biome: 'swamp',
+    stationId: 'forge',
+    stationName: 'Forge',
+    stationLevel: 1,
+    canUpgrade: false,
+    maxLevel: 1,
+    ingredients: [{ itemId: 'Ingot', name: 'Ingot', amount: 1, amountPerLevel: 0 }],
+  })
+  const indexes = createIndexes(makeDataset([ingot, sword, shield]))
+
+  it('aggregates shared intermediates before building one tree', () => {
+    const plan = computePlan(
+      [
+        { itemId: 'Sword', current: 0, target: 1, quantity: 1 },
+        { itemId: 'Shield', current: 0, target: 1, quantity: 1 },
+      ],
+      indexes,
+      { recursive: true },
+    )
+
+    expect(plan.entries).toHaveLength(2)
+    expect(plan.immediate).toEqual([
+      { itemId: 'Ingot', name: 'Ingot', amount: 2, amountPerLevel: 0 },
+    ])
+    expect(plan.raw).toEqual([
+      { itemId: 'Ore', name: 'Ore', amount: 4, amountPerLevel: 0 },
+    ])
+  })
+
+  it('caps every entry with the supplied visible maximum', () => {
+    const plan = computePlan(
+      [{ itemId: 'Sword', current: 0, target: 4, quantity: 1 }],
+      indexes,
+      { recursive: false, maxLevel: () => 1 },
+    )
+
+    expect(plan.entries[0]?.entry.target).toBe(1)
+    expect(plan.entries[0]?.maximum).toBe(1)
+  })
+
+  it('reports the highest station level across entries', () => {
+    const plan = computePlan(
+      [
+        { itemId: 'Sword', current: 0, target: 1, quantity: 1 },
+        { itemId: 'Ingot', current: 0, target: 1, quantity: 2 },
+      ],
+      indexes,
+      { recursive: true },
+    )
+
+    expect(plan.stations).toEqual([
+      { stationId: 'forge', stationName: 'Forge', level: 2 },
+    ])
   })
 })

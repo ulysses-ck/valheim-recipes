@@ -1,0 +1,94 @@
+[
+  {
+    "id": "leather",
+    "group": "armor",
+    "itemIds": ["HelmetLeather", "ArmorLeatherChest", "ArmorLeatherLegs"],
+    "defaultTarget": 4
+  },
+  {
+    "id": "troll",
+    "group": "armor",
+    "itemIds": [
+      "HelmetTrollLeather",
+      "ArmorTrollLeatherChest",
+      "ArmorTrollLeatherLegs"
+    ],
+    "defaultTarget": 4
+  },
+  {
+    "id": "bronze",
+    "group": "armor",
+    "itemIds": ["HelmetBronze", "ArmorBronzeChest", "ArmorBronzeLegs"],
+    "defaultTarget": 4
+  },
+  {
+    "id": "iron",
+    "group": "armor",
+    "itemIds": ["HelmetIron", "ArmorIronChest", "ArmorIronLegs"],
+    "defaultTarget": 4
+  },
+  {
+    "id": "root",
+    "group": "armor",
+    "itemIds": ["HelmetRoot", "ArmorRootChest", "ArmorRootLegs"],
+    "defaultTarget": 4
+  },
+  {
+    "id": "wolf",
+    "group": "armor",
+    "itemIds": ["HelmetDrake", "ArmorWolfChest", "ArmorWolfLegs"],
+    "defaultTarget": 4
+  },
+  {
+    "id": "fenris",
+    "group": "armor",
+    "itemIds": ["HelmetFenring", "ArmorFenringChest", "ArmorFenringLegs"],
+    "defaultTarget": 4
+  },
+  {
+    "id": "padded",
+    "group": "armor",
+    "itemIds": ["HelmetPadded", "ArmorPaddedCuirass", "ArmorPaddedGreaves"],
+    "defaultTarget": 4
+  },
+  {
+    "id": "carapace",
+    "group": "armor",
+    "itemIds": [
+      "HelmetCarapace",
+      "ArmorCarapaceChest",
+      "ArmorCarapaceLegs"
+    ],
+    "defaultTarget": 4
+  },
+  {
+    "id": "flametal",
+    "group": "armor",
+    "itemIds": ["HelmetFlametal", "ArmorFlametalChest", "ArmorFlametalLegs"],
+    "defaultTarget": 4
+  },
+  {
+    "id": "fenris-loadout",
+    "group": "loadout",
+    "itemIds": [
+      "HelmetFenring",
+      "ArmorFenringChest",
+      "ArmorFenringLegs",
+      "FistFenrirClaw"
+    ],
+    "defaultTarget": 4
+  },
+  {
+    "id": "mistlands-caster",
+    "group": "loadout",
+    "itemIds": [
+      "HelmetMage",
+      "ArmorMageChest",
+      "ArmorMageLegs",
+      "StaffFireball",
+      "StaffIceShards",
+      "Salad"
+    ],
+    "defaultTarget": 4
+  }
+]

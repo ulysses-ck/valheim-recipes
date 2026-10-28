@@ -1,15 +1,26 @@
-import { useMemo } from 'react'
-import { Link, createFileRoute } from '@tanstack/react-router'
+import { useEffect, useMemo } from 'react'
+import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import type { CatalogEntry, Indexes } from '../lib/dataset'
-import { itemIconFor, visibleEntries } from '../lib/dataset'
+import { maxVisibleLevel, visibleEntries } from '../lib/dataset'
+import type { Recipe } from '../lib/types'
 import { useDataset, useBiomeVisibility } from '../lib/dataset-context'
-import { formatBiome, formatCategory, formatSubcategory } from '../lib/format'
-import { maxLevelFor } from '../lib/calculator'
+import { formatBiome } from '../lib/format'
+import type { PlanEntry } from '../lib/calculator'
+import { usePlanStore } from '../stores/plan'
+import presetsJson from '../data/presets.json'
 import { ItemPicker } from '../components/calculator/ItemPicker'
-import { CalculatorPanel } from '../components/calculator/CalculatorPanel'
+import { PlanPanel } from '../components/calculator/PlanPanel'
 import { ItemIcon } from '../components/ui/ItemIcon'
-import { Badge, BiomeBadge } from '../components/ui/Badge'
+
+interface Preset {
+  id: string
+  group: 'armor' | 'loadout'
+  itemIds: string[]
+  defaultTarget?: number
+}
+
+const presets = presetsJson as Preset[]
 
 export const Route = createFileRoute('/calculator')({
   validateSearch: (search: Record<string, unknown>): { item?: string } => ({
@@ -18,12 +29,40 @@ export const Route = createFileRoute('/calculator')({
   component: CalculatorPage,
 })
 
+function planEntryFor(
+  itemId: string,
+  indexes: Indexes,
+  maxLevel: (recipe: Recipe) => number,
+): PlanEntry | undefined {
+  const recipe = indexes.primaryRecipeByItemId.get(itemId)
+  if (!recipe) return undefined
+  const maximum = Math.max(1, maxLevel(recipe))
+  return {
+    itemId,
+    current: recipe.upgradeOnly ? 1 : 0,
+    target: maximum,
+    quantity: 1,
+  }
+}
+
 function CalculatorPage() {
   const { t } = useTranslation()
   const { item: itemId } = Route.useSearch()
   const navigate = Route.useNavigate()
   const { indexes } = useDataset()
-  const { selection, isVisible } = useBiomeVisibility()
+  const { selection } = useBiomeVisibility()
+  const entries = usePlanStore((state) => state.entries)
+  const addItem = usePlanStore((state) => state.addItem)
+  const addMany = usePlanStore((state) => state.addMany)
+  const update = usePlanStore((state) => state.update)
+  const remove = usePlanStore((state) => state.remove)
+  const clear = usePlanStore((state) => state.clear)
+
+  const maxLevel = useMemo(
+    () => (recipe: Recipe) =>
+      maxVisibleLevel(recipe, indexes, selection),
+    [indexes, selection],
+  )
 
   const visible = useMemo(
     () => visibleEntries(indexes.catalogEntries, selection, indexes.biomeRank),
@@ -33,9 +72,13 @@ function CalculatorPage() {
     () => visible.filter((entry) => entry.recipe),
     [visible],
   )
-  const entry = itemId ? indexes.entriesById.get(itemId) : undefined
-  const isHidden = Boolean(entry && !isVisible(entry.biome))
-  const recipe = entry && !isHidden && entry.recipe ? entry.recipe : undefined
+
+  useEffect(() => {
+    if (!itemId) return
+    const entry = planEntryFor(itemId, indexes, maxLevel)
+    if (entry) addItem(entry)
+    void navigate({ search: {}, replace: true })
+  }, [addItem, indexes, itemId, maxLevel, navigate])
 
   const quickPicks = useMemo(
     () =>
@@ -46,12 +89,31 @@ function CalculatorPage() {
     [craftable],
   )
 
-  function select(id: string) {
-    void navigate({ search: { item: id } })
+  const availablePresets = useMemo(() => {
+    const visibleIds = new Set(craftable.map((entry) => entry.itemId))
+    return presets.filter((preset) =>
+      preset.itemIds.every((id) => visibleIds.has(id)),
+    )
+  }, [craftable])
+
+  function select(entry: CatalogEntry) {
+    const next = planEntryFor(entry.itemId, indexes, maxLevel)
+    if (next) addItem(next)
+  }
+
+  function addPreset(preset: Preset) {
+    const next = preset.itemIds
+      .map((id) => planEntryFor(id, indexes, maxLevel))
+      .filter((entry): entry is PlanEntry => Boolean(entry))
+      .map((entry) => ({
+        ...entry,
+        target: Math.min(entry.target, preset.defaultTarget ?? entry.target),
+      }))
+    addMany(next)
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8">
+    <div className="mx-auto max-w-6xl px-4 py-8">
       <div className="max-w-2xl">
         <p className="text-[0.68rem] font-semibold tracking-[0.2em] text-[var(--gold)] uppercase">
           {t('calculator.eyebrow')}
@@ -71,8 +133,12 @@ function CalculatorPage() {
         <div className="mt-2">
           <ItemPicker
             entries={craftable}
-            onSelect={select}
+            onSelect={(id) => {
+              const entry = craftable.find((item) => item.itemId === id)
+              if (entry) select(entry)
+            }}
             placeholder={t('calculator.searchPlaceholder')}
+            keepOpen
           />
         </div>
         <p className="mt-2 text-[0.68rem] text-[var(--faint)]">
@@ -85,6 +151,29 @@ function CalculatorPage() {
         </p>
       </section>
 
+      {availablePresets.length > 0 ? (
+        <section className="mt-4">
+          <p className="text-[0.65rem] font-semibold tracking-[0.16em] text-[var(--faint)] uppercase">
+            {t('calculator.plan.presets')}
+          </p>
+          <p className="mt-1 text-[0.68rem] text-[var(--faint)]">
+            {t('calculator.plan.presetsHint')}
+          </p>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {availablePresets.map((preset) => (
+              <button
+                key={preset.id}
+                type="button"
+                className="chip"
+                onClick={() => addPreset(preset)}
+              >
+                {t(`calculator.plan.presetNames.${preset.id}`)}
+              </button>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       {quickPicks.length > 0 ? (
         <section className="mt-4">
           <p className="text-[0.65rem] font-semibold tracking-[0.16em] text-[var(--faint)] uppercase">
@@ -96,7 +185,7 @@ function CalculatorPage() {
                 key={quick.itemId}
                 type="button"
                 className="chip"
-                onClick={() => select(quick.itemId)}
+                onClick={() => select(quick)}
               >
                 <ItemIcon icon={quick.icon} size="xs" />
                 {quick.name}
@@ -107,54 +196,13 @@ function CalculatorPage() {
       ) : null}
 
       <div className="mt-6">
-        {recipe && entry ? (
-          <>
-            <SelectedItem
-              entry={entry}
-              indexes={indexes}
-              onClear={() => void navigate({ search: {} })}
-            />
-            <div className="mt-4">
-              <CalculatorPanel
-                key={recipe.id}
-                recipe={recipe}
-                indexes={indexes}
-                initialCurrent={recipe.upgradeOnly ? 1 : 0}
-                initialTarget={maxLevelFor(recipe)}
-              />
-            </div>
-          </>
-        ) : isHidden && entry ? (
-          <div className="card p-8 text-center">
-            <p className="font-display text-3xl text-[var(--gold-soft)]">ᛟ</p>
-            <p className="mt-2 font-display text-xl">
-              {t('calculator.hiddenTitle')}
-            </p>
-            <p className="mt-2 text-xs text-[var(--faint)]">
-              {t('calculator.hiddenBody')}
-            </p>
-          </div>
-        ) : itemId ? (
-          <div className="card p-8 text-center">
-            <p className="font-display text-xl">
-              {entry
-                ? t('calculator.notCraftable')
-                : t('calculator.notFound')}
-            </p>
-            <p className="mt-2 text-xs text-[var(--faint)]">
-              {entry
-                ? t('calculator.notCraftableBody')
-                : t('calculator.notFoundBody')}
-            </p>
-          </div>
-        ) : (
-          <div className="card p-8 text-center">
-            <p className="font-display text-xl">{t('calculator.pickTitle')}</p>
-            <p className="mt-2 text-xs text-[var(--faint)]">
-              {t('calculator.pickBody')}
-            </p>
-          </div>
-        )}
+        <PlanPanel
+          entries={entries}
+          indexes={indexes}
+          onUpdate={update}
+          onRemove={remove}
+          onClear={clear}
+        />
       </div>
 
       <section className="card mt-6 p-4">
@@ -186,56 +234,6 @@ function CalculatorPage() {
           </li>
         </ul>
       </section>
-    </div>
-  )
-}
-
-function SelectedItem({
-  entry,
-  indexes,
-  onClear,
-}: {
-  entry: CatalogEntry
-  indexes: Indexes
-  onClear: () => void
-}) {
-  const { t } = useTranslation()
-  return (
-    <div className="card flex flex-wrap items-center gap-3 p-4">
-      <ItemIcon icon={itemIconFor(indexes, entry.itemId)} size="lg" />
-      <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-2">
-          <Link
-            to="/item/$id"
-            params={{ id: entry.itemId }}
-            className="font-display text-xl hover:text-[var(--gold-soft)]"
-          >
-            {entry.name}
-          </Link>
-          <BiomeBadge biome={entry.biome} />
-        </div>
-        <div className="mt-1 flex flex-wrap gap-1.5">
-          <Badge>{formatCategory(entry.category)}</Badge>
-          {entry.subcategory ? (
-            <Badge>{formatSubcategory(entry.subcategory)}</Badge>
-          ) : null}
-          {entry.stationName ? (
-            <Badge>
-              {t('calculator.selected.station', { station: entry.stationName })}
-            </Badge>
-          ) : null}
-          {entry.recipe?.canUpgrade ? (
-            <Badge>
-              {t('calculator.selected.upToLevel', {
-                level: maxLevelFor(entry.recipe),
-              })}
-            </Badge>
-          ) : null}
-        </div>
-      </div>
-      <button type="button" className="btn btn-ghost text-xs" onClick={onClear}>
-        {t('common.clear')}
-      </button>
     </div>
   )
 }

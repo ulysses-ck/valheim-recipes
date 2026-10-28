@@ -1,4 +1,4 @@
-import { useId, useMemo, useState } from 'react'
+import { useId, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { CatalogEntry } from '../../lib/dataset'
 import { formatCategory } from '../../lib/format'
@@ -9,15 +9,18 @@ interface ItemPickerProps {
   entries: CatalogEntry[]
   onSelect: (itemId: string) => void
   placeholder?: string
+  keepOpen?: boolean
 }
 
 export function ItemPicker({
   entries,
   onSelect,
   placeholder,
+  keepOpen = false,
 }: ItemPickerProps) {
   const { t } = useTranslation()
   const listId = useId()
+  const inputRef = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(0)
@@ -33,8 +36,13 @@ export function ItemPicker({
   function choose(entry: CatalogEntry) {
     onSelect(entry.itemId)
     setQuery('')
-    setOpen(false)
     setActive(0)
+    if (keepOpen) {
+      setOpen(true)
+      inputRef.current?.focus()
+    } else {
+      setOpen(false)
+    }
   }
 
   return (
@@ -43,6 +51,7 @@ export function ItemPicker({
         {t('catalog.searchItems')}
       </label>
       <input
+        ref={inputRef}
         id={`${listId}-input`}
         className="input"
         type="text"

@@ -240,3 +240,101 @@ export function aggregateRaw(nodes: CostNode[]): CostLine[] {
   for (const node of nodes) walk(node)
   return [...totals.values()].sort((a, b) => a.name.localeCompare(b.name))
 }
+
+export interface PlanEntry {
+  itemId: string
+  current: number
+  target: number
+  quantity: number
+}
+
+export interface PlanEntryTotal {
+  entry: PlanEntry
+  recipe: Recipe
+  total: TotalCost
+  maximum: number
+}
+
+export interface PlanStation {
+  stationId: string
+  stationName: string
+  level: number
+}
+
+export interface PlanTotal {
+  entries: PlanEntryTotal[]
+  immediate: CostLine[]
+  tree: CostNode[]
+  raw: CostLine[]
+  stations: PlanStation[]
+  quantity: number
+}
+
+export interface PlanOptions {
+  recursive: boolean
+  maxLevel?: (recipe: Recipe) => number
+}
+
+export function computePlan(
+  entries: PlanEntry[],
+  indexes: Indexes,
+  options: PlanOptions,
+): PlanTotal {
+  const maxLevel = options.maxLevel ?? maxLevelFor
+  const rows: PlanEntryTotal[] = []
+
+  for (const entry of entries) {
+    const recipe = indexes.primaryRecipeByItemId.get(entry.itemId)
+    if (!recipe) continue
+
+    const maximum = Math.max(
+      1,
+      Math.min(maxLevelFor(recipe), maxLevel(recipe)),
+    )
+    const minimum = recipe.upgradeOnly ? 1 : 0
+    const current = clamp(
+      entry.current,
+      minimum,
+      Math.max(minimum, maximum - 1),
+    )
+    const target = clamp(entry.target, Math.max(1, current), maximum)
+    const quantity = clamp(entry.quantity, 1, 999)
+
+    rows.push({
+      entry: { ...entry, current, target, quantity },
+      recipe,
+      total: computeTotal(recipe, { current, target, quantity }),
+      maximum,
+    })
+  }
+
+  const immediate = aggregate(rows.flatMap((row) => row.total.immediate))
+  const tree = buildCostTree(immediate, indexes, {
+    recursive: options.recursive,
+  })
+  const raw = aggregateRaw(tree)
+
+  const stations = new Map<string, PlanStation>()
+  for (const row of rows) {
+    const level = requiredStationLevel(row.recipe, row.total.target)
+    const existing = stations.get(row.recipe.stationId)
+    if (!existing || level > existing.level) {
+      stations.set(row.recipe.stationId, {
+        stationId: row.recipe.stationId,
+        stationName: row.recipe.stationName,
+        level,
+      })
+    }
+  }
+
+  return {
+    entries: rows,
+    immediate,
+    tree,
+    raw,
+    stations: [...stations.values()].sort((a, b) =>
+      a.stationName.localeCompare(b.stationName),
+    ),
+    quantity: rows.reduce((sum, row) => sum + row.entry.quantity, 0),
+  }
+}
