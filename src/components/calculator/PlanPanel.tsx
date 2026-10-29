@@ -10,6 +10,7 @@ import { formatBiome } from '../../lib/format'
 import { Badge, BiomeBadge } from '../ui/Badge'
 import { ItemIcon } from '../ui/ItemIcon'
 import { CostTree } from '../recipe/CostBreakdown'
+import { PlanGraph } from './PlanGraph'
 import { IngredientList } from '../recipe/IngredientList'
 
 interface PlanPanelProps {
@@ -34,6 +35,7 @@ export function PlanPanel({
   const { t } = useTranslation()
   const { selection, isVisible } = useBiomeVisibility()
   const [recursive, setRecursive] = useState(true)
+  const [view, setView] = useState<'list' | 'graph'>('list')
 
   const visible = useMemo(
     () =>
@@ -81,13 +83,41 @@ export function PlanPanel({
               {t('calculator.plan.subtitle')}
             </p>
           </div>
-          <button
-            type="button"
-            className="btn btn-ghost px-2 py-1 text-[0.7rem]"
-            onClick={onClear}
-          >
-            {t('calculator.plan.clear')}
-          </button>
+          <div className="flex items-center gap-2">
+            <div className="flex overflow-hidden rounded-md border border-[var(--border-strong)] text-[0.7rem]">
+              <button
+                type="button"
+                aria-pressed={view === 'list'}
+                className={`px-2 py-1 ${
+                  view === 'list'
+                    ? 'bg-[var(--gold)] text-[#1b1305]'
+                    : 'text-[var(--muted)] hover:text-[var(--text)]'
+                }`}
+                onClick={() => setView('list')}
+              >
+                {t('calculator.plan.viewList')}
+              </button>
+              <button
+                type="button"
+                aria-pressed={view === 'graph'}
+                className={`border-l border-[var(--border-strong)] px-2 py-1 ${
+                  view === 'graph'
+                    ? 'bg-[var(--gold)] text-[#1b1305]'
+                    : 'text-[var(--muted)] hover:text-[var(--text)]'
+                }`}
+                onClick={() => setView('graph')}
+              >
+                {t('calculator.plan.viewGraph')}
+              </button>
+            </div>
+            <button
+              type="button"
+              className="btn btn-ghost px-2 py-1 text-[0.7rem]"
+              onClick={onClear}
+            >
+              {t('calculator.plan.clear')}
+            </button>
+          </div>
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-2 border-y border-[var(--border)] py-2 text-xs">
@@ -108,17 +138,21 @@ export function PlanPanel({
           </span>
         </div>
 
-        <div className="space-y-3">
-          {plan.entries.map((row) => (
-            <PlanEntryCard
-              key={row.entry.itemId}
-              row={row}
-              indexes={indexes}
-              onUpdate={onUpdate}
-              onRemove={onRemove}
-            />
-          ))}
-        </div>
+        {view === 'list' ? (
+          <div className="space-y-3">
+            {plan.entries.map((row) => (
+              <PlanEntryCard
+                key={row.entry.itemId}
+                row={row}
+                indexes={indexes}
+                onUpdate={onUpdate}
+                onRemove={onRemove}
+              />
+            ))}
+          </div>
+        ) : (
+          <PlanGraph plan={plan} indexes={indexes} onRemove={onRemove} />
+        )}
       </div>
 
       <div className="card space-y-3 p-4">

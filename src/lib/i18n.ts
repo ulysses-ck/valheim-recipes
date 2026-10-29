@@ -363,6 +363,10 @@ const en = {
       forItems_one: 'For {{count}} item',
       forItems_other: 'For {{count}} items',
       stationsTitle: 'Stations needed',
+      viewList: 'List',
+      viewGraph: 'Nodes',
+      graphHint:
+        'Click a node with + to expand its ingredients. Drag to pan, scroll to zoom.',
       showTree: 'Show combined crafting tree',
       showBreakdown: 'Show per-entry breakdown',
       remove: 'Remove',
@@ -808,6 +812,10 @@ const es = {
       forItems_one: 'Para {{count}} objeto',
       forItems_other: 'Para {{count}} objetos',
       stationsTitle: 'Estaciones necesarias',
+      viewList: 'Lista',
+      viewGraph: 'Nodos',
+      graphHint:
+        'Hacé clic en un nodo con + para expandir sus ingredientes. Arrastrá para mover y usá la rueda para zoom.',
       showTree: 'Mostrar árbol combinado',
       showBreakdown: 'Mostrar desglose por entrada',
       remove: 'Quitar',

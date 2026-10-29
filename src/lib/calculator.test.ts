@@ -9,6 +9,7 @@ import {
   upgradeDelta,
 } from './calculator'
 import { createIndexes } from './dataset'
+import { buildPlanGraph } from './plan-graph'
 
 function makeRecipe(overrides: Partial<Recipe> = {}): Recipe {
   return {
@@ -308,5 +309,84 @@ describe('computePlan', () => {
     expect(plan.stations).toEqual([
       { stationId: 'forge', stationName: 'Forge', level: 2 },
     ])
+  })
+})
+
+describe('buildPlanGraph', () => {
+  const ingot = makeRecipe({
+    id: 'Recipe_Ingot',
+    itemId: 'Ingot',
+    name: 'Ingot',
+    slug: 'ingot',
+    category: 'material',
+    biome: 'blackforest',
+    stationId: 'forge',
+    stationName: 'Forge',
+    stationLevel: 2,
+    amount: 1,
+    canUpgrade: false,
+    maxLevel: 1,
+    ingredients: [{ itemId: 'Ore', name: 'Ore', amount: 2, amountPerLevel: 0 }],
+  })
+  const sword = makeRecipe({
+    id: 'Recipe_Sword',
+    itemId: 'Sword',
+    name: 'Sword',
+    slug: 'sword',
+    category: 'weapon',
+    biome: 'swamp',
+    stationId: 'forge',
+    stationName: 'Forge',
+    stationLevel: 1,
+    canUpgrade: false,
+    maxLevel: 1,
+    ingredients: [{ itemId: 'Ingot', name: 'Ingot', amount: 1, amountPerLevel: 0 }],
+  })
+  const shield = makeRecipe({
+    id: 'Recipe_Shield',
+    itemId: 'Shield',
+    name: 'Shield',
+    slug: 'shield',
+    category: 'armor',
+    biome: 'swamp',
+    stationId: 'forge',
+    stationName: 'Forge',
+    stationLevel: 1,
+    canUpgrade: false,
+    maxLevel: 1,
+    ingredients: [{ itemId: 'Ingot', name: 'Ingot', amount: 1, amountPerLevel: 0 }],
+  })
+  const indexes = createIndexes(makeDataset([ingot, sword, shield]))
+  const plan = computePlan(
+    [
+      { itemId: 'Sword', current: 0, target: 1, quantity: 1 },
+      { itemId: 'Shield', current: 0, target: 1, quantity: 1 },
+    ],
+    indexes,
+    { recursive: true },
+  )
+
+  it('uses one shared node for a common immediate ingredient', () => {
+    const graph = buildPlanGraph(plan, indexes, new Set())
+
+    expect(graph.nodes.map((node) => node.id)).toEqual([
+      'entry:Sword',
+      'entry:Shield',
+      'item:0',
+    ])
+    expect(graph.nodes.find((node) => node.id === 'item:0')?.data.amount).toBe(
+      2,
+    )
+    expect(graph.edges.map((edge) => edge.label)).toEqual(['×1', '×1'])
+  })
+
+  it('adds children only for expanded craftable nodes', () => {
+    const graph = buildPlanGraph(plan, indexes, new Set(['item:0']))
+
+    expect(graph.nodes.map((node) => node.id)).toContain('item:0.0')
+    expect(graph.nodes.find((node) => node.id === 'item:0.0')?.data.itemId).toBe(
+      'Ore',
+    )
+    expect(graph.edges).toHaveLength(3)
   })
 })
