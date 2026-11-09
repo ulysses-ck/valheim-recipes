@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import type { Indexes } from '../../lib/dataset'
 import { itemIconFor } from '../../lib/dataset'
 import { pluralize } from '../../lib/format'
+import { useLocalizedName } from '../../lib/names'
 import type { Station } from '../../lib/types'
 import { BiomeBadge } from '../ui/Badge'
 import { ItemIcon } from '../ui/ItemIcon'
@@ -19,6 +20,7 @@ export function StationCard({
   indexes: Indexes
 }) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const preview = station.buildCost.slice(0, 3)
   const extra = station.buildCost.length - preview.length
 
@@ -31,7 +33,9 @@ export function StationCard({
       <div className="flex items-start gap-3">
         <ItemIcon icon={station.icon} size="lg" />
         <div className="min-w-0 flex-1">
-          <h3 className="font-display text-base">{station.name}</h3>
+          <h3 className="font-display text-base">
+            {localizedName(station.id, station.name)}
+          </h3>
           <div className="mt-1.5 flex flex-wrap gap-1.5">
             <BiomeBadge biome={station.biome} />
             {extensionCount > 0 ? (
@@ -56,7 +60,9 @@ export function StationCard({
                   size="xs"
                 />
                 <span className="font-mono">{ingredient.amount}</span>
-                <span className="max-w-20 truncate">{ingredient.name}</span>
+                <span className="max-w-20 truncate">
+                  {localizedName(ingredient.itemId, ingredient.name)}
+                </span>
               </span>
             ))}
             {extra > 0 ? (

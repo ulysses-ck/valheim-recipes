@@ -12,6 +12,7 @@ import {
   pluralize,
 } from '../lib/format'
 import { maxLevelFor } from '../lib/calculator'
+import { useLocalizedName } from '../lib/names'
 import type { Recipe } from '../lib/types'
 import { Badge, BiomeBadge } from '../components/ui/Badge'
 import { ItemIcon } from '../components/ui/ItemIcon'
@@ -30,6 +31,7 @@ export const Route = createFileRoute('/item/$id')({
 
 function ItemPage() {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const { id } = Route.useParams()
   const { indexes } = useDataset()
   const { selection, isVisible } = useBiomeVisibility()
@@ -84,14 +86,18 @@ function ItemPage() {
           {t('home.catalogTitle')}
         </Link>
         <span aria-hidden="true">/</span>
-        <span className="truncate text-[var(--muted)]">{entry.name}</span>
+        <span className="truncate text-[var(--muted)]">
+          {localizedName(entry.itemId, entry.name)}
+        </span>
       </nav>
 
       <header className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-start">
         <ItemIcon icon={entry.icon} size="xl" />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="font-display text-3xl md:text-4xl">{entry.name}</h1>
+            <h1 className="font-display text-3xl md:text-4xl">
+              {localizedName(entry.itemId, entry.name)}
+            </h1>
             {recipe?.upgradeOnly ? (
               <Badge className="badge-gold">{t('item.upgradeOnly')}</Badge>
             ) : null}
@@ -107,7 +113,12 @@ function ItemPage() {
             <BiomeBadge biome={entry.biome} />
             {entry.stationName ? (
               <Badge title={t('item.stationTitle')}>
-                {t('item.station', { station: entry.stationName })}
+                {t('item.station', {
+                  station: localizedName(
+                    entry.recipe?.stationId ?? entry.stationId,
+                    entry.stationName,
+                  ),
+                })}
               </Badge>
             ) : (
               <Badge>{t('item.material')}</Badge>
@@ -158,14 +169,20 @@ function ItemPage() {
                         className="badge hover:border-[var(--gold)] hover:text-[var(--gold-soft)]"
                       >
                         {t('item.stationLevel', {
-                          station: recipe.stationName,
+                          station: localizedName(
+                            recipe.stationId,
+                            recipe.stationName,
+                          ),
                           level: recipe.stationLevel,
                         })}
                       </Link>
                     ) : (
                       <span className="badge">
                         {t('item.stationLevel', {
-                          station: recipe.stationName,
+                          station: localizedName(
+                            recipe.stationId,
+                            recipe.stationName,
+                          ),
                           level: recipe.stationLevel,
                         })}
                       </span>
@@ -283,7 +300,7 @@ function ItemPage() {
                 <>
                   <Detail
                     label={t('item.stationLabel')}
-                    value={recipe.stationName}
+                    value={localizedName(recipe.stationId, recipe.stationName)}
                   />
                   <Detail
                     label={t('item.stationLevelLabel')}
@@ -385,6 +402,7 @@ function UsedInList({
   indexes: Indexes
 }) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   if (recipes.length === 0) {
     return (
       <p className="text-xs text-[var(--faint)]">{t('item.usedInNone')}</p>
@@ -401,7 +419,7 @@ function UsedInList({
             params={{ id: recipe.itemId }}
             className="min-w-0 flex-1 truncate text-xs text-[var(--text)] hover:text-[var(--gold-soft)]"
           >
-            {recipe.name}
+            {localizedName(recipe.itemId, recipe.name)}
           </Link>
           <span className="shrink-0 text-[0.65rem] text-[var(--faint)]">
             {formatCategory(recipe.category)}
@@ -425,6 +443,7 @@ function AlternateRecipes({
   indexes: Indexes
 }) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   if (recipes.length === 0) return null
 
   return (
@@ -438,7 +457,7 @@ function AlternateRecipes({
           <div key={recipe.id}>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h3 className="text-xs font-semibold text-[var(--muted)]">
-                {recipe.stationName}
+                {localizedName(recipe.stationId, recipe.stationName)}
               </h3>
               <Badge>{t('item.perCraft', { count: recipe.amount })}</Badge>
             </div>

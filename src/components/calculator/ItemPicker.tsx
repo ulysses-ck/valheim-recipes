@@ -2,6 +2,7 @@ import { useId, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { CatalogEntry } from '../../lib/dataset'
 import { formatCategory } from '../../lib/format'
+import { useLocalizedName } from '../../lib/names'
 import { ItemIcon } from '../ui/ItemIcon'
 import { BiomeBadge } from '../ui/Badge'
 
@@ -19,6 +20,7 @@ export function ItemPicker({
   keepOpen = false,
 }: ItemPickerProps) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const listId = useId()
   const inputRef = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
@@ -128,11 +130,16 @@ export function ItemPicker({
                   <ItemIcon icon={entry.icon} size="sm" />
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-xs font-semibold text-[var(--text)]">
-                      {entry.name}
+                      {localizedName(entry.itemId, entry.name)}
                     </span>
                     <span className="block truncate text-[0.62rem] text-[var(--faint)]">
                       {formatCategory(entry.category)}
-                      {entry.stationName ? ` · ${entry.stationName}` : ''}
+                      {entry.stationName
+                        ? ` · ${localizedName(
+                            entry.recipe?.stationId ?? entry.stationId,
+                            entry.stationName,
+                          )}`
+                        : ''}
                     </span>
                   </span>
                   <BiomeBadge biome={entry.biome} />

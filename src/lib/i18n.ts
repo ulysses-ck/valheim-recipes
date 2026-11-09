@@ -63,6 +63,7 @@ const en = {
     building: 'Building',
     crafting: 'Crafting',
     misc: 'Misc',
+    ship: 'Ships',
   },
   catalog: {
     allTypes: 'All types',
@@ -508,6 +509,7 @@ const es = {
     building: 'Construcción',
     crafting: 'Fabricación',
     misc: 'Misceláneos',
+    ship: 'Barcos',
   },
   catalog: {
     allTypes: 'Todos los tipos',

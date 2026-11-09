@@ -17,6 +17,7 @@ import stationsJson from '../data/stations.json'
 import tradersJson from '../data/traders.json'
 import biomesJson from '../data/biomes.json'
 import metaJson from '../data/meta.json'
+import { localizedName } from './names'
 
 export const baseDataset: Dataset = {
   recipes: recipesJson as unknown as Recipe[],
@@ -183,11 +184,19 @@ export function createIndexes(dataset: Dataset): Indexes {
       searchText: [
         name,
         item.name,
+        localizedName(item.id, item.name, 'es'),
         category,
         subcategory,
         recipe?.stationName,
-        ...ingredients.map((ingredient) => ingredient.name),
-        ...recipes.map((entry) => entry.name),
+        localizedName(recipe?.stationId, recipe?.stationName ?? '', 'es'),
+        ...ingredients.flatMap((ingredient) => [
+          ingredient.name,
+          localizedName(ingredient.itemId, ingredient.name, 'es'),
+        ]),
+        ...recipes.flatMap((entry) => [
+          entry.name,
+          localizedName(entry.itemId, entry.name, 'es'),
+        ]),
       ]
         .filter(Boolean)
         .join(' ')

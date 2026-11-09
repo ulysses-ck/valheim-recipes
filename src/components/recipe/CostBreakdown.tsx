@@ -6,6 +6,7 @@ import type { Indexes } from '../../lib/dataset'
 import { ingredientBiome, itemIconFor } from '../../lib/dataset'
 import { useBiomeVisibility } from '../../lib/dataset-context'
 import { formatNumber } from '../../lib/format'
+import { useLocalizedName } from '../../lib/names'
 import { ItemIcon } from '../ui/ItemIcon'
 
 function CostTreeNode({
@@ -18,6 +19,7 @@ function CostTreeNode({
   depth: number
 }) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const [open, setOpen] = useState(depth < 1 && Boolean(node.children?.length))
   const { isVisible } = useBiomeVisibility()
   if (!isVisible(ingredientBiome(indexes, node.itemId))) return null
@@ -52,7 +54,7 @@ function CostTreeNode({
           params={{ id: node.itemId }}
           className="min-w-0 flex-1 truncate text-xs text-[var(--text)] hover:text-[var(--gold-soft)]"
         >
-          {node.name}
+          {localizedName(node.itemId, node.name)}
         </Link>
         {node.crafts && node.recipe && node.recipe.amount > 1 ? (
           <span className="badge">

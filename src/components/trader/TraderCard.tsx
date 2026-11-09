@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import type { Indexes } from '../../lib/dataset'
 import { itemIconFor } from '../../lib/dataset'
 import { formatPrice, formatUnlock, pluralize } from '../../lib/format'
+import { useLocalizedName } from '../../lib/names'
 import type { TraderListing } from '../../lib/types'
 import { ItemIcon } from '../ui/ItemIcon'
 
@@ -16,6 +17,7 @@ export function TraderCard({
   indexes: Indexes
 }) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   if (offers.length === 0) return null
 
   const unlocks = [
@@ -52,7 +54,7 @@ export function TraderCard({
                 size="xs"
               />
               <span className="min-w-0 flex-1 truncate text-[0.72rem] text-[var(--text)]">
-                {offer.itemName}
+                {localizedName(offer.itemId ?? undefined, offer.itemName)}
               </span>
               <span className="shrink-0 text-[0.68rem] text-[var(--gold-soft)]">
                 {formatPrice(offer.price)}

@@ -101,6 +101,77 @@ const stationIcon = (icon, id) =>
 const isUpgrader = (itemId) => /^Upgrader\d/i.test(itemId)
 
 const itemsById = new Map(itemsRaw.map((item) => [item.id, item]))
+
+const SHIP_ICON_SLUG = 'ship-construction'
+const MANUAL_ITEMS = {
+  Raft: { name: 'Raft', biome: 'meadows' },
+  Karve: { name: 'Karve', biome: 'blackforest' },
+  VikingShip: { name: 'Longship', biome: 'swamp' },
+  Drakkar: { name: 'Drakkar', biome: 'ashlands' },
+}
+const MANUAL_ITEM_BIOMES = Object.fromEntries(
+  Object.entries(MANUAL_ITEMS).map(([id, item]) => [id, item.biome]),
+)
+for (const [id, item] of Object.entries(MANUAL_ITEMS)) {
+  itemsById.set(id, {
+    id,
+    name: item.name,
+    slug: SHIP_ICON_SLUG,
+    category: 'other',
+    subcategory: 'Ship',
+  })
+}
+
+const MANUAL_RECIPES = [
+  {
+    id: 'Recipe_Raft',
+    item: 'Raft',
+    resources: [
+      { item: 'Wood', amount: 20 },
+      { item: 'LeatherScraps', amount: 6 },
+      { item: 'Resin', amount: 6 },
+    ],
+  },
+  {
+    id: 'Recipe_Karve',
+    item: 'Karve',
+    resources: [
+      { item: 'FineWood', amount: 30 },
+      { item: 'DeerHide', amount: 10 },
+      { item: 'Resin', amount: 20 },
+      { item: 'BronzeNails', amount: 80 },
+    ],
+  },
+  {
+    id: 'Recipe_VikingShip',
+    item: 'VikingShip',
+    resources: [
+      { item: 'IronNails', amount: 100 },
+      { item: 'DeerHide', amount: 10 },
+      { item: 'FineWood', amount: 40 },
+      { item: 'AncientBark', amount: 40 },
+    ],
+  },
+  {
+    id: 'Recipe_Drakkar',
+    item: 'Drakkar',
+    resources: [
+      { item: 'IronNails', amount: 100 },
+      { item: 'CeramicPlate', amount: 30 },
+      { item: 'FineWood', amount: 50 },
+      { item: 'YggdrasilWood', amount: 25 },
+    ],
+  },
+].map((recipe) => ({
+  ...recipe,
+  craftingStation: 'piece_workbench',
+  minStationLevel: 1,
+  amount: 1,
+  enabled: true,
+  noCraftOnlyUpgrade: false,
+  stationName: 'Workbench',
+}))
+
 const foodsById = new Map(foodsRaw.map((food) => [food.id, food]))
 const fermenterOutputIds = new Set(
   itemsRaw
@@ -150,6 +221,7 @@ function resources(resources = []) {
 }
 
 const enabledRecipes = recipesRaw.filter((recipe) => recipe.enabled !== false)
+enabledRecipes.push(...MANUAL_RECIPES)
 const recipesByItem = new Map()
 for (const recipe of enabledRecipes) {
   const list = recipesByItem.get(recipe.item) ?? []
@@ -295,6 +367,9 @@ function resolveBiome(itemId) {
   const override = overrides.items[itemId]?.biome
   if (override) return { biome: override, known: true }
 
+  const manual = MANUAL_ITEM_BIOMES[itemId]
+  if (manual) return { biome: manual, known: true }
+
   const cached = biomeMemo.get(itemId)
   if (cached) return cached
 
@@ -367,12 +442,15 @@ function resolveBiome(itemId) {
 const recipes = enabledRecipes
   .map((recipe) => {
     const rawItem = itemsById.get(recipe.item)
+    const manualBiome = MANUAL_ITEM_BIOMES[recipe.item]
     const name = rawItem?.name ?? itemName(recipe.item)
     const slug = itemSlug(recipe.item)
-    const classification = classifyItem(rawItem ?? { id: recipe.item, name }, {
-      isFood: foodsById.has(recipe.item),
-      isDrink: Boolean(foodsById.get(recipe.item)?.food?.isDrink),
-    })
+    const classification = manualBiome
+      ? { category: 'other', subcategory: 'ship' }
+      : classifyItem(rawItem ?? { id: recipe.item, name }, {
+          isFood: foodsById.has(recipe.item),
+          isDrink: Boolean(foodsById.get(recipe.item)?.food?.isDrink),
+        })
     const stationId = recipe.craftingStation ?? 'hand'
     const station = stationsById.get(stationId)
     const ingredients = resources(recipe.resources)
@@ -393,12 +471,14 @@ const recipes = enabledRecipes
       ...(classification.subcategory
         ? { subcategory: classification.subcategory }
         : {}),
-      biome: maxBiome([
-        ...ingredients
-          .filter((ingredient) => ingredient.amount > 0)
-          .map((ingredient) => resolveBiome(ingredient.itemId).biome),
-        station?.biome ?? DEFAULT_BIOME,
-      ]),
+      biome:
+        manualBiome ??
+        maxBiome([
+          ...ingredients
+            .filter((ingredient) => ingredient.amount > 0)
+            .map((ingredient) => resolveBiome(ingredient.itemId).biome),
+          station?.biome ?? DEFAULT_BIOME,
+        ]),
       stationId,
       stationName,
       stationLevel: Number(recipe.minStationLevel ?? 1),
@@ -516,7 +596,9 @@ const items = [...itemIds]
     } else if (building) {
       classification = classifyItem({}, { buildingCategory: building.category })
     } else if (recipe) {
-      classification = classifyItem(rawItem ?? { id, name })
+      classification = MANUAL_ITEM_BIOMES[id]
+        ? { category: 'other', subcategory: 'ship' }
+        : classifyItem(rawItem ?? { id, name })
     } else if (kind === 'material') {
       classification = { category: 'material' }
     } else if (rawItem) {

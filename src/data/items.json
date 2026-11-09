@@ -20,6 +20,15 @@
     "description": "<color=yellow>Valuable</color>"
   },
   {
+    "id": "AncientBark",
+    "name": "Ancient Bark",
+    "slug": "ancient-bark",
+    "icon": "/icons/item/ancient-bark.webp",
+    "category": "material",
+    "biome": "blackforest",
+    "kind": "material"
+  },
+  {
     "id": "AncientSeed",
     "name": "Ancient Seed",
     "slug": "ancientseed",
@@ -72,7 +81,7 @@
     "icon": "/icons/item/armorberserkerchest.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "craftable",
     "description": "If these intricate designs can protect warriors from distant lands, they can surely protect you too.",
     "stats": {
@@ -90,7 +99,7 @@
     "icon": "/icons/item/armorberserkerlegs.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "craftable",
     "description": "It covers all the important bits, but not much else.",
     "stats": {
@@ -108,7 +117,7 @@
     "icon": "/icons/item/armorberserkerundeadchest.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "deepnorth",
+    "biome": "plains",
     "kind": "craftable",
     "description": "Crafted from the shattered bones of a tormented bear.",
     "stats": {
@@ -126,7 +135,7 @@
     "icon": "/icons/item/armorberserkerundeadlegs.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "deepnorth",
+    "biome": "plains",
     "kind": "craftable",
     "description": "Thick hides and bone fragments woven into a rugged skirt.",
     "stats": {
@@ -2030,7 +2039,7 @@
     "slug": "asksvinegg",
     "icon": "/icons/item/asksvinegg.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "ashlands",
     "kind": "food",
     "description": "Hard as rock, yet you can sense the presence of something inside. This should be kept warm.",
     "stats": {
@@ -2247,7 +2256,7 @@
     "icon": "/icons/item/axeberzerkrblood.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "The closer you are to death, the harder you are sure to hit.",
     "stats": {
@@ -2271,7 +2280,7 @@
     "icon": "/icons/item/axeberzerkrlightning.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Carnage spreads around you when you wield these axes, such that Thor himself would be proud.",
     "stats": {
@@ -2296,7 +2305,7 @@
     "icon": "/icons/item/axeberzerkrnature.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Your most primal instincts take over, and the nature around you reaches out to aid you.",
     "stats": {
@@ -2573,7 +2582,7 @@
     "slug": "bakedpoteitr",
     "icon": "/icons/item/bakedpoteitr.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "deepnorth",
     "kind": "food",
     "description": "Neither boiled nor mashed nor in a stew. Still delicious though!",
     "stats": {
@@ -3000,7 +3009,7 @@
     "slug": "bjornhide",
     "icon": "/icons/item/bjornhide.webp",
     "category": "material",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "material",
     "description": "A thick and furry hide, coarse yet incredibly soft."
   },
@@ -3010,7 +3019,7 @@
     "slug": "bjornmeat",
     "icon": "/icons/item/bjornmeat.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "blackforest",
     "kind": "food",
     "description": "This fatty meat was once meant to sustain a body through hibernation.",
     "stats": {
@@ -3029,7 +3038,7 @@
     "slug": "bjornpaw",
     "icon": "/icons/item/bjornpaw.webp",
     "category": "material",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "material",
     "description": "Sharp claws suitable for picking berries – or for dismembering."
   },
@@ -3090,7 +3099,7 @@
     "icon": "/icons/item/blackforge-ext4-gemcutter.webp",
     "category": "construction",
     "subcategory": "Crafting",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "building"
   },
   {
@@ -3654,7 +3663,7 @@
     "icon": "/icons/item/bombblob_morkhalla.webp",
     "category": "weapon",
     "subcategory": "bomb",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "craftable",
     "description": "A dungeon is where the blob is.",
     "stats": {
@@ -3908,7 +3917,7 @@
     "icon": "/icons/item/bowashlandsblood.webp",
     "category": "weapon",
     "subcategory": "ranged",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Arrows loosed from this bow will tear into flesh with unmatched ferocity.",
     "stats": {
@@ -3932,7 +3941,7 @@
     "icon": "/icons/item/bowashlandsroot.webp",
     "category": "weapon",
     "subcategory": "ranged",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Like the twisting branch was made to seek the sun, this bow was made to seek the slaughter.",
     "stats": {
@@ -3957,7 +3966,7 @@
     "icon": "/icons/item/bowashlandsstorm.webp",
     "category": "weapon",
     "subcategory": "ranged",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Let your arrows fly as swift as the lightning strikes.",
     "stats": {
@@ -4590,7 +4599,7 @@
     "slug": "celestialfeather",
     "icon": "/icons/item/celestialfeather.webp",
     "category": "material",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "material",
     "description": "The only remnant of the fallen valkyrie's former self."
   },
@@ -4631,7 +4640,7 @@
     "slug": "charcoalresin",
     "icon": "/icons/item/charcoalresin.webp",
     "category": "material",
-    "biome": "blackforest",
+    "biome": "ashlands",
     "kind": "material",
     "description": "The resin from a tree that was set ablaze a long time ago. It's still ready to burn some more."
   },
@@ -4642,7 +4651,7 @@
     "icon": "/icons/item/charred-shieldgenerator.webp",
     "category": "construction",
     "subcategory": "Misc",
-    "biome": "meadows",
+    "biome": "ashlands",
     "kind": "building"
   },
   {
@@ -4811,7 +4820,7 @@
     "slug": "cookedbjornmeat",
     "icon": "/icons/item/cookedbjornmeat.webp",
     "category": "food",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "food",
     "description": "Tastes like victory.",
     "stats": {
@@ -4830,7 +4839,7 @@
     "slug": "cookedbonemawserpentmeat",
     "icon": "/icons/item/cookedbonemawserpentmeat.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "ashlands",
     "kind": "food",
     "description": "The boiling sea did nothing to this meat, but grilling it over the fire has given it a delightful crisp.",
     "stats": {
@@ -4925,7 +4934,7 @@
     "slug": "cookedharemeat",
     "icon": "/icons/item/cookedharemeat.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "mistlands",
     "kind": "food",
     "description": "Stringy but flavorful.",
     "stats": {
@@ -4944,7 +4953,7 @@
     "slug": "cookedloxmeat",
     "icon": "/icons/item/cookedloxmeat.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "plains",
     "kind": "food",
     "description": "A great hunk of tender meat, food fit for Valhalla!",
     "stats": {
@@ -5001,7 +5010,7 @@
     "slug": "cookedsealblubber",
     "icon": "/icons/item/cookedsealblubber.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "deepnorth",
     "kind": "food",
     "description": "A chewy meat, with an aftertaste of remorse.",
     "stats": {
@@ -5020,7 +5029,7 @@
     "slug": "cookedvolturemeat",
     "icon": "/icons/item/cookedvolturemeat.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "ashlands",
     "kind": "food",
     "description": "A chewy and somewhat dry meat. Some seasoning would probably make it taste better, but it'll fill your stomach regardless.",
     "stats": {
@@ -5039,7 +5048,7 @@
     "slug": "cookedwolfmeat",
     "icon": "/icons/item/cookedwolfmeat.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "mountain",
     "kind": "food",
     "description": "A wild taste.",
     "stats": {
@@ -5178,7 +5187,7 @@
     "icon": "/icons/item/crossbowripperblood.webp",
     "category": "weapon",
     "subcategory": "ranged",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Ready to rend your enemies to pieces.",
     "stats": {
@@ -5200,7 +5209,7 @@
     "icon": "/icons/item/crossbowripperlightning.webp",
     "category": "weapon",
     "subcategory": "ranged",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "The bolts will tear through your enemies like a particularly nasty gale.",
     "stats": {
@@ -5223,7 +5232,7 @@
     "icon": "/icons/item/crossbowrippernature.webp",
     "category": "weapon",
     "subcategory": "ranged",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "If the bolt doesn't pin your foe in place, the roots surging up from the ground surely will.",
     "stats": {
@@ -5663,6 +5672,16 @@
     "description": "The last frozen tear of a dragon, pulsating with mysterious energy."
   },
   {
+    "id": "Drakkar",
+    "name": "Drakkar",
+    "slug": "ship-construction",
+    "icon": "/icons/item/ship-construction.webp",
+    "category": "other",
+    "subcategory": "ship",
+    "biome": "ashlands",
+    "kind": "craftable"
+  },
+  {
     "id": "DvergrKey",
     "name": "Sealbreaker",
     "slug": "dvergrkey",
@@ -5729,7 +5748,7 @@
     "slug": "ectoplasm",
     "icon": "/icons/item/ectoplasm.webp",
     "category": "material",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "material",
     "description": "A restless essence of a once living thing..."
   },
@@ -5839,7 +5858,7 @@
     "icon": "/icons/item/feastashlands_material.webp",
     "category": "food",
     "subcategory": "drink",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "It's hard to tell whether the steam coming off of this dish is because it's freshly cooked or because of the asksvin meat in it. Either way, the spiced meat together with the vineberries and fiddlehead sprouts is so delicious that it doesn't matter!"
   },
@@ -6056,7 +6075,7 @@
     "slug": "fiddleheadfern",
     "icon": "/icons/item/fiddleheadfern.webp",
     "category": "food",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "food",
     "description": "Veggies with a twist!",
     "stats": {
@@ -6319,7 +6338,7 @@
     "slug": "fishandbread",
     "icon": "/icons/item/fishandbread.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "plains",
     "kind": "food",
     "description": "Bounty from both land and sea.",
     "stats": {
@@ -6629,7 +6648,7 @@
     "icon": "/icons/item/fistbjornclaw.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "craftable",
     "description": "Made for tearing and rending.",
     "stats": {
@@ -6647,7 +6666,7 @@
     "icon": "/icons/item/fistbjornundeadclaw.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "plains",
     "kind": "craftable",
     "description": "These claws will rend flesh and bone alike.",
     "stats": {
@@ -6914,7 +6933,7 @@
     "slug": "frostcore",
     "icon": "/icons/item/frostcore.webp",
     "category": "material",
-    "biome": "mountain",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Terribly cold to the touch, filled with frozen energy."
   },
@@ -6934,7 +6953,7 @@
     "slug": "gemstoneblue",
     "icon": "/icons/item/gemstoneblue.webp",
     "category": "material",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "material",
     "description": "Light is reflected sharply off of this gem, or does it come from within the stone itself?"
   },
@@ -6944,7 +6963,7 @@
     "slug": "gemstonegreen",
     "icon": "/icons/item/gemstonegreen.webp",
     "category": "material",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "material",
     "description": "This gem pulses with energy, almost as if it were a living thing."
   },
@@ -6954,7 +6973,7 @@
     "slug": "gemstonered",
     "icon": "/icons/item/gemstonered.webp",
     "category": "material",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "material",
     "description": "You wonder how many deals have been made to appease this gem. How many palms have bled onto it in exchange for its power?"
   },
@@ -6964,7 +6983,7 @@
     "slug": "giantbloodsack",
     "icon": "/icons/item/giantbloodsack.webp",
     "category": "material",
-    "biome": "plains",
+    "biome": "mistlands",
     "kind": "material",
     "description": "Be careful not to puncture this while you carry it..."
   },
@@ -6974,7 +6993,7 @@
     "slug": "glowworm",
     "icon": "/icons/item/glowworm.webp",
     "category": "food",
-    "biome": "mistlands",
+    "biome": "deepnorth",
     "kind": "food",
     "description": "Slimy, yet satisfying.",
     "stats": {
@@ -7159,7 +7178,7 @@
     "icon": "/icons/item/helmetberserkerhood.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "craftable",
     "description": "Let the primal rage of a mighty bear consume you.",
     "stats": {
@@ -7177,7 +7196,7 @@
     "icon": "/icons/item/helmetberserkerundead.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "deepnorth",
+    "biome": "plains",
     "kind": "craftable",
     "description": "Inspiring fear in foes and courage in kin when worn.",
     "stats": {
@@ -7231,7 +7250,7 @@
     "icon": "/icons/item/helmetcelebration.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "craftable",
     "description": "You simply can't help but feel happy when donning this cap!",
     "stats": {
@@ -7627,7 +7646,7 @@
     "icon": "/icons/item/helmetlox.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "ashlands",
+    "biome": "plains",
     "kind": "craftable",
     "description": "See the world like a lox might.",
     "stats": {
@@ -7735,7 +7754,7 @@
     "icon": "/icons/item/helmetrootcrown.webp",
     "category": "armor",
     "subcategory": "armor",
-    "biome": "ashlands",
+    "biome": "swamp",
     "kind": "other",
     "description": "A painful, yet intricate headpiece.",
     "stats": {
@@ -7861,7 +7880,7 @@
     "slug": "honeyglazedchicken",
     "icon": "/icons/item/honeyglazedchicken.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "mistlands",
     "kind": "food",
     "description": "Grilled to perfection. Makes both eyes and mouths water.",
     "stats": {
@@ -7899,7 +7918,7 @@
     "slug": "hook",
     "icon": "/icons/item/hook.webp",
     "category": "material",
-    "biome": "meadows",
+    "biome": "mistlands",
     "kind": "material",
     "description": "A finely wrought item, with a gripping potential."
   },
@@ -7909,7 +7928,7 @@
     "slug": "ice",
     "icon": "/icons/item/ice.webp",
     "category": "material",
-    "biome": "mountain",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "So cold..."
   },
@@ -8058,7 +8077,7 @@
     "icon": "/icons/item/jute-carpet.webp",
     "category": "construction",
     "subcategory": "Furniture",
-    "biome": "plains",
+    "biome": "mountain",
     "kind": "building"
   },
   {
@@ -8068,7 +8087,7 @@
     "icon": "/icons/item/jute-carpet-blue.webp",
     "category": "construction",
     "subcategory": "Furniture",
-    "biome": "plains",
+    "biome": "mistlands",
     "kind": "building"
   },
   {
@@ -8077,7 +8096,7 @@
     "slug": "juteblue",
     "icon": "/icons/item/juteblue.webp",
     "category": "material",
-    "biome": "plains",
+    "biome": "mistlands",
     "kind": "material",
     "description": "Made from natural fibers and dvergr hair."
   },
@@ -8087,7 +8106,7 @@
     "slug": "jutered",
     "icon": "/icons/item/jutered.webp",
     "category": "material",
-    "biome": "plains",
+    "biome": "mountain",
     "kind": "material",
     "description": "A sturdy, rough fabric."
   },
@@ -8116,7 +8135,7 @@
     "slug": "kalechips",
     "icon": "/icons/item/kalechips.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "deepnorth",
     "kind": "food",
     "description": "Crispy greens!",
     "stats": {
@@ -8157,6 +8176,16 @@
     "biome": "deepnorth",
     "kind": "material",
     "description": "Plant to grow kale."
+  },
+  {
+    "id": "Karve",
+    "name": "Karve",
+    "slug": "ship-construction",
+    "icon": "/icons/item/ship-construction.webp",
+    "category": "other",
+    "subcategory": "ship",
+    "biome": "blackforest",
+    "kind": "craftable"
   },
   {
     "id": "KeysGoldUncooked",
@@ -8412,7 +8441,7 @@
     "slug": "larva",
     "icon": "/icons/item/larva.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "deepnorth",
     "kind": "food",
     "stats": {
       "weight": 1,
@@ -8440,7 +8469,7 @@
     "slug": "leatherstraps",
     "icon": "/icons/item/leatherstraps.webp",
     "category": "material",
-    "biome": "meadows",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "A sturdy yet flexible material."
   },
@@ -8479,7 +8508,7 @@
     "slug": "lingondricka",
     "icon": "/icons/item/lingondricka.webp",
     "category": "food",
-    "biome": "mountain",
+    "biome": "deepnorth",
     "kind": "food",
     "description": "Pairs well with most foods.",
     "stats": {
@@ -8612,7 +8641,7 @@
     "icon": "/icons/item/maceeldnerblood.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "The blood all but soaks into this mace, and it always yearns for more.",
     "stats": {
@@ -8635,7 +8664,7 @@
     "icon": "/icons/item/maceeldnerlightning.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Particularly effective on cloudy mornings.",
     "stats": {
@@ -8659,7 +8688,7 @@
     "icon": "/icons/item/maceeldnernature.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "If the force of your blow isn't enough to knock your enemies to the ground, perhaps the primal roots will hold them down for you.",
     "stats": {
@@ -8819,7 +8848,7 @@
     "slug": "magicallystuffedshroom",
     "icon": "/icons/item/magicallystuffedshroom.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "mistlands",
     "kind": "food",
     "description": "Bursting with magical flavour.",
     "stats": {
@@ -8867,7 +8896,7 @@
     "slug": "marinatedgreens",
     "icon": "/icons/item/marinatedgreens.webp",
     "category": "food",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "food",
     "description": "It's spicy, it's chewy, it's sweet… This mad dish tickles your tongue as well as your mind.",
     "stats": {
@@ -8886,7 +8915,7 @@
     "slug": "mashedmeat",
     "icon": "/icons/item/mashedmeat.webp",
     "category": "food",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "food",
     "description": "Leftover meat can actually be pretty tasty if you just mash it right!",
     "stats": {
@@ -9452,7 +9481,7 @@
     "icon": "/icons/item/meadtrollpheromones.webp",
     "category": "food",
     "subcategory": "drink",
-    "biome": "meadows",
+    "biome": "swamp",
     "kind": "food",
     "description": "An intense musk permeates the air around this bottle.",
     "stats": {
@@ -9487,7 +9516,7 @@
     "slug": "meatplatter",
     "icon": "/icons/item/meatplatter.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "mistlands",
     "kind": "food",
     "description": "Battle fuel.",
     "stats": {
@@ -9592,7 +9621,7 @@
     "slug": "moldarmorgoldchest",
     "icon": "/icons/item/moldarmorgoldchest.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a spectacular piece of armour."
   },
@@ -9602,7 +9631,7 @@
     "slug": "moldarmorgoldhelmet",
     "icon": "/icons/item/moldarmorgoldhelmet.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a spectacular piece of armour."
   },
@@ -9612,7 +9641,7 @@
     "slug": "moldarmorgoldlegs",
     "icon": "/icons/item/moldarmorgoldlegs.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a spectacular piece of armour."
   },
@@ -9622,7 +9651,7 @@
     "slug": "moldarmormagechest",
     "icon": "/icons/item/moldarmormagechest.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a spectacular piece of armour."
   },
@@ -9632,7 +9661,7 @@
     "slug": "moldarmormagehelmet",
     "icon": "/icons/item/moldarmormagehelmet.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a spectacular piece of armour."
   },
@@ -9642,7 +9671,7 @@
     "slug": "moldarmormagelegs",
     "icon": "/icons/item/moldarmormagelegs.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a spectacular piece of armour."
   },
@@ -9652,7 +9681,7 @@
     "slug": "moldarmormediumchest",
     "icon": "/icons/item/moldarmormediumchest.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a spectacular piece of armour."
   },
@@ -9662,7 +9691,7 @@
     "slug": "moldarmormediumhelmet",
     "icon": "/icons/item/moldarmormediumhelmet.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a spectacular piece of armour."
   },
@@ -9672,7 +9701,7 @@
     "slug": "moldarmormediumlegs",
     "icon": "/icons/item/moldarmormediumlegs.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a spectacular piece of armour."
   },
@@ -9682,7 +9711,7 @@
     "slug": "moldatgeir",
     "icon": "/icons/item/moldatgeir.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9692,7 +9721,7 @@
     "slug": "moldaxe",
     "icon": "/icons/item/moldaxe.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9702,7 +9731,7 @@
     "slug": "moldaxe2h",
     "icon": "/icons/item/moldaxe2h.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9712,7 +9741,7 @@
     "slug": "moldbow",
     "icon": "/icons/item/moldbow.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9722,7 +9751,7 @@
     "slug": "moldcrossbow",
     "icon": "/icons/item/moldcrossbow.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9732,7 +9761,7 @@
     "slug": "moldfistweapon",
     "icon": "/icons/item/moldfistweapon.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9742,7 +9771,7 @@
     "slug": "moldkeys",
     "icon": "/icons/item/moldkeys.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a powerful key."
   },
@@ -9752,7 +9781,7 @@
     "slug": "moldknife",
     "icon": "/icons/item/moldknife.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9762,7 +9791,7 @@
     "slug": "moldmace",
     "icon": "/icons/item/moldmace.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9772,7 +9801,7 @@
     "slug": "moldmace2h",
     "icon": "/icons/item/moldmace2h.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9782,7 +9811,7 @@
     "slug": "moldshieldbuckler",
     "icon": "/icons/item/moldshieldbuckler.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a hardy shield."
   },
@@ -9792,7 +9821,7 @@
     "slug": "moldshieldround",
     "icon": "/icons/item/moldshieldround.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a hardy shield."
   },
@@ -9802,7 +9831,7 @@
     "slug": "moldshieldtower",
     "icon": "/icons/item/moldshieldtower.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a hardy shield."
   },
@@ -9812,7 +9841,7 @@
     "slug": "moldspear",
     "icon": "/icons/item/moldspear.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9822,7 +9851,7 @@
     "slug": "moldstafffrostorbs",
     "icon": "/icons/item/moldstafffrostorbs.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a powerful magical item."
   },
@@ -9832,7 +9861,7 @@
     "slug": "moldstafforbofahri",
     "icon": "/icons/item/moldstafforbofahri.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a powerful magical item."
   },
@@ -9842,7 +9871,7 @@
     "slug": "moldstaffspiritcaller",
     "icon": "/icons/item/moldstaffspiritcaller.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a powerful magical item."
   },
@@ -9852,7 +9881,7 @@
     "slug": "moldstaffthunderblood",
     "icon": "/icons/item/moldstaffthunderblood.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a powerful magical item."
   },
@@ -9862,7 +9891,7 @@
     "slug": "moldsword",
     "icon": "/icons/item/moldsword.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9872,7 +9901,7 @@
     "slug": "moldsword2h",
     "icon": "/icons/item/moldsword2h.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Filled with the right material, this mould will create a most formidable weapon."
   },
@@ -9882,7 +9911,7 @@
     "slug": "moleclaws",
     "icon": "/icons/item/moleclaws.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "A lethal weapon, if one can hold them without getting cut."
   },
@@ -9960,7 +9989,7 @@
     "slug": "morgenheart",
     "icon": "/icons/item/morgenheart.webp",
     "category": "material",
-    "biome": "mistlands",
+    "biome": "ashlands",
     "kind": "material",
     "description": "It's hard to believe it has ever beaten."
   },
@@ -9970,7 +9999,7 @@
     "slug": "morgensinew",
     "icon": "/icons/item/morgensinew.webp",
     "category": "material",
-    "biome": "mistlands",
+    "biome": "ashlands",
     "kind": "material",
     "description": "Chewy."
   },
@@ -10105,7 +10134,7 @@
     "slug": "mushroomsmokepuff",
     "icon": "/icons/item/mushroomsmokepuff.webp",
     "category": "food",
-    "biome": "mistlands",
+    "biome": "ashlands",
     "kind": "food",
     "description": "Hopefully it tastes better after cooking.",
     "stats": {
@@ -10402,7 +10431,7 @@
     "slug": "oozemork",
     "icon": "/icons/item/oozemork.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "It's best not to think about what this consists of."
   },
@@ -10412,7 +10441,7 @@
     "slug": "orbfrostfire",
     "icon": "/icons/item/orbfrostfire.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Somehow both hot and cold to the touch."
   },
@@ -10422,7 +10451,7 @@
     "slug": "orbthunderblood",
     "icon": "/icons/item/orbthunderblood.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Unstable, erratic and...alive?"
   },
@@ -10432,7 +10461,7 @@
     "slug": "ovenpancake",
     "icon": "/icons/item/ovenpancake.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "deepnorth",
     "kind": "food",
     "description": "Warm and fluffy.",
     "stats": {
@@ -10834,7 +10863,7 @@
     "icon": "/icons/item/piece-birdnest.webp",
     "category": "construction",
     "subcategory": "Crafting",
-    "biome": "ashlands",
+    "biome": "swamp",
     "kind": "building"
   },
   {
@@ -11095,7 +11124,7 @@
     "icon": "/icons/item/piece-cloth-hanging-door.webp",
     "category": "construction",
     "subcategory": "Furniture",
-    "biome": "plains",
+    "biome": "mountain",
     "kind": "building"
   },
   {
@@ -11105,7 +11134,7 @@
     "icon": "/icons/item/piece-cloth-hanging-door-blue.webp",
     "category": "construction",
     "subcategory": "Furniture",
-    "biome": "plains",
+    "biome": "mistlands",
     "kind": "building"
   },
   {
@@ -11115,7 +11144,7 @@
     "icon": "/icons/item/piece-cloth-hanging-door-blue2.webp",
     "category": "construction",
     "subcategory": "Furniture",
-    "biome": "plains",
+    "biome": "mistlands",
     "kind": "building"
   },
   {
@@ -11317,7 +11346,7 @@
     "icon": "/icons/item/piece-frost-foundry.webp",
     "category": "construction",
     "subcategory": "Crafting",
-    "biome": "mountain",
+    "biome": "deepnorth",
     "kind": "building"
   },
   {
@@ -11327,7 +11356,7 @@
     "icon": "/icons/item/piece-frost-kiln.webp",
     "category": "construction",
     "subcategory": "Crafting",
-    "biome": "mountain",
+    "biome": "deepnorth",
     "kind": "building"
   },
   {
@@ -11704,7 +11733,7 @@
     "icon": "/icons/item/piece-icecube.webp",
     "category": "construction",
     "subcategory": "Building",
-    "biome": "mountain",
+    "biome": "deepnorth",
     "kind": "building"
   },
   {
@@ -11776,7 +11805,7 @@
     "icon": "/icons/item/piece-magetable-ext3.webp",
     "category": "construction",
     "subcategory": "Crafting",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "building"
   },
   {
@@ -11817,7 +11846,7 @@
     "icon": "/icons/item/piece-mistletoe.webp",
     "category": "construction",
     "subcategory": "Furniture",
-    "biome": "plains",
+    "biome": "mountain",
     "kind": "building"
   },
   {
@@ -11989,7 +12018,7 @@
     "icon": "/icons/item/piece-shieldgenerator.webp",
     "category": "construction",
     "subcategory": "Misc",
-    "biome": "swamp",
+    "biome": "ashlands",
     "kind": "building"
   },
   {
@@ -12115,7 +12144,7 @@
     "icon": "/icons/item/piece-training-dummy.webp",
     "category": "construction",
     "subcategory": "Misc",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "building"
   },
   {
@@ -12221,7 +12250,7 @@
     "icon": "/icons/item/piece-xmascrown.webp",
     "category": "construction",
     "subcategory": "Furniture",
-    "biome": "plains",
+    "biome": "mountain",
     "kind": "building"
   },
   {
@@ -12261,7 +12290,7 @@
     "slug": "piquantpie",
     "icon": "/icons/item/piquantpie.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "ashlands",
     "kind": "food",
     "description": "It takes some time and effort to make this pie, but the taste is well worth it.",
     "stats": {
@@ -12419,7 +12448,7 @@
     "slug": "pulledbear",
     "icon": "/icons/item/pulledbear.webp",
     "category": "food",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "food",
     "description": "Tender meat cooked for hours upon hours, until it practically falls apart.",
     "stats": {
@@ -12480,6 +12509,16 @@
       "regen": 2,
       "stack": 10
     }
+  },
+  {
+    "id": "Raft",
+    "name": "Raft",
+    "slug": "ship-construction",
+    "icon": "/icons/item/ship-construction.webp",
+    "category": "other",
+    "subcategory": "ship",
+    "biome": "meadows",
+    "kind": "craftable"
   },
   {
     "id": "raise",
@@ -12577,7 +12616,7 @@
     "slug": "roastedcrustpie",
     "icon": "/icons/item/roastedcrustpie.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "ashlands",
     "kind": "food",
     "description": "This dessert keeps you going all day long.",
     "stats": {
@@ -12675,7 +12714,7 @@
     "icon": "/icons/item/rug-bjorn.webp",
     "category": "construction",
     "subcategory": "Furniture",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "building"
   },
   {
@@ -13153,7 +13192,7 @@
     "slug": "scorchingmedley",
     "icon": "/icons/item/scorchingmedley.webp",
     "category": "food",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "food",
     "description": "A varied diet is important, so why not try this vegetarian option?",
     "stats": {
@@ -13463,7 +13502,7 @@
     "icon": "/icons/item/shieldcore.webp",
     "category": "armor",
     "subcategory": "shield",
-    "biome": "mistlands",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "A protective force within is ready to be unleashed."
   },
@@ -13600,7 +13639,7 @@
     "icon": "/icons/item/shieldroots.webp",
     "category": "armor",
     "subcategory": "shield",
-    "biome": "ashlands",
+    "biome": "swamp",
     "kind": "craftable",
     "description": "Malleable roots have been twisted into a surprisingly sturdy shield.",
     "stats": {
@@ -13811,7 +13850,7 @@
     "slug": "sizzlingberrybroth",
     "icon": "/icons/item/sizzlingberrybroth.webp",
     "category": "food",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "food",
     "description": "This soup settles in your stomach with an almost tingly sensation.",
     "stats": {
@@ -14185,7 +14224,7 @@
     "icon": "/icons/item/snowball.webp",
     "category": "weapon",
     "subcategory": "bomb",
-    "biome": "mountain",
+    "biome": "deepnorth",
     "kind": "craftable",
     "description": "Looks like a perfect thing to throw...",
     "stats": {
@@ -14437,7 +14476,7 @@
     "icon": "/icons/item/spearsplitner_blood.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "A small sacrifice must be made for every battle...",
     "stats": {
@@ -14460,7 +14499,7 @@
     "icon": "/icons/item/spearsplitner_lightning.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Let the crack of thunder split the air.",
     "stats": {
@@ -14483,7 +14522,7 @@
     "icon": "/icons/item/spearsplitner_nature.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Nature's forces burst through the ground wherever this spear strikes.",
     "stats": {
@@ -14598,7 +14637,7 @@
     "slug": "spicymarmalade",
     "icon": "/icons/item/spicymarmalade.webp",
     "category": "food",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "food",
     "description": "Sugary honey perfectly balanced with tangy fronds and tart berries.",
     "stats": {
@@ -14693,7 +14732,7 @@
     "icon": "/icons/item/staffgreenroots.webp",
     "category": "weapon",
     "subcategory": "magic",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Ancient natural forces lie curled and dormant within this staff, ready to be unleashed.",
     "stats": {
@@ -14737,7 +14776,7 @@
     "icon": "/icons/item/stafflightning.webp",
     "category": "weapon",
     "subcategory": "magic",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "What happens next may shock you.",
     "stats": {
@@ -14788,7 +14827,7 @@
     "icon": "/icons/item/staffredtroll.webp",
     "category": "weapon",
     "subcategory": "magic",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Summons a raging beast to cause death and destruction.",
     "stats": {
@@ -15279,7 +15318,7 @@
     "icon": "/icons/item/sworddyrnwyn.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "The sword that was broken is whole once more. Its flames burn hot, fuelled by the memories of ancient warriors.",
     "stats": {
@@ -15437,7 +15476,7 @@
     "icon": "/icons/item/swordniedhoggblood.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "If you bleed, your foes are sure to do so as well.",
     "stats": {
@@ -15460,7 +15499,7 @@
     "icon": "/icons/item/swordniedhogglightning.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "The power of lightning dances along the blade of this sword, a promise of the pain to come.",
     "stats": {
@@ -15484,7 +15523,7 @@
     "icon": "/icons/item/swordniedhoggnature.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Tangle your foes in roots, like the namesake of this blade.",
     "stats": {
@@ -15737,7 +15776,7 @@
     "icon": "/icons/item/thswordslayerblood.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "If it bleeds, you can kill it.",
     "stats": {
@@ -15760,7 +15799,7 @@
     "icon": "/icons/item/thswordslayerlightning.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "The lightning bound into this blade is erratic, ever searching for something to strike.",
     "stats": {
@@ -15784,7 +15823,7 @@
     "icon": "/icons/item/thswordslayernature.webp",
     "category": "weapon",
     "subcategory": "melee",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "The blade works in tandem with the primal forces of the world, seeking death and slaughter.",
     "stats": {
@@ -15964,7 +16003,7 @@
     "icon": "/icons/item/trinketbronzestamina.webp",
     "category": "armor",
     "subcategory": "trinket",
-    "biome": "deepnorth",
+    "biome": "mountain",
     "kind": "craftable",
     "description": "A beautiful pendant, harbouring the endurance of a bear.",
     "stats": {
@@ -16018,7 +16057,7 @@
     "icon": "/icons/item/trinketflametaleitr.webp",
     "category": "armor",
     "subcategory": "trinket",
-    "biome": "deepnorth",
+    "biome": "ashlands",
     "kind": "craftable",
     "description": "Tormented screams resonate from within.",
     "stats": {
@@ -16173,7 +16212,7 @@
     "slug": "trophybjorn",
     "icon": "/icons/item/trophybjorn.webp",
     "category": "material",
-    "biome": "deepnorth",
+    "biome": "blackforest",
     "kind": "material",
     "description": "That stare is still frightening..."
   },
@@ -16183,7 +16222,7 @@
     "slug": "trophybjornundead",
     "icon": "/icons/item/trophybjornundead.webp",
     "category": "material",
-    "biome": "deepnorth",
+    "biome": "plains",
     "kind": "material",
     "description": "These eyes are finally vacant for good."
   },
@@ -16203,7 +16242,7 @@
     "slug": "trophyblob_morkhalla",
     "icon": "/icons/item/trophyblob_morkhalla.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "deepnorth",
     "kind": "material",
     "description": "Remains of unfortunate adventurers, digested and jellified over time."
   },
@@ -16569,7 +16608,7 @@
     "slug": "undeadbjornribcage",
     "icon": "/icons/item/undeadbjornribcage.webp",
     "category": "material",
-    "biome": "deepnorth",
+    "biome": "plains",
     "kind": "material",
     "description": "A relic of savage strength, perfect for forging armour that bears the wild’s fury."
   },
@@ -16579,7 +16618,7 @@
     "slug": "vikingcupcake",
     "icon": "/icons/item/vikingcupcake.webp",
     "category": "food",
-    "biome": "meadows",
+    "biome": "plains",
     "kind": "food",
     "description": "A sweet and tasty treat, to celebrate a feat!",
     "stats": {
@@ -16610,6 +16649,16 @@
       "regen": 4,
       "stack": 10
     }
+  },
+  {
+    "id": "VikingShip",
+    "name": "Longship",
+    "slug": "ship-construction",
+    "icon": "/icons/item/ship-construction.webp",
+    "category": "other",
+    "subcategory": "ship",
+    "biome": "swamp",
+    "kind": "craftable"
   },
   {
     "id": "Vineberry",
@@ -17465,7 +17514,7 @@
     "slug": "writhanroots",
     "icon": "/icons/item/writhanroots.webp",
     "category": "material",
-    "biome": "ashlands",
+    "biome": "swamp",
     "kind": "material",
     "description": "The gnarled body parts of a strange, offputting creature."
   },

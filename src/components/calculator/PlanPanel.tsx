@@ -7,6 +7,7 @@ import { useBiomeVisibility } from '../../lib/dataset-context'
 import type { PlanEntry, PlanEntryTotal } from '../../lib/calculator'
 import { computePlan, maxLevelFor } from '../../lib/calculator'
 import { formatBiome } from '../../lib/format'
+import { useLocalizedName } from '../../lib/names'
 import { Badge, BiomeBadge } from '../ui/Badge'
 import { ItemIcon } from '../ui/ItemIcon'
 import { CostTree } from '../recipe/CostBreakdown'
@@ -33,6 +34,7 @@ export function PlanPanel({
   onClear,
 }: PlanPanelProps) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const { selection, isVisible } = useBiomeVisibility()
   const [recursive, setRecursive] = useState(true)
   const [view, setView] = useState<'list' | 'graph'>('list')
@@ -190,14 +192,20 @@ export function PlanPanel({
                       className="badge hover:border-[var(--gold)] hover:text-[var(--gold-soft)]"
                     >
                       {t('calculator.panel.stationLevel', {
-                        station: station.stationName,
+                        station: localizedName(
+                          station.stationId,
+                          station.stationName,
+                        ),
                         level: station.level,
                       })}
                     </Link>
                   ) : (
                     <span className="badge">
                       {t('calculator.panel.stationLevel', {
-                        station: station.stationName,
+                        station: localizedName(
+                          station.stationId,
+                          station.stationName,
+                        ),
                         level: station.level,
                       })}
                     </span>
@@ -234,6 +242,7 @@ function PlanEntryCard({
   onRemove: PlanPanelProps['onRemove']
 }) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const { entry, recipe, total, maximum } = row
   const catalog = indexes.entriesById.get(entry.itemId)
   const minimum = recipe.upgradeOnly ? 1 : 0
@@ -261,7 +270,7 @@ function PlanEntryCard({
               params={{ id: entry.itemId }}
               className="font-display text-base hover:text-[var(--gold-soft)]"
             >
-              {recipe.name}
+              {localizedName(entry.itemId, recipe.name)}
             </Link>
             <BiomeBadge biome={recipe.biome} />
             {capped ? (
@@ -271,7 +280,9 @@ function PlanEntryCard({
             ) : null}
           </div>
           <p className="mt-0.5 text-[0.66rem] text-[var(--faint)]">
-            {t('calculator.selected.station', { station: recipe.stationName })}
+            {t('calculator.selected.station', {
+              station: localizedName(recipe.stationId, recipe.stationName),
+            })}
             {catalog ? ` · ${formatBiome(catalog.biome)}` : ''}
           </p>
         </div>

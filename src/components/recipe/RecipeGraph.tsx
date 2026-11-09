@@ -16,6 +16,7 @@ import type { Indexes } from '../../lib/dataset'
 import { ingredientBiome } from '../../lib/dataset'
 import { useBiomeVisibility } from '../../lib/dataset-context'
 import { formatBiome } from '../../lib/format'
+import { useLocalizedName } from '../../lib/names'
 import { ItemIcon } from '../ui/ItemIcon'
 
 export interface ItemNodeData extends Record<string, unknown> {
@@ -31,6 +32,7 @@ type ItemFlowNode = Node<ItemNodeData, 'item'>
 
 function ItemNode({ data }: NodeProps<ItemFlowNode>) {
   useTranslation()
+  const localizedName = useLocalizedName()
   return (
     <div
       className={`w-[210px] rounded-lg border px-2.5 py-2 ${
@@ -48,7 +50,7 @@ function ItemNode({ data }: NodeProps<ItemFlowNode>) {
         <ItemIcon icon={data.icon} size="sm" />
         <div className="min-w-0 flex-1">
           <p className="truncate text-xs font-semibold text-[var(--text)]">
-            {data.label}
+            {localizedName(data.itemId, data.label)}
           </p>
           <p className="text-[0.6rem] text-[var(--faint)]">
             {formatBiome(data.biome)}

@@ -4,6 +4,7 @@ import type { CatalogEntry, Indexes } from '../../lib/dataset'
 import { itemIconFor, visibleIngredients } from '../../lib/dataset'
 import { useBiomeVisibility } from '../../lib/dataset-context'
 import { formatCategory, pluralize } from '../../lib/format'
+import { useLocalizedName } from '../../lib/names'
 import { Badge, BiomeBadge } from '../ui/Badge'
 import { ItemIcon } from '../ui/ItemIcon'
 import { StatSummary } from '../item/ItemStats'
@@ -16,10 +17,16 @@ export function CatalogCard({
   indexes: Indexes
 }) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const { selection } = useBiomeVisibility()
   const ingredients = visibleIngredients(entry.ingredients, indexes, selection)
   const preview = ingredients.slice(0, 3)
   const extra = ingredients.length - preview.length
+  const name = localizedName(entry.itemId, entry.name)
+  const stationName = localizedName(
+    entry.recipe?.stationId ?? entry.stationId,
+    entry.stationName ?? '',
+  )
 
   return (
     <Link
@@ -31,7 +38,7 @@ export function CatalogCard({
         <ItemIcon icon={entry.icon} size="lg" />
         <div className="min-w-0 flex-1">
           <h3 className="font-display text-base leading-snug text-[var(--text)]">
-            {entry.name}
+            {name}
           </h3>
           <div className="mt-1.5 flex flex-wrap gap-1.5">
             <Badge>{formatCategory(entry.category)}</Badge>
@@ -48,7 +55,7 @@ export function CatalogCard({
               <span
                 key={ingredient.itemId}
                 className="flex items-center gap-1 text-[0.7rem] text-[var(--muted)]"
-                title={ingredient.name}
+                title={localizedName(ingredient.itemId, ingredient.name)}
               >
                 <ItemIcon
                   icon={itemIconFor(indexes, ingredient.itemId)}
@@ -57,7 +64,9 @@ export function CatalogCard({
                 <span className="font-mono text-[var(--text)]">
                   {ingredient.amount}
                 </span>
-                <span className="max-w-24 truncate">{ingredient.name}</span>
+                <span className="max-w-24 truncate">
+                  {localizedName(ingredient.itemId, ingredient.name)}
+                </span>
               </span>
             ))}
             {extra > 0 ? (
@@ -77,8 +86,8 @@ export function CatalogCard({
 
       <div className="mt-3 flex items-center justify-between gap-2 border-t border-[var(--border)] pt-2 text-[0.68rem] text-[var(--faint)]">
         <span className="truncate">
-          {entry.stationName
-            ? t('catalogCard.station', { station: entry.stationName })
+          {stationName
+            ? t('catalogCard.station', { station: stationName })
             : entry.kind === 'food'
               ? t('catalogCard.consumable')
               : t('catalogCard.material')}

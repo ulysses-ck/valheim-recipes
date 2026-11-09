@@ -5,6 +5,7 @@ import { ingredientBiome, itemIconFor } from '../../lib/dataset'
 import { useBiomeVisibility } from '../../lib/dataset-context'
 import type { CostLine } from '../../lib/calculator'
 import { formatNumber } from '../../lib/format'
+import { useLocalizedName } from '../../lib/names'
 import { ItemIcon } from '../ui/ItemIcon'
 
 interface IngredientListProps {
@@ -23,6 +24,7 @@ export function IngredientList({
   compact = false,
 }: IngredientListProps) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const { isVisible } = useBiomeVisibility()
   const visibleLines = lines.filter((line) =>
     isVisible(ingredientBiome(indexes, line.itemId)),
@@ -53,7 +55,7 @@ export function IngredientList({
               params={{ id: line.itemId }}
               className="min-w-0 flex-1 truncate text-sm text-[var(--text)] hover:text-[var(--gold-soft)]"
             >
-              {line.name}
+              {localizedName(line.itemId, line.name)}
             </Link>
             <span className="shrink-0 font-mono text-sm text-[var(--gold-soft)]">
               {formatNumber(line.amount)}

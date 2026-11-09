@@ -135,7 +135,7 @@
             "amountPerLevel": 1
           }
         ],
-        "biome": "deepnorth"
+        "biome": "ashlands"
       },
       {
         "id": "blackforge_ext5_apron",
@@ -674,7 +674,7 @@
             "amountPerLevel": 1
           }
         ],
-        "biome": "deepnorth"
+        "biome": "ashlands"
       },
       {
         "id": "piece_magetable_ext4",

@@ -13,6 +13,7 @@ export interface PlanGraphNodeData extends Record<string, unknown> {
   quantity?: number
   current?: number
   target?: number
+  stationId?: string
   stationName?: string
   amount?: number
   crafts?: number
@@ -87,6 +88,7 @@ export function buildPlanGraph(
       quantity: row.entry.quantity,
       current: row.total.current,
       target: row.total.target,
+      stationId: row.recipe.stationId,
       stationName: row.recipe.stationName,
       expandable: false,
       expanded: false,

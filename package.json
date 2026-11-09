@@ -14,7 +14,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "data:fetch": "node scripts/fetch-data.mjs",
-    "data:build": "node scripts/build-data.mjs",
+    "data:localization": "node scripts/fetch-localization.mjs",
+    "data:names": "node scripts/build-item-names.mjs",
+    "data:build": "node scripts/build-data.mjs && node scripts/build-item-names.mjs",
     "data:traders": "node scripts/parse-traders.mjs",
     "format": "prettier --write . && eslint --fix",
     "check": "prettier --check ."

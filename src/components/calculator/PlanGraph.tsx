@@ -16,10 +16,12 @@ import type { PlanTotal } from '../../lib/calculator'
 import type { PlanGraphNode } from '../../lib/plan-graph'
 import { buildPlanGraph } from '../../lib/plan-graph'
 import { formatBiome } from '../../lib/format'
+import { useLocalizedName } from '../../lib/names'
 import { ItemIcon } from '../ui/ItemIcon'
 
 function PlanNode({ data }: NodeProps<PlanGraphNode>) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const isEntry = data.kind === 'entry'
 
   return (
@@ -44,7 +46,7 @@ function PlanNode({ data }: NodeProps<PlanGraphNode>) {
         <ItemIcon icon={data.icon} size="sm" />
         <div className="min-w-0 flex-1">
           <p className="truncate text-xs font-semibold text-[var(--text)]">
-            {data.label}
+            {localizedName(data.itemId, data.label)}
           </p>
           {isEntry ? (
             <p className="text-[0.6rem] text-[var(--faint)]">
@@ -83,7 +85,7 @@ function PlanNode({ data }: NodeProps<PlanGraphNode>) {
 
       <p className="mt-1 truncate text-[0.6rem] text-[var(--faint)]">
         {isEntry
-          ? data.stationName
+          ? localizedName(data.stationId, data.stationName ?? '')
           : `${formatBiome(data.biome)}${data.isRaw ? ` · ${t('recipe.raw')}` : ''}`}
       </p>
 

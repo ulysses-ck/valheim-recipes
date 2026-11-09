@@ -5,6 +5,7 @@ import type { Indexes } from '../lib/dataset'
 import { baseIndexes, itemIconFor } from '../lib/dataset'
 import { useDataset, useBiomeVisibility } from '../lib/dataset-context'
 import { formatBiome, pluralize } from '../lib/format'
+import { useLocalizedName } from '../lib/names'
 import type { Recipe } from '../lib/types'
 import { Badge, BiomeBadge } from '../components/ui/Badge'
 import { ItemIcon } from '../components/ui/ItemIcon'
@@ -21,6 +22,7 @@ export const Route = createFileRoute('/station/$id')({
 
 function StationPage() {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const { id } = Route.useParams()
   const { indexes } = useDataset()
   const { selection, isVisible } = useBiomeVisibility()
@@ -76,13 +78,17 @@ function StationPage() {
           {t('home.catalogTitle')}
         </Link>
         <span aria-hidden="true">/</span>
-        <span className="text-[var(--muted)]">{station.name}</span>
+        <span className="text-[var(--muted)]">
+          {localizedName(station.id, station.name)}
+        </span>
       </nav>
 
       <header className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-start">
         <ItemIcon icon={station.icon} size="xl" />
         <div className="min-w-0 flex-1">
-          <h1 className="font-display text-3xl md:text-4xl">{station.name}</h1>
+          <h1 className="font-display text-3xl md:text-4xl">
+            {localizedName(station.id, station.name)}
+          </h1>
           <div className="mt-2 flex flex-wrap gap-1.5">
             <BiomeBadge biome={station.biome} />
             <Badge>{pluralize(recipes.length, 'visible recipe')}</Badge>
@@ -104,7 +110,9 @@ function StationPage() {
                 {t('station.recipesTitle')}
               </h2>
               <p className="mt-1 text-xs text-[var(--faint)]">
-                {t('station.recipesSubtitle', { station: station.name })}
+                {t('station.recipesSubtitle', {
+                  station: localizedName(station.id, station.name),
+                })}
               </p>
             </div>
             <Badge>{recipes.length}</Badge>
@@ -179,7 +187,7 @@ function StationPage() {
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-xs font-semibold">
-                        {extension.name}
+                        {localizedName(extension.id, extension.name)}
                       </span>
                       <BiomeBadge biome={extension.biome} />
                     </div>
@@ -237,6 +245,7 @@ function StationRecipeDetails({
   indexes: Indexes
 }) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
 
   if (recipes.length === 0) return null
 
@@ -254,7 +263,7 @@ function StationRecipeDetails({
               className="flex items-center gap-2 text-xs font-semibold hover:text-[var(--gold-soft)]"
             >
               <ItemIcon icon={itemIconFor(indexes, recipe.itemId)} size="xs" />
-              {recipe.name}
+              {localizedName(recipe.itemId, recipe.name)}
             </Link>
             <div className="mt-1">
               <IngredientList

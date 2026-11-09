@@ -13,6 +13,7 @@ import {
   requiredStationLevel,
 } from '../../lib/calculator'
 import { Badge } from '../ui/Badge'
+import { useLocalizedName } from '../../lib/names'
 import { CostTree } from '../recipe/CostBreakdown'
 import { IngredientList } from '../recipe/IngredientList'
 
@@ -36,6 +37,7 @@ export function CalculatorPanel({
   initialQuantity,
 }: CalculatorPanelProps) {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const { selection } = useBiomeVisibility()
   const maximum = maxVisibleLevel(recipe, indexes, selection)
   const fullMaximum = maxLevelFor(recipe)
@@ -191,14 +193,14 @@ export function CalculatorPanel({
             className="text-[var(--gold-soft)] hover:underline"
           >
             {t('calculator.panel.stationLevel', {
-              station: station.name,
+              station: localizedName(station.id, station.name),
               level: stationLevel,
             })}
           </Link>
         ) : (
           <span className="text-[var(--faint)]">
             {t('calculator.panel.stationLevel', {
-              station: recipe.stationName,
+              station: localizedName(recipe.stationId, recipe.stationName),
               level: stationLevel,
             })}
           </span>

@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
+import { useLocalizedName } from '../lib/names'
 import type { CatalogEntry, Indexes } from '../lib/dataset'
 import { maxVisibleLevel, visibleEntries } from '../lib/dataset'
 import type { Recipe } from '../lib/types'
@@ -47,6 +48,7 @@ function planEntryFor(
 
 function CalculatorPage() {
   const { t } = useTranslation()
+  const localizedName = useLocalizedName()
   const { item: itemId } = Route.useSearch()
   const navigate = Route.useNavigate()
   const { indexes } = useDataset()
@@ -188,7 +190,7 @@ function CalculatorPage() {
                 onClick={() => select(quick)}
               >
                 <ItemIcon icon={quick.icon} size="xs" />
-                {quick.name}
+                {localizedName(quick.itemId, quick.name)}
               </button>
             ))}
           </div>
